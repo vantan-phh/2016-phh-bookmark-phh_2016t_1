@@ -28,7 +28,7 @@ app.use(session({
 app.use('/static', express.static('public'));
 
 app.get('/', function (req, res) {
-  if (req.session.uid) {
+  if (req.session.uid && req.session.uname) {
     // Do not redirect loop
     // res.redirect('/');
     console.log("topp");
