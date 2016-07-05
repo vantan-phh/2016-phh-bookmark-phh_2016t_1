@@ -1,3 +1,10 @@
+var crypto = require('crypto');
+function sha256gen(str) {
+  var hash = crypto.createHash('sha256');
+  hash.update(str);
+  return hash.digest('hex');
+}
+
 var express = require('express');
 var mysql = require('mysql');
 var ejs = require('ejs');
@@ -6,9 +13,9 @@ var session = require('express-session');
 var cookieParser = require('cookie-parser');
 
 var connection = mysql.createConnection({
- host     : 'localhost',
- user     : 'root',
- database : `phh_test_bkm_1`
+  host     : 'localhost',
+  user     : 'root',
+  database : `phh_test_bkm_1`
 });
 
 var app = express();
@@ -22,17 +29,15 @@ app.use(session({
   saveUninitialized: true,
   cookie: { //cookieのデフォルト内容
     httpOnly: false,
-    maxAge: 30 * 24 * 60 * 60 * 1000// ★★修正箇所：1 hour. ここを指定しないと、ブラウザデフォルト(ブラウザを終了したらクッキーが消滅する)になる こちらはms
+    maxAge: 30 * 24 * 60 * 60 * 1000
   }
 }));
 app.use('/static', express.static('public'));
 
 app.get('/', function (req, res) {
   if (req.session.uid && req.session.uname) {
-    // Do not redirect loop
-    // res.redirect('/');
     console.log("topp");
-    res.send('You are ' + req.session.uname + '\nYou are ' + req.session.uid);
+    res.send('You are ' + req.session.uname + '<br>You are ' + req.session.uid);
   } else {
     res.redirect('/login');
   }
@@ -48,6 +53,9 @@ app.get('/register', function (req, res) {
 app.post('/register', function (req, res) {
   var username = req.body.username;
   var password = req.body.password;
+  for (var i = 0; i < 10000; i++) {
+    password = sha256gen(password);
+  }
   var name = req.body.name;
   console.log(username, password, name);
   connection.query('SELECT * FROM `users` WHERE `username` = ? LIMIT 1', [username], function (error, result, fields) {
@@ -57,7 +65,7 @@ app.post('/register', function (req, res) {
         res.render('./register.confirm.ejs',
           {
             username: username,
-            password: password,
+            password: "password",
             name: name
           }
         );
@@ -89,10 +97,14 @@ app.get('/login', function (req, res) {
 });
 app.post('/login', function (req, res) {
   if (req.body.username && req.body.password) {
-    var name, id;
+    var username = req.body.username;
+    var password = req.body.password;
+    for (var i = 0; i < 10000; i++) {
+      password = sha256gen(password);
+    }
     connection.query(
       'SELECT `id`, `name` FROM `users` WHERE `username` = ? AND `password` = ?',
-      [req.body.username, req.body.password],
+      [username, password],
       function (error, result, fields) {
         console.log(result);
         if (result.length === 1) {
@@ -122,4 +134,4 @@ app.get('/logout', function (req, res) {
   res.redirect('/login');
 });
 
-app.listen(3000)
+app.listen(3000);
