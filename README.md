@@ -9,7 +9,7 @@ npm install
 ## 実行
 
 ```bash:実行
-node login.js
+node lndex.js
 ```
 
 ## 仕様
