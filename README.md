@@ -1,3 +1,41 @@
+# PHH
+
+## 準備
+
+```bash:インストール
+npm install
+```
+
+## 実行
+
+```bash:実行
+node lndex.js
+```
+
+## 仕様
+
+### [http://localhost:3000/](http://localhost:3000)
+
+- ルート
+- ログイン
+  - してたらnameとidを表示
+  - してなかったら/loginにリダイレクト
+
+### [/login](http://localhost:3000/login)
+
+- ここでログインして、成功したらセッションに保存する
+- セッションにはidがuidとして、nameがunameとして保存される
+- ログインしたあとはルートにリダイレクト
+
+### [/logout](http://localhost:3000/logout)
+
+- セッションを破棄する
+- そのあとは/loginにリダイレクト
+
+### [/register](http://localhost:3000/register)
+
+- 登録する
+
 # PHH ブックマーク 仕様概略
 
 以下に最低限の達成すべき機能と仕様を列挙する。本文書を参考に、サービスの設計を行ない、新たに仕様書を作成し、サービスの開発をせよ。
