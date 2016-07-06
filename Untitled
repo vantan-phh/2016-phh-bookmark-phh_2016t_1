@@ -1,0 +1,7 @@
+function Main(input){
+  var a = input.split("\n");
+  var b = a[0].split("\n");
+  console.log(a[a[1] - 1])
+}
+
+Main(require("fs").readFileSync("/dev/stdin", "utf8"));

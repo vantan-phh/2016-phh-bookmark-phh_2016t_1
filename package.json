@@ -1,0 +1,23 @@
+{
+  "name": "2016-phh-bookmark-phh_2016t_1",
+  "version": "1.0.0",
+  "description": "以下に最低限の達成すべき機能と仕様を列挙する。本文書を参考に、サービスの設計を行ない、新たに仕様書を作成し、サービスの開発をせよ。",
+  "main": "bookmark.js",
+  "dependencies": {
+    "express": "^4.14.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vantan-phh/2016-phh-bookmark-phh_2016t_1.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vantan-phh/2016-phh-bookmark-phh_2016t_1/issues"
+  },
+  "homepage": "https://github.com/vantan-phh/2016-phh-bookmark-phh_2016t_1#readme"
+}
