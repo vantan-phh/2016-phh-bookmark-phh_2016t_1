@@ -21,7 +21,6 @@ function create(url) {
   var client = require('cheerio-httpcli');
   //既に同じURLが入っていないか検証する
   mysql.query(
-    //クエリ
     "SELECT `url` FROM `urls`",
     //resultに取得した内容、fieldにステータス？が入る
     function(err, result, field){
@@ -30,72 +29,41 @@ function create(url) {
       }
       result = String(result);
       if(result.match(url)){
-        //ここで更新しても良いかも
         return "このURLは既に存在しています";
       }
     }
   );
-  var image = "No image"
-  var title = "No title"
-  var description = "No description"
-  client.fetch(url, function (err, $, res, body){
-    if($("meta[property=og:description]")){
-      $("meta[property=og:description]").each(function(idx){
-        if($(this).attr("content")){
-          description = $(this).attr("content");
-       }
-      });
-    }
-    if($("meta[name=description]")){
-      if(description = "No description"){
-        $("meta[name=description]").each(function(idx){
-          if($(this)){
-            description = $(this).attr("content");
-          }
-        });
-      }
-    }
-    if($("meta[property=og:title]")){
-      $("meta[property=og:title]").each(function(idx){
-        if($(this)){
-          title = $(this).attr("content");
-        }
-      });
-    }
-    if($("meta[name=title]")){
-      if(title = "No title"){
-        $("meta[name=title]").each(function(idx){
-          if($(this)){
-            title = $(this).attr("content");
-          }
-        });
-      }
-    }
-    if($("title")){
-      if(title = "No title"){
-        title = $("title").text();
-      }
-    }
-    if($("meta[property=og:image]")){
-      $("meta[property=og:image]").each(function(idx){
-        if(($this).attr("content")){
-          image = $(this).attr("content");
-        }
-      });
-    }
-    if($("meta[name=image]")){
-      if(image = "No image"){
-        $("meta[name=image]").each(function(idx){
-          if(($this).attr("content")){
-            image = $(this).attr("content");
-          }
-        });
-      }
-    }
+  var image,
+  title,
+  description;
+
+  //タイトルとか取得
+  var urlSync = client.fetchSync(url);
+  urlSync.$("meta[name=description]").each(function(idx){
+    description = urlSync.$(this).attr("content");
   });
+  urlSync.$("meta[property='og:description']").each(function(idx){
+    description = urlSync.$(this).attr("content");
+  });
+  title = urlSync.$("title").text();
+  urlSync.$("meta[name=title]").each(function(idx){
+    title = urlSync.$(this).attr("content");
+  });
+  urlSync.$("meta[property='og:title']").each(function(idx){
+    title = urlSync.$(this).attr("content");
+  });
+  urlSync.$("meta[name=image]").each(function(idx){
+    image = $(this).attr("content");
+  });
+  urlSync.$("meta[property='og:image']").each(function(idx){
+    image = urlSync.$(this).attr("content");
+  });
+  if(!image){image = "No image"};
+  if(!title){title = "No title"};
+  if(!description){description = "No description"};
 
   //URLやそれが持つデータをを追加
   mysql.query("INSERT INTO `urls`(`url`, `title`, `description`, image) VALUES(?, ?, ?, ?);",
   [url, title, description, image]);
 }
-create("http://gihyo.jp/dev/serial/01/crossbrowser-javascript/0012");
+create(ここにURLを突っ込む);
