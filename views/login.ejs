@@ -2,10 +2,13 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>ようこそ、<%= u_name %> さん</title>
+    <title>ログイン</title>
   </head>
   <body>
-    <p>ID <%= u_id %></p>
-    <p>表示名 <%= u_name %></p>
+    <form class="" action="/login" method="post">
+      <p>username: <input name="username" value=""></p>
+      <p>password: <input name="password" value=""></p>
+      <button>login</button>
+    </form>
   </body>
 </html>
