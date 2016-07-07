@@ -15,6 +15,7 @@ CREATE TABLE `urls` (
   `url` varchar(255),
   `title` varchar(255),
   `description` varchar(255),
+  `image` varchar(255),
   primary key (`id`)
 );
 CREATE TABLE `user_url` (

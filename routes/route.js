@@ -5,11 +5,12 @@ var mysql = require('mysql');
 var connection = require('../connection');
 
 router.get('/', function (req, res) {
-  if (req.session.uid && req.session.uname) {
-    var uname = req.session.uname;
-    var uid = req.session.uid;
+  console.log("TOP");
+  if (req.session.userId && req.session.userName) {
+    var userName = req.session.userName;
+    var userId = req.session.userId;
     res.render('./bookmark.ejs',{
-      name: uname
+      name: userName
     })
   } else {
     res.redirect('/login');

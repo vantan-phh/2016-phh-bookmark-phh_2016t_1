@@ -14,28 +14,19 @@ router.get('/', function (req, res) {
 });
 
 router.post('/', function (req, res) {
-  var username = req.body.username;
+  var userName = req.body.userName;
   var password = req.body.password;
   for (var i = 0; i < 10000; i++) {
     password = sha256gen(password);
   }
-  console.log(password);
-  var name = req.body.name;
-  console.log(username, password, name);
-  connection.query('SELECT * FROM `users` WHERE `username` = ? LIMIT 1', [username], function (error, result, fields) {
-    var usernameExists = result.length === 1;
-    if (!usernameExists) {
-      if (username && password && name) {
-        res.render('./register.confirm.ejs',
-          {
-            username: username,
-            password: "password",
-            name: name
-          }
-        );
+  connection.query('SELECT * FROM `users` WHERE `name` = ? LIMIT 1', [userName], function (error, result, fields) {
+    var userNameExists = result.length === 1;
+    if (!userNameExists) {
+      if (userName && password) {
+        res.send(userName + "で登録しました");
         connection.query(
-          "INSERT INTO `users` (`username`, `password`, `name`) VALUES (?, ?, ?)",
-          [username, password, name],
+          "INSERT INTO `users` (`name`, `password`) VALUES (?, ?)",
+          [userName, password],
         function(error, result, fields){
           console.log(result);
         });
@@ -49,7 +40,7 @@ router.post('/', function (req, res) {
     } else {
       res.render('./register.ejs',
         {
-          warn: "既に存在しているusernameです"
+          warn: "既に存在しているuserNameです"
         }
       );
     }

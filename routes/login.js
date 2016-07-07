@@ -16,21 +16,21 @@ router.post('/', function (req, res) {
       password = sha256gen(password);
     }
     connection.query(
-      'SELECT `id`, `name` FROM `users` WHERE `username` = ? AND `password` = ?',
+      'SELECT `id`, `name` FROM `users` WHERE `name` = ? AND `password` = ?',
       [username, password],
       function (error, result, fields) {
         console.log(result);
         if (result.length === 1) {
-          var uid = result[0].id;
-          var uname = result[0].name;
+          var userId = result[0].id;
+          var userName = result[0].name;
         } else {
-          var uid = false;
-          var uname = false;
+          var userId = false;
+          var userName = false;
         }
-        if (uid && uname) {
-          console.log(uid);
-          req.session.uid = uid;
-          req.session.uname = uname;
+        if (userId && userName) {
+          console.log(userId);
+          req.session.userId = userId;
+          req.session.userName = userName;
           res.redirect('/');
         } else {
           res.redirect('/login');
