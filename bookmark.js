@@ -14,7 +14,6 @@ mysql.connect(function(err) {
   }
 });
 
-//新しいURLを追加するときの関数
 function create(url) {
   var superResult;
   //http通信のためのインスタンス化
@@ -39,25 +38,33 @@ function create(url) {
 
   //タイトルとか取得
   var urlSync = client.fetchSync(url);
-  urlSync.$("meta[name=description]").each(function(idx){
+  urlSync.$("meta[property='og:description']").each(function(){
     description = urlSync.$(this).attr("content");
   });
-  urlSync.$("meta[property='og:description']").each(function(idx){
-    description = urlSync.$(this).attr("content");
-  });
-  title = urlSync.$("title").text();
-  urlSync.$("meta[name=title]").each(function(idx){
+  if(!description){
+    urlSync.$("meta[name=description]").each(function(){
+      description = urlSync.$(this).attr("content");
+    });
+  }
+  urlSync.$("meta[property='og:title']").each(function(){
     title = urlSync.$(this).attr("content");
   });
-  urlSync.$("meta[property='og:title']").each(function(idx){
-    title = urlSync.$(this).attr("content");
-  });
-  urlSync.$("meta[name=image]").each(function(idx){
-    image = $(this).attr("content");
-  });
-  urlSync.$("meta[property='og:image']").each(function(idx){
+  if(!title){
+    urlSync.$("meta[name=title]").each(function(){
+      title = urlSync.$(this).attr("content");
+    });
+  }
+  if(!title){
+    title = urlSync.$("title").text();
+  }
+  urlSync.$("meta[property='og:image']").each(function(){
     image = urlSync.$(this).attr("content");
   });
+  if(image){
+    urlSync.$("meta[name=image]").each(function(){
+      image = $(this).attr("content");
+    });
+  }
   if(!image){image = "No image"};
   if(!title){title = "No title"};
   if(!description){description = "No description"};
@@ -66,4 +73,4 @@ function create(url) {
   mysql.query("INSERT INTO `urls`(`url`, `title`, `description`, image) VALUES(?, ?, ?, ?);",
   [url, title, description, image]);
 }
-create(ここにURLを突っ込む);
+create("http://www.backlog.jp/git-guide/stepup/stepup2_3.html");
