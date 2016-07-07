@@ -1,0 +1,31 @@
+CREATE DATABASE `bookmark`;
+CREATE TABLE `users` (
+  `id` int not null auto_increment,
+  `name` varchar(255),
+  `password` varchar(255),
+  primary key (`id`)
+);
+CREATE TABLE `orgs` (
+  `id` int not null auto_increment,
+  `name` varchar(255),
+  primary key (`id`)
+);
+CREATE TABLE `urls` (
+  `id` int not null auto_increment,
+  `url` varchar(255),
+  `title` varchar(255),
+  `description` varchar(255),
+  primary key (`id`)
+);
+CREATE TABLE `user_url` (
+  `id` int not null auto_increment,
+  `userId` varchar(255),
+  `urlId` varchar(255),
+  primary key (`id`)
+);
+CREATE TABLE `user_org` (
+  `id` int not null auto_increment,
+  `userId` varchar(255),
+  `orgId` varchar(255),
+  primary key (`id`)
+);
