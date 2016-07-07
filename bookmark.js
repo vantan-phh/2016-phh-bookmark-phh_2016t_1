@@ -3,7 +3,7 @@ var mysql = require("mysql");
 var mysql = mysql.createConnection({
   host : "localhost",
   user : "root",
-  database : "tool"
+  database : "bookmark"
 });
 
 //接続失敗時のエラー処理
