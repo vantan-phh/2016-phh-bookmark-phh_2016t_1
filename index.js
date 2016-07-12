@@ -20,7 +20,7 @@ var connection = mysql.createConnection({
 
 var app = express();
 
-app.engine('ejs',ejs.renderFile);
+app.engine('ejs', ejs.renderFile);
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
 app.use(session({
@@ -36,22 +36,9 @@ app.use(session({
 var routes = require('./routes');
 
 app.use('/static', express.static('public'));
-
-// app.get('/', function (req, res) {
-//   if (req.session.uid && req.session.uname) {
-//     console.log("topp");
-//     res.send('You are ' + req.session.uname + '<br>You are ' + req.session.uid);
-//   } else {
-//     res.redirect('/login');
-//   }
-// })
-
-app.use('/', routes.route);
-
+app.use('/', routes.top);
 app.use('/register', routes.register);
-
 app.use('/login', routes.login);
-
 app.get('/logout', function (req, res) {
   req.session.destroy();
   res.redirect('/login');

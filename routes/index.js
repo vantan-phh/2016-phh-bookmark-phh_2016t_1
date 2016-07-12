@@ -1,5 +1,5 @@
 var routes = {
-  route: require('./route'),
+  top: require('./top'),
   register: require('./register'),
   login: require('./login')
 };
