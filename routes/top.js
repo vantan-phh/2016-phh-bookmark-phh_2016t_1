@@ -11,7 +11,7 @@ router.get('/', function (req, res) {
     var userId = req.session.userId;
     res.render('./bookmark.ejs',{
       name: userName
-    })
+    });
   } else {
     res.redirect('/login');
   }

@@ -2,13 +2,15 @@ $(function(){
 
   $('#addbtn').on('click', function(){
     var inputUrl = $("#inputUrl").val();
+    var inputComment = $("#inputComment").val();
 
     $.ajax({
       type: "POST",
-      url: "/",
+      url: "/create",
       dataType: "text",
       data: {
-        "url": inputUrl
+        "url": inputUrl,
+        "comment": inputComment
       },
       success: function(data, textStatus){
         //$('#pii').text(data);
