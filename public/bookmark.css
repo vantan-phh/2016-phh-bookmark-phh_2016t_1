@@ -38,3 +38,9 @@ header{
   clear: left;
   background-color:red;
 }
+.bookmarkUrl{
+}
+.item{
+  background-color:white;
+  border: 1px solid black;
+}
