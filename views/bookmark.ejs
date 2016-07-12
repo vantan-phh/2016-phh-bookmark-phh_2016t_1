@@ -4,6 +4,8 @@
   <meta charset="utf-8">
   <title>PHHBookmark TopPage</title>
   <link rel="stylesheet" href="/static/bookmark.css" >
+  <script type="text/javascript" src="/static/jquery-3.0.0.min.js"></script>
+  <script type="text/javascript" src="/static/showCreate.js"></script>
 </head>
 <body>
 
@@ -23,10 +25,11 @@
     <div class="topInput">
       <form>
         <p>URL:
-          <input type="text" name="url" placeholder="URLを入力してね">
+          <input id="inputUrl" type="text" name="url" placeholder="URLを入力してね">
           コメント:
-          <textarea name="comment" rows="2" cols="40"></textarea>
-          <input type="submit" name="追加">
+          <textarea id="inputcomment" name="comment" rows="2" cols="40"></textarea>
+          <input id="submit" type="submit" name="追加">
+          <button id="addbtn" type="button" name="button">追加</button>
         </p>
       </form>
     </div>
@@ -38,6 +41,9 @@
         <p>URL表示    コメント表示  <input type="button" name="name" value="編集">
           <input type="button" name="name" value="削除">
         </p>
+      </div>
+      <div class="bookmarkUrl">
+
       </div>
 
     </div>

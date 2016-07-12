@@ -5,11 +5,11 @@
   "main": "login.js",
   "dependencies": {
     "body-parser": "^1.15.2",
+    "cookie-parser": "^1.4.3",
     "ejs": "^2.4.2",
     "express": "^4.14.0",
-    "cookie-parser": "^1.4.3",
-    "mysql": "^2.11.1",
-    "express-session": "^1.13.0"
+    "express-session": "^1.13.0",
+    "mysql": "^2.11.1"
   },
   "devDependencies": {},
   "scripts": {

@@ -6,7 +6,7 @@ var bodyParser = require('body-parser');
 var connection = mysql.createConnection({
  host     : 'localhost',
  user     : 'root',
- database : `phh_test_bkm_1`
+ database : `bookmark`
 });
 
 var app = express();
