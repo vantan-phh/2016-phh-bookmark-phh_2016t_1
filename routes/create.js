@@ -10,11 +10,13 @@ var promise = function () {
   });
 }
 
-function create(url, comment) {
+function create(url, comment, userId) {
   var superResult;
+  var urlId;
   //http通信のためのインスタンス化
   var client = require('cheerio-httpcli');
   //既に同じURLが入っていないか検証する
+  new Promise(function (resolve, reject) {
     connection.query(
       "SELECT `url` FROM `urls`",
       //resultに取得した内容、fieldにステータス？が入る
@@ -23,15 +25,18 @@ function create(url, comment) {
           console.log("現在URLを追加することができません");
           return "現在URLを追加することができません";
         }
+        console.log(result);
         result = String(result);
+        console.log(result);
         if(result.match(url)){
           console.log("このURLは既に存在しています");
           return "このURLは既に存在しています";
         }
         console.log("resolve");
+        resolve();
       }
     );
-
+  }).then(function () {
     //////////////////////////////////////////////////////////////////////////////
     var image, title, description;
 
@@ -69,26 +74,28 @@ function create(url, comment) {
     if(!description){description = "No description"};
 
     //URLやそれが持つデータをを追加
-    connection.query("INSERT INTO `urls`(`url`, `title`, `description`, `image`) VALUES(?, ?, ?, ?)",
-      [url, title, description, image], function (error, result, fields) {
-        console.log(result);
-        console.log(result.insertId);
-        if (!result) {
-          console.log(error);
-          return 1;
-        }
-        var urlId = result.insertId;
-        console.log("resolve");
+    return new Promise(function (resolve, reject) {
+      connection.query("INSERT INTO `urls` (`url`, `title`, `description`, `image`) VALUES(?, ?, ?, ?)",
+        [url, title, description, image], function (error, result, fields) {
+          if (!result) {
+            console.log(error);
+            return 1;
+          }
+          urlId = result.insertId;
+          console.log(result.insertId);
+          console.log("resolve");
+          console.log(urlId);
+          resolve();
+      })
     });
-    console.log("url inserted");
-
-    console.log("user_url inserting");
-    var userId = req.session.userId;
-    connection.query("INSERT INTO `user_url`(`userId`, `urlId`, `comment`) VALUES(?, ?, ?)",
+  }).then(function () {
+    console.log("aaa");
+    console.log(userId, urlId, comment, "aaa");
+    connection.query("INSERT INTO `user_url` (`userId`, `urlId`, `comment`) VALUES(?, ?, ?)",
       [userId, urlId, comment], function (error, result, fields) {
         console.log(userId, urlId, comment);
-        console.log(fields);
     });
+  })
 }
 
 router.post('/', function (req, res) {
@@ -97,7 +104,7 @@ router.post('/', function (req, res) {
     var userId = req.session.userId;
     var url = req.body.url;
     var comment = req.body.comment;
-    create(url, comment);
+    create(url, comment, userId);
   } else {
     // res.redirect('/login');
   }
