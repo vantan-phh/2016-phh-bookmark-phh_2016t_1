@@ -4,13 +4,10 @@ var sha256gen = require('../sha256gen');
 var mysql = require('mysql');
 var connection = require('../connection');
 var urlParser = require('../urlParser');
-var client = require('cheerio-httpcli');
 
 function create(url, comment, userId) {
   var superResult;
   var urlId;
-  //http通信のためのインスタンス化
-  var client = require('cheerio-httpcli');
   //既に同じURLが入っていないか検証する
   console.log("test");
   new Promise(function (resolve, reject) {
@@ -44,40 +41,9 @@ function create(url, comment, userId) {
     } else {
       console.log("urlId is null");
     //////////////////////////////////////////////////////////////////////////////
-      var image, title, description;
 
-      //タイトルとか取得
-      var urlSync = client.fetchSync(url);
-      urlSync.$("meta[property='og:description']").each(function(){
-        description = urlSync.$(this).attr("content");
-      });
-      if(!description){
-        urlSync.$("meta[name=description]").each(function(){
-          description = urlSync.$(this).attr("content");
-        });
-      }
-      urlSync.$("meta[property='og:title']").each(function(){
-        title = urlSync.$(this).attr("content");
-      });
-      if(!title){
-        urlSync.$("meta[name=title]").each(function(){
-          title = urlSync.$(this).attr("content");
-        });
-      }
-      if(!title){
-        title = urlSync.$("title").text();
-      }
-      urlSync.$("meta[property='og:image']").each( function(){
-        image = urlSync.$(this).attr("content");
-      });
-      if(!image){
-        urlSync.$("meta[name=image]").each( function(){
-          image = $(this).attr("content");
-        });
-      }
-      if(!image){image = "No image"};
-      if(!title){title = "No title"};
-      if(!description){description = "No description"};
+      var parsed = urlParser(url);
+      var title = parsed[0], description = parsed[1], image = parsed[2];
 
       //URLやそれが持つデータをを追加
       return new Promise(function (resolve, reject) {
