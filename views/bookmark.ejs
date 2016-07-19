@@ -3,15 +3,23 @@
 <head>
   <meta charset="utf-8">
   <title>PHHBookmark TopPage</title>
-  <link rel="stylesheet" href="/static/bookmark.css" >
-  <script type="text/javascript" src="/static/jquery-3.0.0.min.js"></script>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- BootstrapのCSS読み込み -->
+  <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+  <!-- jQuery読み込み -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <!-- BootstrapのJS読み込み -->
+  <script src="static/js/bootstrap.min.js"></script>
+
   <script type="text/javascript" src="/static/showCreate.js"></script>
+  <link rel="stylesheet" href="/static/bookmark.css" >
 </head>
 <body>
 
   <header>
     <div class="header-left">
-      <h2>PHHブックマークver0.1</h2>
+      <h2>PHH Bookmark ver0.1</h2>
     </div>
     <div class="header-right">
       <ul>
@@ -20,7 +28,7 @@
       </ul>
     </div>
   </header>
-  
+
   <div class ="container">
     <div class="topInput">
       <form>
@@ -36,7 +44,6 @@
 
     <div class="bookmarkList">
       <h3>ブックマーク一覧</h3>
-
       <div class="bookmarkEX">
         <p>URL表示    コメント表示  <input type="button" name="name" value="編集">
           <input type="button" name="name" value="削除">
