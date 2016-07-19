@@ -32,9 +32,7 @@ function create(url) {
       }
     }
   );
-  var image,
-  title,
-  description;
+  var image, title, description;
 
   //タイトルとか取得
   var urlSync = client.fetchSync(url);

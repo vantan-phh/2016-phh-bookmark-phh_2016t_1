@@ -43,5 +43,6 @@ app.get('/logout', function (req, res) {
   req.session.destroy();
   res.redirect('/login');
 });
+app.use('/create', routes.create);
 
 app.listen(3000);
