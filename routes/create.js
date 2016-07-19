@@ -5,11 +5,6 @@ var mysql = require('mysql');
 var connection = require('../connection');
 var client = require('cheerio-httpcli');
 
-var promise = function () {
-  return new Promise(function (resolve, reject) {
-  });
-}
-
 function create(url, comment, userId) {
   var superResult;
   var urlId;
