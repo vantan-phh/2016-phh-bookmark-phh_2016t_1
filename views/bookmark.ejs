@@ -31,13 +31,12 @@
 
   <div class ="container">
     <div class="topInput">
-      <form>
+      <form class="form-inline">
         <p>URL:
-          <input id="inputUrl" type="text" name="url" placeholder="URLを入力してね">
+          <input id="inputUrl"   class="form-control" type="text" name="url" placeholder="URLを入力してね">
           コメント:
-          <textarea id="inputComment" name="comment" rows="2" cols="40"></textarea>
-          <input id="submit" type="submit" name="追加">
-          <button id="addbtn" type="button" name="button">追加</button>
+          <textarea id="inputComment" class="form-control" name="comment" rows="2" cols="40"></textarea>
+          <button id="addbtn" class="btn btn-default" type="button" name="button">追加</button>
         </p>
       </form>
     </div>
@@ -45,7 +44,7 @@
     <div class="bookmarkList">
       <h3>ブックマーク一覧</h3>
       <div class="bookmarkEX">
-        <p>URL表示    コメント表示  <input type="button" name="name" value="編集">
+        <p>URLのTop画像　タイトル  コメント表示  <input type="button" name="name" value="編集">
           <input type="button" name="name" value="削除">
         </p>
       </div>
