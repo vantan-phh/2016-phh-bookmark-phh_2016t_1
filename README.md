@@ -1,5 +1,7 @@
 # PHH
 
+データベースのつくりは[こちら](https://gist.github.com/soneyuu/14d6907d0ea41db11bd9a7ae70c00979)へどうぞ
+
 ## 準備
 
 ```bash:インストール
