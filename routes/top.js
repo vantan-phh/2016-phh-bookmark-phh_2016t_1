@@ -7,6 +7,7 @@ var connection = require('../connection');
 router.get('/', function (req, res) {
   console.log("TOP");
   if (req.session.userId && req.session.userName) {
+    console.log("logged in");
     var userName = req.session.userName;
     var userId = req.session.userId;
     res.render('./bookmark.ejs',{

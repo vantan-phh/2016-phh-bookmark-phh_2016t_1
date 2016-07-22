@@ -2,6 +2,7 @@ CREATE DATABASE `bookmark`;
 CREATE TABLE `users` (
   `id` int not null auto_increment,
   `name` varchar(255),
+  `mailaddress` varchar(255),
   `password` varchar(255),
   primary key (`id`)
 );
@@ -26,7 +27,7 @@ CREATE TABLE `user_url` (
   `userId` varchar(255),
   `urlId` varchar(255),
   `comment` varchar(255),
-  `time` varchar(255),
+  `time_updated` varchar(255),
   primary key (`id`)
 );
 
