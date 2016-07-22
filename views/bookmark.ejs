@@ -11,9 +11,9 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <!-- BootstrapのJS読み込み -->
   <script src="static/js/bootstrap.min.js"></script>
-
   <script type="text/javascript" src="/static/showCreate.js"></script>
   <link rel="stylesheet" href="/static/bookmark.css" >
+  <script type="text/javascript" src="/static/settingShow.js"></script>
 </head>
 <body>
 
@@ -22,12 +22,22 @@
       <h2>PHH Bookmark ver0.1</h2>
     </div>
     <div class="header-right">
-      <ul>
-        <li>ようこそ <%= name %>さん</li>
-        <li><a href="/logout">ログアウト</a></li>
+
+      <ul class="dropdown">
+        <li id="setting">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            ようこそ <%= name %>さん</b>
+          </a>
+
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li><a href="/logout">ログアウト</a></li>
+            <li><a href="#">設定</a></li>
+          </ul>
+        </li>
       </ul>
     </div>
   </header>
+
 
   <div class ="container">
     <div class="topInput">
