@@ -26,6 +26,7 @@ CREATE TABLE `user_url` (
   `userId` varchar(255),
   `urlId` varchar(255),
   `comment` varchar(255),
+  `time` varchar(255),
   primary key (`id`)
 );
 
