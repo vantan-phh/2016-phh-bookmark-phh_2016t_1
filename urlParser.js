@@ -1,4 +1,7 @@
 function urlParser(url) {
+  if (url) { // ここでurlの頭にhttp://とかが無いリクエストのための処理をしてね
+
+  }
   var client = require('cheerio-httpcli');
   var image, title, description;
   //タイトルとか取得

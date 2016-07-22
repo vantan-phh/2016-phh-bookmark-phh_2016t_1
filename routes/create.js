@@ -73,16 +73,16 @@ function create(url, comment, userId) {
         if (userUrlId) {
           console.log("update");
           console.log(comment);
-          var query = connection.query("UPDATE `user_url` SET `comment` = ? WHERE id = ?",
-            [comment, userUrlId], function (error, result, fields) {
+          var query = connection.query("UPDATE `user_url` SET `comment` = ?, `time_updated` = ? WHERE id = ?",
+            [comment, new Date().getTime(), userUrlId], function (error, result, fields) {
               if (error) console.log(error);
               console.log(result);
           });
           console.log(query);
         } else {
           console.log("insert");
-          var query = connection.query("INSERT INTO `user_url` (`userId`, `urlId`, `comment`) VALUES(?, ?, ?)",
-            [userId, urlId, comment], function (error, result, fields) {
+          var query = connection.query("INSERT INTO `user_url` (`userId`, `urlId`, `comment`, `time_updated`) VALUES(?, ?, ?, ?)",
+            [userId, urlId, comment, new Date().getTime()], function (error, result, fields) {
               console.log(result);
           });
           console.log(query);
