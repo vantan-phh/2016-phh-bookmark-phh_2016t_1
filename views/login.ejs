@@ -1,14 +1,40 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>ログイン</title>
-  </head>
-  <body>
-    <form class="" action="/login" method="post">
-      <p>username: <input name="username" value=""></p>
-      <p>password: <input name="password" type="password" value=""></p>
-      <button>login</button>
-    </form>
-  </body>
+<head>
+  <meta charset="utf-8">
+  <title>ログイン</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- BootstrapのCSS読み込み -->
+<link href="/static/css/bootstrap.min.css" rel="stylesheet">
+<!-- jQuery読み込み -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- BootstrapのJS読み込み -->
+<script src="static/js/bootstrap.min.js"></script>
+</head>
+<body>
+<style>
+body{
+  width:100%; /*ページ全体の幅は100%と指定する*/
+  text-align:center; /*ページ全体を中央揃えにする*/
+}
+#form{
+  width:250px;
+  margin:50px auto 0px auto;
+}
+.form-title{
+  border-bottom:1px solid #4682B4;
+}
+</style>
+<div id="form">
+  <p class="form-title">Login</p>
+  <form class="form-horizontal" action="/login" method="post">
+    <p>username</p>
+    <p class="userName"><input name="username" class="form-control" value=""></p>
+    <p>password</p>
+    <p class="password"><input name="password" type="password" class="form-control" value=""></p>
+    <p><button class="btn btn-primary">login</button></p>
+  </form>
+</div>
+</body>
 </html>
