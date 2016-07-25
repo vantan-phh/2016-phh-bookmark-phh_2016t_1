@@ -44,9 +44,14 @@ header{
 }
 .bookmarkList{
   clear: left;
-  background-color:#B0C4DE;
 }
 .bookmarkUrl{
+}
+.bookmarkElem{
+  margin:0px auto;
+  padding:10px;
+  border:1px solid #E6E6FA;
+  border-radius:3px;
 }
 .item{
   border: 1px solid black;
