@@ -39,6 +39,8 @@ app.use('/static', express.static('public'));
 app.use('/', routes.top);
 app.use('/register', routes.register);
 app.use('/login', routes.login);
+app.use('/setting', routes.setting);
+app.use('/addorgs', routes.addorgs);
 app.get('/logout', function (req, res) {
   req.session.destroy();
   res.redirect('/login');

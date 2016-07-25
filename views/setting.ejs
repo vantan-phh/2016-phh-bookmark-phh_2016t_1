@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>setting</title>
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- BootstrapのCSS読み込み -->
+  <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+  <!-- jQuery読み込み -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <!-- BootstrapのJS読み込み -->
+  <script src="static/js/bootstrap.min.js"></script>
+
+  <link href="static/setting.css" rel="stylesheet" >
+</head>
+<body>
+  <div id="main">
+    <h1>設定</h1>
+    <div id="form">
+      <p class="form-title"></p>
+      <form class="form-horizontal" action="/register" method="post">
+        <p>username</p>
+        <p><input name="userName" class="form-control" value=""></p>
+        <p>mail addressc</p>
+        <p><input name="mail address" class="form-control" value=""></p>
+        <p>password</p>
+        <p><input name="password" type="password" class="form-control"　value=""></p>
+        <button class="btn btn-primary changeSettingBtn">ChangeSetting</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

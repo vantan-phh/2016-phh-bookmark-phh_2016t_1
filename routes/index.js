@@ -4,6 +4,8 @@ var routes = {
   login: require('./login'),
   create: require('./create'),
   contents: require('./contents'),
+  setting: require('./setting'),
+  addorgs: require('./addorgs')
 };
 
 module.exports = routes;
