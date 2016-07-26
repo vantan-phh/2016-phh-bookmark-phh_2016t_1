@@ -9,12 +9,16 @@ function getUrlDetail(resultObj) {
       "SELECT * FROM `urls` WHERE `id` = ?",
       [resultObj.urlId],
       function (err, result, field) {
-        if (err) console.log(err);
-        resultObj.url = result[0].url;
-        resultObj.title = result[0].title;
-        resultObj.description = result[0].description;
-        resultObj.image = result[0].image;
-        resolve(resultObj);
+        try {
+          if(err) throw new Error(err.code);
+          resultObj.url = result[0].url;
+          resultObj.title = result[0].title;
+          resultObj.description = result[0].description;
+          resultObj.image = result[0].image;
+          resolve(resultObj);
+        } catch(e) {
+          reject(e);
+        }
       }
     );
   });
