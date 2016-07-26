@@ -10,8 +10,10 @@ $(function(){
       return 0;
     });
     for(var i = 0; i < JSON.parse(res).length; i++ ){ //ブックマークした要素の表示
-      $(".bookmarkUrl").append('<div class="bookmarkElem" id='+obj[i].id+'><a href='+obj[i].url+'></a>'+obj[i].comment+
-      '<i class="trash fa fa-trash-o" aria-hidden="true" style="float:right;"></i></div>');
+      $(".bookmarkUrl").append('<div class="bookmarkElem" id='+obj[i].id+
+      '><img src='+obj[i].image+' alt="No image"><a href='+obj[i].url+
+      '>'+obj[i].title+'</a><p>'+obj[i].description+'</p><p style="margin:0px; padding:0px;">'+obj[i].comment+
+      '</p><i class="trash fa fa-trash-o" aria-hidden="true" style="float:right;"></i></div>');
     }
   }
 
@@ -28,8 +30,8 @@ $(function(){
   $(document).on('click', '.trash', function(){ //
     // clickイベントで発動する処理
     var urlId = $(this).parents().attr('id');
-    console.log(i);
-    
+    console.log(urlId);
+/*
     $.ajax({
       type: "POST",
       url: "/delete",
@@ -43,6 +45,7 @@ $(function(){
         // エラー処理
       }
     });
+    */
   });
 
 

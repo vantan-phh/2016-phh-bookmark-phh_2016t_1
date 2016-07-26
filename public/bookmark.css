@@ -48,10 +48,18 @@ header{
 .bookmarkUrl{
 }
 .bookmarkElem{
-  margin:0px auto;
-  padding:10px;
+  float:left;
+  width:40%;
+  height:250px;
+  margin:0 auto;
+  padding:15px;
   border:1px solid #E6E6FA;
   border-radius:3px;
+}
+.bookmarkElem img{
+  width:100px;
+}
+.bookmarkElem p{
 }
 .item{
   border: 1px solid black;
