@@ -1,25 +1,52 @@
 $(function(){
 
+  function redrawBookmark(res){
+    obj = JSON.parse(res); //json形式をobject形式に変換
+    //console.dir(obj);
+    //console.log(JSON.parse(res).length);
+    obj.sort(function(a,b){ //日付順に並び替え
+      if(a.time_updated > b.time_updated) return -1;
+      if(a.time_updated < b.time_updated) return 1;
+      return 0;
+    });
+    for(var i = 0; i < JSON.parse(res).length; i++ ){ //ブックマークした要素の表示
+      $(".bookmarkUrl").append('<div class="bookmarkElem" id='+obj[i].id+'><a href='+obj[i].url+'></a>'+obj[i].comment+
+      '<i class="trash fa fa-trash-o" aria-hidden="true" style="float:right;"></i></div>');
+    }
+  }
+
+
   $.ajax({
     url:'/contents',
     type: 'POST',
     success: function(res) {
-      obj = JSON.parse(res);
-      //console.dir(obj);
-      //console.log(JSON.parse(res).length);
-      obj.sort(function(a,b){
-        if(a.time_updated > b.time_updated) return -1;
-        if(a.time_updated < b.time_updated) return 1;
-        return 0;
-      });
-      for(var i = 0; i < JSON.parse(res).length; i++ ){
-        $(".bookmarkUrl").append('<div class="bookmarkElem"><a href='+obj[i].url+'></a>'+obj[i].comment+
-        '</div>');
-      }
+      redrawBookmark(res);
     }
   });
 
-  $('#addbtn').on('click', function(){
+
+  $(document).on('click', '.trash', function(){ //
+    // clickイベントで発動する処理
+    var urlId = $(this).parents().attr('id');
+    console.log(i);
+    
+    $.ajax({
+      type: "POST",
+      url: "/delete",
+      dataType: "text",
+      data: {
+        "id": urlId,
+      },
+      success: function(data, textStatus){
+      },
+      error: function(xhr, textStatus, errorThrown){
+        // エラー処理
+      }
+    });
+  });
+
+
+  $('#addbtn').on('click',function(){
     var inputUrl = $("#inputUrl").val();
     var inputComment = $("#inputComment").val();
 
@@ -42,5 +69,4 @@ $(function(){
     });
 
   });
-
 });
