@@ -29,15 +29,15 @@ $(function(){
 
   $(document).on('click', '.trash', function(){ //
     // clickイベントで発動する処理
-    var urlId = $(this).parents().attr('id');
+    var commentId = $(this).parents().attr('id');
     console.log(urlId);
-/*
+
     $.ajax({
       type: "POST",
       url: "/delete",
       dataType: "text",
       data: {
-        "id": urlId,
+        "commentId": commentId,
       },
       success: function(data, textStatus){
       },
@@ -45,7 +45,7 @@ $(function(){
         // エラー処理
       }
     });
-    */
+
   });
 
 
