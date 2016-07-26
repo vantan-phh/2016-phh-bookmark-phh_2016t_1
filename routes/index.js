@@ -5,7 +5,8 @@ var routes = {
   create: require('./create'),
   contents: require('./contents'),
   setting: require('./setting'),
-  addorgs: require('./addorgs')
+  addorgs: require('./addorgs'),
+  delete: require('./delete'),
 };
 
 module.exports = routes;

@@ -47,5 +47,6 @@ app.get('/logout', function (req, res) {
 });
 app.use('/create', routes.create);
 app.use('/contents', routes.contents);
+app.use('/delete', routes.delete);
 
 app.listen(3000);
