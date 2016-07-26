@@ -3,30 +3,54 @@ var express = require('express');
 var connection = require('../connection');
 var router = express.Router();
 
-router.post('/', function (req, res) {
-  connection.query(
-    "SELECT * FROM `user_url` WHERE `userId` = ?",
-    [req.session.userId],
-    //resultに取得した内容、fieldにステータス？が入る
-    function(err, result, field){
-      var resultArr = [];
-      console.log(req.session.userId);
-      if (result) console.log(result);
-      if (err) console.log(err);
-      for (var i = 0; i < result.length; i++) {
-        var resultObj = {};
-        resultObj.id = result[i].id;
-        resultObj.userId = result[i].userId;
-        resultObj.urlId = result[i].urlId;
-        resultObj.comment = result[i].comment;
-        resultObj.time_updated = result[i].time_updated;
-        resultArr.push(resultObj);
+function getUrlDetail(resultObj) {
+  return new Promise(function (resolve, reject) {
+    connection.query(
+      "SELECT * FROM `urls` WHERE `id` = ?",
+      [resultObj.urlId],
+      function (err, result, field) {
+        if (err) console.log(err);
+        resultObj.url = result[0].url;
+        resultObj.title = result[0].title;
+        resultObj.description = result[0].description;
+        resultObj.image = result[0].image;
+        resolve(resultObj);
       }
-      var str = JSON.stringify(resultArr);
+    );
+  });
+}
+
+router.post('/', function (req, res) {
+  new Promise(function (resolve, reject) {
+    connection.query(
+      "SELECT * FROM `user_url` WHERE `userId` = ?",
+      [req.session.userId],
+      //resultに取得した内容、fieldにステータス？が入る
+      function (err, result, field) {
+        var resultArr = [];
+        console.log(req.session.userId);
+        if (err) console.log(err);
+        for (var i = 0; i < result.length; i++) {
+          var resultObj = {};
+          resultObj.id = result[i].id;
+          resultObj.userId = result[i].userId;
+          resultObj.urlId = result[i].urlId;
+          resultObj.comment = result[i].comment;
+          resultObj.time_updated = result[i].time_updated;
+          resultArr.push(resultObj);
+        }
+        resolve(resultArr);
+      }
+    );
+  }).then(function (resultArr) {
+    Promise.all(resultArr.map(function (resultObj) {
+      return getUrlDetail(resultObj);
+    })).then(function (gettedResultArr) {
+      var str = JSON.stringify(gettedResultArr);
       console.log(str);
       res.send(str);
-    }
-  );
-});
+    });
+  });
+})
 
 module.exports = router;
