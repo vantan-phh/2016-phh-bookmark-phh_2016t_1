@@ -15,18 +15,19 @@ router.get('/', function (req, res) {
 
 router.post('/', function (req, res) {
   var userName = req.body.userName;
+  var email = req.body.email;
   var password = req.body.password;
   for (var i = 0; i < 10000; i++) {
     password = sha256gen(password);
   }
-  connection.query('SELECT * FROM `users` WHERE `name` = ? LIMIT 1', [userName], function (error, result, fields) {
+  connection.query('SELECT * FROM `users` WHERE `name` = ? OR `email` = ? LIMIT 1', [userName, email], function (error, result, fields) {
     var userNameExists = result.length === 1;
     if (!userNameExists) {
-      if (userName && password) {
+      if (userName && email && password) {
         res.send(userName + "で登録しました");
         connection.query(
-          "INSERT INTO `users` (`name`, `password`) VALUES (?, ?)",
-          [userName, password],
+          "INSERT INTO `users` (`name`, `email`,  `password`) VALUES (?, ?, ?)",
+          [userName, email, password],
         function(error, result, fields){
           console.log(result);
         });

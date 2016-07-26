@@ -9,15 +9,15 @@ router.get('/', function (req, res) {
 });
 
 router.post('/', function (req, res) {
-  if (req.body.username && req.body.password) {
-    var username = req.body.username;
+  if (req.body.email && req.body.password) {
+    var email = req.body.email;
     var password = req.body.password;
     for (var i = 0; i < 10000; i++) {
       password = sha256gen(password);
     }
     connection.query(
-      'SELECT `id`, `name` FROM `users` WHERE `name` = ? AND `password` = ?',
-      [username, password],
+      'SELECT `id`, `name` FROM `users` WHERE `email` = ? AND `password` = ?',
+      [email, password],
       function (error, result, fields) {
         console.log(result);
         if (result.length === 1) {
