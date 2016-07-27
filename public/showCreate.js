@@ -11,7 +11,7 @@ $(function(){
     });
     for(var i = 0; i < JSON.parse(res).length; i++ ){ //ブックマークした要素の表示
       $(".bookmarkUrl").append('<div class="bookmarkElem" id='+obj[i].id+
-      '><img src='+obj[i].image+' alt="No image"><a href='+obj[i].url+
+      '><img src='+obj[i].image+'><a href='+obj[i].url+
       '>'+obj[i].title+'</a><p>'+obj[i].description+'</p><p style="margin:0px; padding:0px;">'+obj[i].comment+
       '</p><i class="trash fa fa-trash-o" aria-hidden="true" style="float:right;"></i></div>');
     }
@@ -30,7 +30,7 @@ $(function(){
   $(document).on('click', '.trash', function(){ //
     // clickイベントで発動する処理
     var commentId = $(this).parents().attr('id');
-    console.log(urlId);
+    console.log(commentId);
 
     $.ajax({
       type: "POST",
