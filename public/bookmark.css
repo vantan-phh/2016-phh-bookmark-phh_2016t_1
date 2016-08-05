@@ -1,5 +1,8 @@
 body{
 }
+a {
+  text-decoration: none;
+}
 header{
   height:60px;
   border-bottom:1px solid #A9A9A9;
@@ -14,6 +17,7 @@ header{
 }
 .header-right{
   float:right;
+  margin:15px;
 }
 
 #setting{
@@ -23,11 +27,8 @@ header{
   list-style:none;
 }
 
-.dropdown-menu{
-}
-
-.container{
-  width:100%;
+#container{
+  display: block;
 }
 
 .topInput{
@@ -41,25 +42,37 @@ header{
 
 .topInput textarea{
 }
-.bookmarkList{
+#bookmarkList{
   clear: left;
+  width:100%;
+  margin: 0 auto;
+  display: block;
 }
 .bookmarkUrl{
+  width:95%;
+  margin:0 auto 0 auto;
+  clear:both;
 }
-.bookmarkElem{
+.mdl-card{
+  width:200px;
+  height:300px;
   float:left;
-  width:40%;
-  height:250px;
-  margin:0 auto;
-  padding:15px;
-  border:1px solid #E6E6FA;
-  border-radius:3px;
+  margin:10px 10px;
+  /*border: 1px solid #808080;*/
 }
-.bookmarkElem img{
-  width:100px;
+.mdl-card__media{
+  height:50%;
+  width:100%;
+  text-align: center;
 }
-.bookmarkElem p{
+.mdl-card__media a{
+  text-align: center;
 }
-.item{
-  border: 1px solid black;
+.mdl-card__media img{
+  max-width:80%;
+  max-height:80%;
+  margin:5px;
+}
+.trash{
+  padding:5px;
 }
