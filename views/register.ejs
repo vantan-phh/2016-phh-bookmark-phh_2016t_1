@@ -3,14 +3,10 @@
 <head>
   <meta charset="utf-8">
   <title>会員登録</title>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- BootstrapのCSS読み込み -->
-  <link href="/static/css/bootstrap.min.css" rel="stylesheet">
-  <!-- jQuery読み込み -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <!-- BootstrapのJS読み込み -->
-  <script src="static/js/bootstrap.min.js"></script>
+  <!-- Material Design Lite-->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.indigo-pink.min.css">
+  <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
 </head>
 <body>
 <style>
@@ -29,13 +25,21 @@ body{
 <div id="form">
   <p class="form-title">会員登録</p>
   <form class="form-horizontal" action="/register" method="post">
-    <p>username</p>
-    <p><input name="userName" class="form-control" value=""></p>
-    <p>email</p>
-    <p><input name="email" class="form-control" value=""></p>
-    <p>password</p>
-    <p><input name="password" type="password" class="form-control" value=""></p>
-    <button class="btn btn-primary">Send</button>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <input name="userName"class="mdl-textfield__input" type="text" id="userName">
+      <label class="mdl-textfield__label" for="userName">userName</label>
+    </div>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <input name="email"class="mdl-textfield__input" type="text" id="email">
+      <label class="mdl-textfield__label" for="email">email</label>
+    </div>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <input name="password"class="mdl-textfield__input" type="password" id="password">
+      <label class="mdl-textfield__label" for="password">password</label>
+    </div>
+    <button class="btn mdl-button mdl-js-button mdl-button--raised">
+      登録
+    </button>
     <p><%= warn %></p>
   </form>
 </div>
