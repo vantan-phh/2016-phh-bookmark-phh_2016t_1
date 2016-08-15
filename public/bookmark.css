@@ -53,25 +53,30 @@ header{
   margin:0 auto 0 auto;
   clear:both;
 }
-.mdl-card{
-  width:200px;
-  height:300px;
-  float:left;
-  margin:10px 10px;
-  /*border: 1px solid #808080;*/
+
+.updateText{
+  margin: 0px 0px;
 }
-.mdl-card__media{
-  height:50%;
-  width:100%;
-  text-align: center;
+
+.card{
+  width: 25%;
+  height:auto;
+  margin:0px 10px;
+  float: left;
 }
-.mdl-card__media a{
-  text-align: center;
+.card-image{
+  max-height:50%;
 }
-.mdl-card__media img{
-  max-width:80%;
-  max-height:80%;
-  margin:5px;
+.card-image a{
+  max-height: 95%;
+  width:auto;
+}
+.card-image img{
+  margin: 0 auto;
+  max-height: 80%;
+  width: auto;
+}
+.material-icons{
 }
 .trash{
   padding:5px;

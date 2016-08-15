@@ -13,10 +13,9 @@ $(function(){
       if(obj[i].image === 'No image'){
         obj[i].image = 'static/sample.png';
       }
-      $(".bookmarkUrl").append('<div class="mdl-card mdl-shadow--3dp" id='+obj[i].id+'><div class="mdl-card__media mdl-color--grey-50"><a href='+obj[i].url+'><img src='+obj[i].image+'></a></div><div class="updateText mdl-card__supporting-text"><a href='+obj[i].url+'><p>'+obj[i].title+'</p></a></div><div class="mdl-card__supporting-text"><p>'+obj[i].comment+'</p></div><div class="mdl-card__action"><i class="material-icons trash" aria-hidden="true" style="float:right;">delete</i></div></div>');
+      $(".bookmarkUrl").append('<div class="card medium" id='+obj[i].id+'><div class="card-image"><a href='+obj[i].url+'><img src='+obj[i].image+'></a></div><div class="card-content"><a href='+obj[i].url+'><p>'+obj[i].title+'</a></p></div><div class="card-action"><i class="updateText">Updete</i><i class="material-icons trash" aria-hidden="true" style="float:right;">delete</i></div></div>');
     }
   }
-
 
   $.ajax({
     url:'/contents',
@@ -49,8 +48,7 @@ $(function(){
   });
 
   $(document).on('click','.updateText',function(){
-    var comment = $(this).parents().parents().attr('id');
-    console.log(comment);
+    var comment = $(this).parents().parents().parents().attr('id');
   });
 
 
