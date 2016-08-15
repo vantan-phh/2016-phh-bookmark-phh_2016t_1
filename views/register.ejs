@@ -17,7 +17,7 @@ body{
   text-align:center; /*ページ全体を中央揃えにする*/
 }
 .row{
-  width:500px;
+  width:300px;
   margin:50px auto 0px auto;
 }
 .form-title{
@@ -29,18 +29,18 @@ button{
 </style>
 
 <div class="row">
-    <form class="col s12" action="/login" method="post">
+    <form class="col s12" action="/register" method="post">
         <p class="form-title">会員登録</p>
       <div class="row">
         <div class="input-field col s12">
           <input name="userName"class="mdl-textfield__input" type="text" id="userName">
           <label for="email" data-error="wrong" data-success="right">userName</label>
         </div>
-        <div class="input-field col s6">
+        <div class="input-field col s12">
           <input name="email"class="mdl-textfield__input" type="text" id="email">
           <label for="icon_telephone">email</label>
         </div>
-        <div class="input-field col s6">
+        <div class="input-field col s12">
           <input name="password"class="mdl-textfield__input" type="password" id="password">
           <label for="icon_telephone">password</label>
         </div>
