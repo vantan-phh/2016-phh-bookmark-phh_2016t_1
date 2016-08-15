@@ -16,34 +16,39 @@ body{
   width:100%; /*ページ全体の幅は100%と指定する*/
   text-align:center; /*ページ全体を中央揃えにする*/
 }
-#form{
-  width:250px;
+.row{
+  width:500px;
   margin:50px auto 0px auto;
 }
 .form-title{
   border-bottom:1px solid #4682B4;
 }
+button{
+  float:right;
+}
 </style>
-<div id="form">
-  <p class="form-title">会員登録</p>
-  <form class="form-horizontal" action="/register" method="post">
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-      <input name="userName"class="mdl-textfield__input" type="text" id="userName">
-      <label class="mdl-textfield__label" for="userName">userName</label>
-    </div>
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-      <input name="email"class="mdl-textfield__input" type="text" id="email">
-      <label class="mdl-textfield__label" for="email">email</label>
-    </div>
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-      <input name="password"class="mdl-textfield__input" type="password" id="password">
-      <label class="mdl-textfield__label" for="password">password</label>
-    </div>
-    <button class="btn mdl-button mdl-js-button mdl-button--raised">
-      登録
-    </button>
-    <p><%= warn %></p>
-  </form>
-</div>
+
+<div class="row">
+    <form class="col s12" action="/login" method="post">
+        <p class="form-title">会員登録</p>
+      <div class="row">
+        <div class="input-field col s12">
+          <input name="userName"class="mdl-textfield__input" type="text" id="userName">
+          <label for="email" data-error="wrong" data-success="right">userName</label>
+        </div>
+        <div class="input-field col s6">
+          <input name="email"class="mdl-textfield__input" type="text" id="email">
+          <label for="icon_telephone">email</label>
+        </div>
+        <div class="input-field col s6">
+          <input name="password"class="mdl-textfield__input" type="password" id="password">
+          <label for="icon_telephone">password</label>
+        </div>
+      </div>
+      <p><button class="btn mdl-button mdl-js-button mdl-button--raised">
+        登録</p>
+    </form>
+  </div>
+
 </body>
 </html>
