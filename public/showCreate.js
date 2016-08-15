@@ -13,7 +13,7 @@ $(function(){
       if(obj[i].image === 'No image'){
         obj[i].image = 'static/sample.png';
       }
-      $(".bookmarkUrl").append('<div class="card medium" id='+obj[i].id+'><div class="card-image"><a href='+obj[i].url+'><img src='+obj[i].image+'></a></div><div class="card-content"><a href='+obj[i].url+'><p>'+obj[i].title+'</a></p></div><div class="card-action"><i class="updateText">Updete</i><i class="material-icons trash" aria-hidden="true" style="float:right;">delete</i></div></div>');
+      $(".bookmarkUrl").append('<div class="card medium" id='+obj[i].id+'><div class="card-image"><a href='+obj[i].url+'><img src='+obj[i].image+'></a></div><div class="card-content"><a href='+obj[i].url+'><p>'+obj[i].title+'</a></p></div><div class="card-action"><i class="updateText material-icons">mode_edit</i><i class="material-icons trash" aria-hidden="true" style="float:right;">delete</i></div></div>');
     }
   }
 
