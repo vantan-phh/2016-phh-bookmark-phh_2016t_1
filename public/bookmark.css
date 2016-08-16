@@ -9,20 +9,24 @@ header{
 }
 .header-left{
   float:left;
-  margin:0px 0px;
 }
 .header-left h2{
-  margin:0px 0px;
+  margin:0px auto;
   font-weight:100;
+  font-size: 20px;
 }
 .header-right{
+  max-height:100%;
   float:right;
-  margin:15px;
+}
+.header-right-left{
+  float: left;
+}
+.header-right>ul>li{
+  float: left;
 }
 
 #setting{
-  float:left;
-  padding: 20px 10px;
   border-left: 1px solid  #A9A9A9;
   list-style:none;
 }
@@ -34,13 +38,18 @@ header{
 .topInput{
   width:80%;
   margin:10px auto;
+  float: left;
 }
-.inputField{
+
+.input-field{
   float:left;
   margin:20px;
 }
 
 .topInput textarea{
+}
+.topInput button{
+  float:right;
 }
 #bookmarkList{
   clear: left;
@@ -53,25 +62,30 @@ header{
   margin:0 auto 0 auto;
   clear:both;
 }
-.mdl-card{
-  width:200px;
-  height:300px;
-  float:left;
-  margin:10px 10px;
-  /*border: 1px solid #808080;*/
+
+.updateText{
+  margin: 0px 0px;
 }
-.mdl-card__media{
-  height:50%;
-  width:100%;
-  text-align: center;
+
+.card{
+  width:250px;
+  height:auto;
+  margin:10px !important;
+  float: left;
 }
-.mdl-card__media a{
-  text-align: center;
+.card-image{
+  max-height:50%;
 }
-.mdl-card__media img{
-  max-width:80%;
-  max-height:80%;
-  margin:5px;
+.card-image a{
+  max-height: 95%;
+  width:auto;
+}
+.card-image img{
+  margin: 0 auto;
+  max-height: 80%;
+  width: auto;
+}
+.material-icons{
 }
 .trash{
   padding:5px;

@@ -3,10 +3,12 @@
 <head>
   <meta charset="utf-8">
   <title>会員登録</title>
-  <!-- Material Design Lite-->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.indigo-pink.min.css">
-  <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+
+  <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
 </head>
 <body>
 <style>
@@ -14,34 +16,39 @@ body{
   width:100%; /*ページ全体の幅は100%と指定する*/
   text-align:center; /*ページ全体を中央揃えにする*/
 }
-#form{
-  width:250px;
+.row{
+  width:300px;
   margin:50px auto 0px auto;
 }
 .form-title{
   border-bottom:1px solid #4682B4;
 }
+button{
+  float:right;
+}
 </style>
-<div id="form">
-  <p class="form-title">会員登録</p>
-  <form class="form-horizontal" action="/register" method="post">
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-      <input name="userName"class="mdl-textfield__input" type="text" id="userName">
-      <label class="mdl-textfield__label" for="userName">userName</label>
-    </div>
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-      <input name="email"class="mdl-textfield__input" type="text" id="email">
-      <label class="mdl-textfield__label" for="email">email</label>
-    </div>
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-      <input name="password"class="mdl-textfield__input" type="password" id="password">
-      <label class="mdl-textfield__label" for="password">password</label>
-    </div>
-    <button class="btn mdl-button mdl-js-button mdl-button--raised">
-      登録
-    </button>
-    <p><%= warn %></p>
-  </form>
-</div>
+
+<div class="row">
+    <form class="col s12" action="/register" method="post">
+        <p class="form-title">会員登録</p>
+      <div class="row">
+        <div class="input-field col s12">
+          <input name="userName"class="mdl-textfield__input" type="text" id="userName">
+          <label for="email" data-error="wrong" data-success="right">userName</label>
+        </div>
+        <div class="input-field col s12">
+          <input name="email"class="mdl-textfield__input" type="text" id="email">
+          <label for="icon_telephone">email</label>
+        </div>
+        <div class="input-field col s12">
+          <input name="password"class="mdl-textfield__input" type="password" id="password">
+          <label for="icon_telephone">password</label>
+        </div>
+      </div>
+      <p><button class="btn mdl-button mdl-js-button mdl-button--raised">
+        登録</p>
+    </form>
+  </div>
+
 </body>
 </html>

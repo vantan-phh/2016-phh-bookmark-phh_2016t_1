@@ -10,10 +10,17 @@ $(function(){
       return 0;
     });
     for(var i = 0; i < JSON.parse(res).length; i++ ){ //ブックマークした要素の表示
-      $(".bookmarkUrl").append('<div class="mdl-card mdl-shadow--3dp" id='+obj[i].id+'><div class="mdl-card__media mdl-color--grey-50"><a href='+obj[i].url+'><img src='+obj[i].image+'></a></div><div class="mdl-card__supporting-text"><a href='+obj[i].url+'><p>'+obj[i].title+'</p></a></div><div class="mdl-card__supporting-text"><p>'+obj[i].comment+'</p></div><div class="mdl-card__action"><i class="material-icons trash" aria-hidden="true" style="float:right;">delete</i></div></div>');
-    }U
+      if(obj[i].image === 'No image'){
+        obj[i].image = 'static/sample.png';
+      }
+      $(".bookmarkUrl").append(`<div class="card medium" id=${obj[i].id}>
+      <div class="card-image"><a href=${obj[i].url}><img src=${obj[i].image}></a></div>
+      <div class="card-content"><a href=${obj[i].url}><p>${obj[i].title}</a></p></div>
+      <div class="card-action"><a class="btn-floating btn-large waves-effect waves-light updateText" style="float:left;">
+      <i class="large material-icons">mode_edit</i></a><a class="btn-floating btn-large waves-effect waves-light blue trash" style="float:right;">
+      <i class="large material-icons">delete</i></a></div></div>`);
+    }
   }
-
 
   $.ajax({
     url:'/contents',
@@ -26,8 +33,9 @@ $(function(){
 
   $(document).on('click', '.trash', function(){ //
     // clickイベントで発動する処理
-    var commentId = $(this).parents().parents().attr('id');
-    //console.log(commentId);
+    var commentId = $(this).parents('.card').attr('id');
+    $(this).parents('.card').fadeOut();
+
 
     $.ajax({
       type: "POST",
@@ -43,6 +51,10 @@ $(function(){
       }
     });
 
+  });
+
+  $(document).on('click','.updateText',function(){
+    var comment = $(this).parents().parents().parents().attr('id');
   });
 
 
