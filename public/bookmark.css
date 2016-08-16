@@ -12,12 +12,14 @@ header{
   margin:0px 0px;
 }
 .header-left h2{
-  margin:0px 0px;
+  margin:0px auto;
   font-weight:100;
+  font-size: 20px;
 }
 .header-right{
+  max-height:100%;
   float:right;
-  margin:15px;
+  margin: 0 0;
 }
 
 #setting{
@@ -64,9 +66,9 @@ header{
 }
 
 .card{
-  width: 25%;
+  width:250px;
   height:auto;
-  margin:0px 10px;
+  margin:10px !important;
   float: left;
 }
 .card-image{

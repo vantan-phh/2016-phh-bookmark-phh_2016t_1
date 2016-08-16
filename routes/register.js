@@ -7,10 +7,10 @@ var connection = require('../connection');
 
 router.get('/', function (req, res) {
   res.render('./register.ejs',
-    {
-      warn: ""
-    }
-  );
+  {
+    warn: ""
+  }
+);
 });
 
 router.post('/', function (req, res) {
@@ -28,11 +28,11 @@ router.post('/', function (req, res) {
         connection.query(
           "INSERT INTO `users` (`name`, `email`,  `password`) VALUES (?, ?, ?)",
           [userName, email, password],
-        function(error, result, fields){
-          console.log(result);
-        });
-      } else {
-        res.render('./register.ejs',
+          function(error, result, fields){
+            console.log(result);
+          });
+        } else {
+          res.render('./register.ejs',
           {
             warn: "全て入力してください"
           }
@@ -40,12 +40,12 @@ router.post('/', function (req, res) {
       }
     } else {
       res.render('./register.ejs',
-        {
-          warn: "既に存在しているuserNameです"
-        }
-      );
-    }
-  });
+      {
+        warn: "既に存在しているuserNameです"
+      }
+    );
+  }
+});
 });
 
 module.exports = router;

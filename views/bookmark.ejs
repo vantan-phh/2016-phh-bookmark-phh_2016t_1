@@ -25,40 +25,42 @@
       <h2>PHH Bookmark ver0.1</h2>
     </div>
     <div class="header-right">
-    <a class='dropdown-button btn' href='#' data-activates='dropdown1'>Setting</a>
-    <ul id='dropdown1' class='dropdown-content'>
-      <li class="mdl-menu__item"><a href="/addorgs">グループを作る</a></li>
-      <li class="mdl-menu__item"><a href="/setting">設定</a></li>
-      <li disabled class="mdl-menu__item"><a href="/logout">ログアウト</a></li>
-    </ul>
-</div>
-</header>
+      <div class="dropdowmmenu">
+        <a class='dropdown-button btn' href='#' data-activates='dropdown1'>Setting</a>
+        <ul id='dropdown1' class='dropdown-content'>
+          <li class="mdl-menu__item"><a href="/addorgs">グループを作る</a></li>
+          <li class="mdl-menu__item"><a href="/setting">設定</a></li>
+          <li disabled class="mdl-menu__item"><a href="/logout">ログアウト</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
 
-<div id="container">
-  <div class="topInput">
-    <div class="inputField row">
-      <form class="col s12">
-        <div class="input-field col s6">
-          <input name="url"class="mdl-textfield__input" type="text" id="inputUrl">
-          <label for="inputUrl">URL</label>
-        </div>
+  <div id="container">
+    <div class="topInput">
+      <div class="inputField row">
+        <form class="col s12">
+          <div class="input-field col s6">
+            <input name="url"class="mdl-textfield__input" type="text" id="inputUrl">
+            <label for="inputUrl">URL</label>
+          </div>
           <div class="input-field col s12">
             <textarea id="textarea1" id="inputComment" class="materialize-textarea"></textarea>
             <label for="textarea1">Comment</label>
           </div>
-      </div>
+        </div>
         <p><button id="addbtn" class="btn mdl-button mdl-js-button mdl-button--raised">
           追加
         </button></p>
       </form>
     </div>
   </div>
-<div id="bookmarkList">
-  <h3>ブックマーク一覧</h3>
-  <div class="bookmarkUrl">
+  <div id="bookmarkList">
+    <h3>ブックマーク一覧</h3>
+    <div class="bookmarkUrl">
 
+    </div>
   </div>
- </div>
 </div>
 
 </body>
