@@ -28,7 +28,8 @@ $(function(){
 
   $(document).on('click', '.trash', function(){ //
     // clickイベントで発動する処理
-    var commentId = $(this).parents().parents().attr('id');
+    var commentId = $(this).parents('.card').attr('id');
+    $(this).parents('.card').fadeOut();
 
 
     $.ajax({

@@ -9,7 +9,6 @@ header{
 }
 .header-left{
   float:left;
-  margin:0px 0px;
 }
 .header-left h2{
   margin:0px auto;
@@ -19,12 +18,15 @@ header{
 .header-right{
   max-height:100%;
   float:right;
-  margin: 0 0;
+}
+.header-right-left{
+  float: left;
+}
+.header-right>ul>li{
+  float: left;
 }
 
 #setting{
-  float:left;
-  padding: 20px 10px;
   border-left: 1px solid  #A9A9A9;
   list-style:none;
 }

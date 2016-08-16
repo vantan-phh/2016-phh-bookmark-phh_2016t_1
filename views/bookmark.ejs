@@ -6,6 +6,7 @@
   <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+
   <link rel="stylesheet" href="/static/bookmark.css" >
   <script type="text/javascript" src="/static/showbookmark.js"></script>
   <script type="text/javascript" src="/static/showCreate.js"></script>
@@ -24,7 +25,14 @@
       <h2>PHH Bookmark ver0.1</h2>
     </div>
     <div class="header-right">
-      <div class="dropdowmmenu">
+      <ul>
+      <li>
+        <div class="header-right-left" style="float:left;">
+          <input name="seach"class="mdl-textfield__input" type="text" id="seach">
+          <i class="material-icons">search</i>
+    </li>
+    <li>
+      <div class="header-right-right">
         <a class='dropdown-button btn' href='#' data-activates='dropdown1'>Setting</a>
         <ul id='dropdown1' class='dropdown-content'>
           <li class="mdl-menu__item"><a href="/addorgs">グループを作る</a></li>
@@ -32,6 +40,8 @@
           <li disabled class="mdl-menu__item"><a href="/logout">ログアウト</a></li>
         </ul>
       </div>
+    </li>
+    </ul>
     </div>
   </header>
 
