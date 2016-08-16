@@ -13,7 +13,7 @@ $(function(){
       if(obj[i].image === 'No image'){
         obj[i].image = 'static/sample.png';
       }
-      $(".bookmarkUrl").append('<div class="card medium" id='+obj[i].id+'><div class="card-image"><a href='+obj[i].url+'><img src='+obj[i].image+'></a></div><div class="card-content"><a href='+obj[i].url+'><p>'+obj[i].title+'</a></p></div><div class="card-action"><i class="updateText material-icons">mode_edit</i><i class="material-icons trash" aria-hidden="true" style="float:right;">delete</i></div></div>');
+      $(".bookmarkUrl").append('<div class="card medium" id='+obj[i].id+'><div class="card-image"><a href='+obj[i].url+'><img src='+obj[i].image+'></a></div><div class="card-content"><a href='+obj[i].url+'><p>'+obj[i].title+'</a></p></div><div class="card-action"><a class="btn-floating btn-large waves-effect waves-light updateText" style="float:left;"><i class="large material-icons">mode_edit</i></a><a class="btn-floating btn-large waves-effect waves-light blue trash" style="float:right;"><i class="large material-icons">delete</i></a></div></div>');
     }
   }
 
@@ -29,7 +29,7 @@ $(function(){
   $(document).on('click', '.trash', function(){ //
     // clickイベントで発動する処理
     var commentId = $(this).parents().parents().attr('id');
-    //console.log(commentId);
+
 
     $.ajax({
       type: "POST",
