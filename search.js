@@ -33,12 +33,13 @@ function kensaku(id, kenmozi) {
         {comment.push(result[j])};
       }
       var str = 'SELECT `title`, `id` FROM `urls` WHERE'
+      var moziire = [];
       for(var i = 0; i < result.length; i++) {
-        str += " id = " + result[i].url_id + " AND title LIKE ? OR"
+        str += " (title LIKE ? AND id = " + result[i].urlId + ") OR"
+        moziire.push(kenmozi)
       }
       str = str.substr(0, str.length - 3);
-      mysql.query(str, [kenmozi], function(err, res) {
-        console.log(res);
+      mysql.query(str, moziire, function(err, res) {
         if(err || !res){flag++; return;}
         comment.push(commentRes);
         title.push(res);
@@ -65,7 +66,7 @@ function kensaku(id, kenmozi) {
         var str = 'SELECT `title`, `id` FROM `urls` WHERE'
         moziire = [];
         for(var i = 0; i < res.length; i++) {
-          str += (" id = " + res[i].urlId + "AND title LIKE ? OR");
+          str += (" (id = " + res[i].urlId + "AND title LIKE ?) OR");
           moziire.push(kenmozi);
         }
         str = str.substr(0, str.length - 3);
