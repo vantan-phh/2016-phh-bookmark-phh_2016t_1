@@ -16,7 +16,7 @@ $(function(){
 
 
   $.ajax({
-    url:'/contents',
+    url:'/contents/user',
     type: 'POST',
     success: function(res) {
       redrawBookmark(res);
@@ -52,7 +52,7 @@ $(function(){
 
     $.ajax({
       type: "POST",
-      url: "/create",
+      url: "/create/user",
       dataType: "text",
       data: {
         "url": inputUrl,
