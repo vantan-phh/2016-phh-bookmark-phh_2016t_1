@@ -7,6 +7,8 @@ var routes = {
   setting: require('./setting'),
   addorgs: require('./addorgs'),
   delete: require('./delete'),
+  createorg: require('./createorg'),
+  org: require('./org'),
 };
 
 module.exports = routes;
