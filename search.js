@@ -13,7 +13,7 @@ mysql.connect(function(err) {
 });
 
 function kensaku(id, kenmozi) {
-  var kenm = kenmozi.split("\s");
+  var kenm = kenmozi.split(" ");
   var kenmo = [];
   var urlIdire = [];
   for(var i = 0; i < kenm.length; i++) {
@@ -66,7 +66,7 @@ function kensaku(id, kenmozi) {
         for(var i = 0; i < res.length; i++) {
           title.push(res[i]);
         }
-        kenm.length <= flag ? kenkensaku() : flag++;
+        0 < flag ? kenkensaku() : flag++;
         /*commentRes[num].url_id で urlのid
         commentRes[num].comment で コメント
         res[num].title でタイトル*/
@@ -80,7 +80,6 @@ function kensaku(id, kenmozi) {
       if(err || !result){flag++; return;}
       var strC = 'SELECT `comment`, `urlId` FROM `orgComments` WHERE'
       var moziire = [];
-
       for(i = 0; i < result.length; i++) {
         strC += " (comment LIKE ? AND orgId = " + result[i].orgId + ") OR";
         moziire.push(kenmozii);
@@ -123,7 +122,7 @@ function kensaku(id, kenmozi) {
           for(var j = 0; j < re.length; j++) {
             title.push(re[j])
           }
-          kenm.length <= flag ? kenkensaku() : flag++;
+          0 < flag ? kenkensaku() : flag++;
           /* res[num].comment でコメント, res[num].urlId でURLID
           re[num].title でタイトル, re[num].id でURLID */
         })
@@ -132,18 +131,30 @@ function kensaku(id, kenmozi) {
   }
   function kenkensaku() {
     var result = [];
-    //console.log(comment);
+    var hen = kenmo.length > 2 ? 1 : 0;
     //console.log(title);
-    for(var i = 0; i < kenmo.length; i ++) {
-      for(var j = 0; j < comment.length; j++) {
-        if(comment[j].comment && comment[j].comment.match(kenmo[i])){result.push(comment[j])};
+    for(var j = 0; j < comment.length; j++) {
+      var flagC = 0;
+      for(var i = hen; i < kenmo.length; i++) {
+        if(comment[j].comment && comment[j].comment.match(kenmo[i])) {
+          flagC >= kenmo.length - 1 ? result.push(comment[j]) : flagC++;
+        }else {
+          break;
+        }
       }
-      for(var t = 0; t < title.length; t++) {
-        if(title[t].title && title[t].title.match(kenmo[i])){result.push(title[t])};
+    }
+    for(var t = 0; t < title.length; t++) {
+      var flagT = 0;
+      for(var i = hen; i < kenmo.length; i++) {
+        if(title[t].title && title[t].title.match(kenmo[i])) {
+          flagT >= kenmo.length - 1 ? result.push(title[t]) : flagT++;
+        }else {
+          break;
+        }
       }
     }
     console.log(result);
   }
 }
 
-kensaku(1, "%う%")
+kensaku(2, "%ほるん%")
