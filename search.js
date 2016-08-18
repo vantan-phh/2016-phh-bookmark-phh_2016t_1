@@ -13,11 +13,11 @@ mysql.connect(function(err) {
 });
 
 function kensaku(id, kenmozi) {
-  var kenm = kenmozi.split(" ");
-  var kenmo = [];
+  var kenmo = kenmozi.split(" ");
+  var kenm = [];
   var urlIdire = [];
-  for(var i = 0; i < kenm.length; i++) {
-    kenmo.push(kenm[i].substr(1).substr(0, kenm[i].length - 2));
+  for(var i = 0; i < kenmo.length; i++) {
+    kenm.push("%" + kenmo[i] + "%");
   }
   var comment = [];
   var title = [];
@@ -157,4 +157,4 @@ function kensaku(id, kenmozi) {
   }
 }
 
-kensaku(2, "%ほるん%")
+kensaku(2, "ほるん")
