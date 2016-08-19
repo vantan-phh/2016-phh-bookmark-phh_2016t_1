@@ -24,7 +24,7 @@ function getUrlDetail(resultObj) {
   });
 }
 
-router.post('/user', function (req, res) {
+router.post('/user', function (req, res) { // ここにpost送るとuserIdで探してデータベースから返してくれる
   new Promise(function (resolve, reject) {
     connection.query(
       "SELECT * FROM `userComments` WHERE `userId` = ?",
@@ -57,7 +57,7 @@ router.post('/user', function (req, res) {
   });
 });
 
-router.post('/org', function (req, res) {
+router.post('/org', function (req, res) { // ここにpost送るとourIdで探してデータベースから返してくれる
   new Promise(function (resolve, reject) {
     connection.query(
       "SELECT * FROM `orgComments` WHERE `orgId` = ?",

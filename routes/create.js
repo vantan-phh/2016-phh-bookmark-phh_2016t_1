@@ -7,7 +7,7 @@ var urlParser = require('../urlParser');
 
 function checkJoining(userId, orgId) {
   connection.query(
-    "SELECT `id` FROM `user_org` WHERE `userId` = ? AND `orgId` = ?",
+    "SELECT `id` FROM `joiningOrgs` WHERE `userId` = ? AND `orgId` = ?",
     [userId, orgId],
     function (error, result, field) {
       return !!result.length;
