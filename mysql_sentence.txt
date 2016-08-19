@@ -1,39 +1,46 @@
-CREATE DATABASE `bookmark`;
 CREATE TABLE `users` (
-  `id` int not null auto_increment,
-  `name` varchar(255),
-  `email` varchar(255),
-  `password` varchar(255),
-  primary key (`id`)
+  `id` int,
+  `name` varchar,
+  `email` varchar,
+  `password` varchar,
+  `time_updated` datetime
 );
 
 CREATE TABLE `orgs` (
-  `id` int not null auto_increment,
-  `name` varchar(255),
-  primary key (`id`)
+  `id` int,
+  `name` varchar,
+  `description` varchar,
+  `time_updated` datetime
 );
 
 CREATE TABLE `urls` (
-  `id` int not null auto_increment,
-  `url` varchar(255),
-  `title` varchar(255),
-  `description` varchar(255),
-  `image` varchar(255),
-  primary key (`id`)
+  `id` int,
+  `url` varchar,
+  `title` varchar,
+  `description` varchar,
+  `thumbnail` varchar,
+  `time_updated` datetime
 );
 
-CREATE TABLE `user_url` (
-  `id` int not null auto_increment,
-  `userId` varchar(255),
-  `urlId` varchar(255),
-  `comment` varchar(255),
-  `time_updated` varchar(255),
-  primary key (`id`)
+CREATE TABLE `joiningOrgs` ( -- user_org
+  `userId` int,
+  `orgId` int,
+  `time_updated` datetime
 );
 
-CREATE TABLE `user_org` (
-  `id` int not null auto_increment,
-  `userId` varchar(255),
-  `orgId` varchar(255),
-  primary key (`id`)
+CREATE TABLE `userComments` (
+  `id` int,
+  `userId` int,
+  `urlId` int,
+  `comment` varchar,
+  `time_updated` datetime
+);
+
+CREATE TABLE `orgComments` (
+  `id` int,
+  `userId` int,
+  `orgId` int,
+  `urlId` int,
+  `comment` varchar,
+  `time_updated` datetime
 );

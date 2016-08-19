@@ -5,14 +5,14 @@ var mysql = require('mysql');
 var connection = require('../connection');
 
 router.get('/', function (req, res) {
-  res.render('./addorg.ejs');
+  res.render('./createorgPage.ejs');
 });
 
 router.post('/', function (req, res) { // htmlのフォームに入ったものをそのままデータベースに入れる
   var name = req.body.orgName;
   var description = req.body.orgDescription;
   connection.query('SELECT * FROM `orgs` WHERE `name` = ? OR `description` = ? LIMIT 1', [name, description], function (error, result, fields) {
-    var orgExists = result.length === 1;
+    var orgExists = result ? result.length === 1 : false ;
     if (!orgExists) {
       if (name && description) {
         connection.query(
@@ -25,11 +25,11 @@ router.post('/', function (req, res) { // htmlのフォームに入ったもの�
         );
       } else {
         console.log("ぜんぶいれて");
-        res.render('./addorg.ejs');
+        res.render('./createorgPage.ejs');
       }
     } else {
       console.log("既に存在");
-      res.render('./addorg.ejs');
+      res.render('./createorgPag.ejs');
     }
   });
 });
