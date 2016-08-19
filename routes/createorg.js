@@ -8,7 +8,7 @@ router.get('/', function (req, res) {
   res.render('./addorg.ejs');
 });
 
-router.post('/', function (req, res) {
+router.post('/', function (req, res) { // htmlのフォームに入ったものをそのままデータベースに入れる
   var name = req.body.orgName;
   var description = req.body.orgDescription;
   connection.query('SELECT * FROM `orgs` WHERE `name` = ? OR `description` = ? LIMIT 1', [name, description], function (error, result, fields) {
