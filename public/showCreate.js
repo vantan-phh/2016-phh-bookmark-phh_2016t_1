@@ -10,11 +10,11 @@ $(function(){
       return 0;
     });
     for(var i = 0; i < JSON.parse(res).length; i++ ){ //ブックマークした要素の表示
-      if(obj[i].image === 'No image'){
-        obj[i].image = 'static/sample.png';
+      if(obj[i].thumbnail === 'No image'){
+        obj[i].thumbnail = 'static/sample.png';
       }
       $(".bookmarkUrl").append(`<div class="card medium" id=${obj[i].id}>
-      <div class="card-image"><a href=${obj[i].url}><img src=${obj[i].image}></a></div>
+      <div class="card-image"><a href=${obj[i].url}><img src=${obj[i].thumbnail}></a></div>
       <div class="card-content"><a href=${obj[i].url}><p>${obj[i].title}</a></p></div>
       <div class="card-action"><a class="btn-floating btn-large waves-effect waves-light updateText" style="float:left;">
       <i class="large material-icons">mode_edit</i></a><a class="btn-floating btn-large waves-effect waves-light blue trash" style="float:right;">

@@ -57,12 +57,12 @@ function createToUser(url, comment, userId) {
     //////////////////////////////////////////////////////////////////////////////
 
       var parsed = urlParser(url);
-      var title = parsed[0], description = parsed[1], image = parsed[2];
+      var title = parsed[0], description = parsed[1], thumbnail = parsed[2];
 
       //URLやそれが持つデータをを追加
       return new Promise(function (resolve, reject) {
-        connection.query("INSERT INTO `urls` (`url`, `title`, `description`, `image`) VALUES(?, ?, ?, ?)",
-          [url, title, description, image], function (error, result, fields) {
+        connection.query("INSERT INTO `urls` (`url`, `title`, `description`, `thumbnail`) VALUES(?, ?, ?, ?)",
+          [url, title, description, thumbnail], function (error, result, fields) {
             if (!result) {
               console.log(error);
               return 1;
@@ -124,12 +124,12 @@ function createToOrg(url, comment, userId, orgId) {
     //////////////////////////////////////////////////////////////////////////////
 
       var parsed = urlParser(url);
-      var title = parsed[0], description = parsed[1], image = parsed[2];
+      var title = parsed[0], description = parsed[1], thumbnail = parsed[2];
 
       //URLやそれが持つデータをを追加
       return new Promise(function (resolve, reject) {
-        connection.query("INSERT INTO `urls` (`url`, `title`, `description`, `image`) VALUES(?, ?, ?, ?)",
-          [url, title, description, image], function (error, result, fields) {
+        connection.query("INSERT INTO `urls` (`url`, `title`, `description`, `thumbnail`) VALUES(?, ?, ?, ?)",
+          [url, title, description, thumbnail], function (error, result, fields) {
             if (!result) {
               console.log(error);
               return 1;
