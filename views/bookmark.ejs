@@ -20,7 +20,39 @@
 
 </head>
 <body>
+<<<<<<< 5199368915cfb5ce8ce46c38a5f646ec1042d606
   <% include header.ejs %>
+=======
+
+  <header>
+    <div class="header-left">
+      <h2>PHH Bookmark ver0.1</h2>
+    </div>
+    <div class="header-right">
+      <ul>
+      <li>
+        <div class="header-right-left" style="float:left;">
+          <form action="/search" method="get">
+            <input name="q" class="mdl-textfield__input serachWord" type="text">
+            <button class="btn-flat" type="submit"><i id="search" class="material-icons">search</i></button>
+          </form>
+        </div>
+    </li>
+    <li>
+      <div class="header-right-right">
+        <a class='dropdown-button btn' href='#' data-activates='dropdown1'>Setting</a>
+        <ul id='dropdown1' class='dropdown-content'>
+          <li class="mdl-menu__item"><a href="/addorgs">グループを作る</a></li>
+          <li class="mdl-menu__item"><a href="/setting">設定</a></li>
+          <li disabled class="mdl-menu__item"><a href="/logout">ログアウト</a></li>
+        </ul>
+      </div>
+    </li>
+    </ul>
+    </div>
+  </header>
+
+>>>>>>> receive query
   <div id="container">
     <div class="topInput">
       <div class="inputField row">
@@ -40,7 +72,10 @@
       </form>
     </div>
   </div>
+<<<<<<< 5199368915cfb5ce8ce46c38a5f646ec1042d606
 
+=======
+>>>>>>> receive query
   <div id="bookmarkList">
     <h3>ブックマーク一覧</h3>
     <div class="bookmarkUrl">
