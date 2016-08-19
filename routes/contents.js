@@ -14,7 +14,7 @@ function getUrlDetail(resultObj) {
           resultObj.url = result[0].url;
           resultObj.title = result[0].title;
           resultObj.description = result[0].description;
-          resultObj.image = result[0].image;
+          resultObj.thumbnail = result[0].thumbnail;
           resolve(resultObj);
         } catch(e) {
           reject(e);
