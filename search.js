@@ -1,11 +1,5 @@
-var mysql = require('mysql2/');
-var mysql = mysql.createConnection({
-  host : "localhost",
-  user : "root",
-  database : "bookmark"
-});
-
-mysql.connect(function(err) {
+connection = require("./connection");
+connection.connect(function(err) {
   if(err){
     console.error("データベースに接続できません");
     return;
@@ -26,9 +20,9 @@ function kensaku(id, kenmozi) {
   sosikikensaku(kenm[0]);
 
   function kozinkensaku(kenmozii) {
-    mysql.query('SELECT `urlId`, `comment` FROM `userComments` WHERE userId = ?',
+    connection.query('SELECT `urlId`, `comment` FROM `userComments` WHERE userId = ?',
     [id], function(err, result) {
-      if(err || !result){flag++; return;}
+      if(err || !result[0]){flag++; return;}
       for(var j = 0; j < result.length; j++) {
         for(var i = 0; i < kenmo.length; i++) {
           if(result[j].comment && result[j].comment.match(kenmo[i])){
@@ -61,8 +55,8 @@ function kensaku(id, kenmozi) {
         moziire.push(kenmozii)
       }
       str = str.substr(0, str.length - 3);
-      mysql.query(str, moziire, function(err, res) {
-        if(err || !res){flag++; return;}
+      connection.query(str, moziire, function(err, res) {
+        if(err || !res[0]){flag++; return;}
         for(var i = 0; i < res.length; i++) {
           title.push(res[i]);
         }
@@ -75,18 +69,18 @@ function kensaku(id, kenmozi) {
   }
 
   function sosikikensaku(kenmozii) {
-    mysql.query('SELECT `orgId` FROM `joiningOrgs` WHERE userId = ?', [id],
+    connection.query('SELECT `orgId` FROM `joiningOrgs` WHERE userId = ?', [id],
     function(err, result) {
-      if(err || !result){flag++; return;}
+      if(err || !result[0]){flag++; return;}
       var strC = 'SELECT `comment`, `urlId` FROM `orgComments` WHERE'
       var moziire = [];
       for(i = 0; i < result.length; i++) {
-        strC += " (comment LIKE ? AND orgId = " + result[i].orgId + ") OR";
+        strC += " (comment LIKE ? OR orgId = " + result[i].orgId + ") OR";
         moziire.push(kenmozii);
       }
       strC = strC.substr(0, strC.length - 3);
-      mysql.query(strC, moziire, function(err, res){
-        if(err || !res){flag++; return;}
+      connection.query(strC, moziire, function(err, res){
+        if(err || !res[0]){flag++; return;}
         var str = 'SELECT `title`, `id` FROM `urls` WHERE'
         hozon = [];
         moziire = [];
@@ -114,11 +108,12 @@ function kensaku(id, kenmozi) {
           moziire.push(kenmozii);
         }
         str = str.substr(0, str.length - 3);
-        mysql.query(str, moziire, function(err, re) {
-          if(err || !re){flag++; return;}
+        connection.query(str, moziire, function(err, re) {
+          if(err || !re[0]){flag++; return;}
           for(var i = 0; i < res.length; i++) {
             comment.push(res[i])
           }
+          //console.log(re);
           for(var j = 0; j < re.length; j++) {
             title.push(re[j])
           }
@@ -132,7 +127,6 @@ function kensaku(id, kenmozi) {
   function kenkensaku() {
     var result = [];
     var hen = kenmo.length > 2 ? 1 : 0;
-    //console.log(title);
     for(var j = 0; j < comment.length; j++) {
       var flagC = 0;
       for(var i = hen; i < kenmo.length; i++) {
@@ -154,7 +148,7 @@ function kensaku(id, kenmozi) {
       }
     }
     console.log(result);
+    connection.end();
   }
 }
-
-kensaku(2, "ほるん")
+kensaku(1, "管理")
