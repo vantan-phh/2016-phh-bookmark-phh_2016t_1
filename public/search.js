@@ -1,4 +1,5 @@
 $(function(){
+
   $(".search").click(function(){
     var searchWord = $(".serachWord").val();
 
@@ -11,5 +12,6 @@ $(function(){
       },
       success: function(data,textStatus) {
       }
+    });
+    
   });
-});
