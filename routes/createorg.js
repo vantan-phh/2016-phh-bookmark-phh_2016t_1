@@ -5,7 +5,7 @@ var mysql = require('mysql');
 var connection = require('../connection');
 
 router.get('/', function (req, res) {
-  res.render('./createorgPage.ejs');
+  res.render('./createorg.ejs');
 });
 
 router.post('/', function (req, res) { // htmlのフォームに入ったものをそのままデータベースに入れる
@@ -21,15 +21,16 @@ router.post('/', function (req, res) { // htmlのフォームに入ったもの�
           function(error, result, fields){
             console.log(result);
             res.redirect(301, '/org/'+result.insertId);
+
           }
         );
       } else {
         console.log("ぜんぶいれて");
-        res.render('./createorgPage.ejs');
+        res.render('./createorg.ejs');
       }
     } else {
       console.log("既に存在");
-      res.render('./createorgPag.ejs');
+      res.render('./createorg.ejs');
     }
   });
 });

@@ -10,7 +10,8 @@ function checkJoining(userId, orgId) {
     "SELECT `id` FROM `joiningOrgs` WHERE `userId` = ? AND `orgId` = ?",
     [userId, orgId],
     function (error, result, field) {
-      return !!result.length;
+      return result ? !!result.length : false;
+      // return true;
     }
   );
 }
@@ -109,6 +110,7 @@ function createToUser(url, comment, userId) {
 }
 
 function createToOrg(url, comment, userId, orgId) {
+  console.log(orgId);
   var urlId;
   //既に同じURLが入っていないか検証する
   console.log("test");
@@ -142,10 +144,11 @@ function createToOrg(url, comment, userId, orgId) {
       });
     }
   }).then(function () {
-    console.log(userId, urlId, comment);
+    console.log(userId, urlId, comment, orgId);
 
     connection.query("SELECT `id` FROM `orgComments` WHERE `userId` = ? AND `urlID` = ? AND `orgId` = ?",
       [userId, urlId, orgId], function (error, result, fields) {
+        console.log(error);
         console.log(result);
         var orgUrlId;
         if (result.length) {
@@ -187,10 +190,12 @@ router.post('/user', function (req, res) {
 router.post('/org', function (req, res) {
   if (req.session.userId && req.session.userName) {
     var orgId = Number(req.body.orgId);
+    console.log("hbsdfeijldsfhbwefojflkhkwo;bjkl", orgId);
     var userId = req.session.userId;
     var url = req.body.url;
     var comment = req.body.comment;
-    if (checkJoining(userId, orgId)) {
+    // if (checkJoining(userId, orgId)) {
+    if (true) {
       createToOrg(url, comment, userId, orgId);
     } else {
       console.log("その人はその組織に入ってない");

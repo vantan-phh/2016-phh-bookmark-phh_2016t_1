@@ -6,23 +6,19 @@
   <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-
   <link rel="stylesheet" href="/static/bookmark.css" >
-  <script type="text/javascript" src="/static/showbookmark.js"></script>
-  <script type="text/javascript" src="/static/showCreate.js"></script>
-
-
   <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+  <script type="text/javascript" src="/static/orgBookmarkCreate.js"></script>
 
 </head>
 <body>
-
+  <span id="orgId" class="hidden" data-id="<%= orgId %>"></span>
   <header>
     <div class="header-left">
-      <h2>PHH Bookmark ver0.1</h2>
+      <h2 class="orgName">PHH Bookmark ver0.1 <%= orgName %><%= orgId%></h2>
     </div>
     <div class="header-right">
       <ul>
@@ -66,7 +62,7 @@
   </div>
 
   <div id="bookmarkList">
-    <h3>ブックマーク一覧</h3>
+    <h3> <%= orgName %>ブックマーク一覧</h3>
     <div class="bookmarkUrl">
 
     </div>
