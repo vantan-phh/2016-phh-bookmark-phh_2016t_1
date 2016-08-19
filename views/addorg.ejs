@@ -22,13 +22,13 @@ body{
 </style>
 <div id="form">
   <p class="form-title">グループを作る</p>
-  <form class="form-horizontal" method="post">
+  <form class="form-horizontal" action="/createorg" method="post">
     <p>グループの名前</p>
-    <p class="orgsName" style="padding-bottom:20px;"><input name="orgsName" class="form-control" value=""></p>
+    <p class="orgName" style="padding-bottom:20px;"><input name="orgName" class="form-control" value=""></p>
     <p>グループの説明</p>
-    <p><input name="orgsDiscription" class="form-control" value=""></p>
-    <p>inviteUserName</p>
-    <p class="inviteUserId"><input name="inviteUserId" class="form-control" value=""></p>
+    <p><input name="orgDescription" class="form-control" value=""></p>
+    <!-- <p>inviteUserName</p>
+    <p class="inviteUserId"><input name="inviteUserId" class="form-control" value=""></p> -->
     <p><button class="btn btn-primary">作成</button></p>
   </form>
 </div>
