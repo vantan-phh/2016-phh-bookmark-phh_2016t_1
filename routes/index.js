@@ -8,6 +8,8 @@ var routes = {
   delete: require('./delete'),
   createorg: require('./createorg'),
   org: require('./org'),
+  search: require('./search'),
+  searchResult: require('./searchResult'),
 };
 
 module.exports = routes;
