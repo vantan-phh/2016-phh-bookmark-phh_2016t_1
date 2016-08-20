@@ -16,31 +16,8 @@
 </head>
 <body>
   <span id="orgId" class="hidden" data-id="<%= orgId %>"></span>
-  <header>
-    <div class="header-left">
-      <h2 class="orgName">PHH Bookmark ver0.1 <%= orgName %><%= orgId%></h2>
-    </div>
-    <div class="header-right">
-      <ul>
-      <li>
-        <div class="header-right-left" style="float:left;">
-          <input name="seach"class="mdl-textfield__input" type="text" id="seach">
-          <i class="material-icons">search</i>
-    </li>
-    <li>
-      <div class="header-right-right">
-        <a class='dropdown-button btn' href='#' data-activates='dropdown1'>Setting</a>
-        <ul id='dropdown1' class='dropdown-content'>
-          <li class="mdl-menu__item"><a href="/createorg">グループを作る</a></li>
-          <li class="mdl-menu__item"><a href="/setting">設定</a></li>
-          <li disabled class="mdl-menu__item"><a href="/logout">ログアウト</a></li>
-        </ul>
-      </div>
-    </li>
-    </ul>
-    </div>
-  </header>
 
+  <% include headerOrg.ejs %>
   <div id="container">
     <div class="topInput">
       <div class="inputField row">
