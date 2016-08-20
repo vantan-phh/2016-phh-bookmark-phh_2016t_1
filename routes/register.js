@@ -24,7 +24,8 @@ router.post('/', function (req, res) {
     var userNameExists = result.length === 1;
     if (!userNameExists) {
       if (userName && email && password) {
-        res.send(userName + "で登録しました");
+        //res.send(userName + "で登録しました");
+        res.redirect('/login'); //登録後にloginPageに飛ぶ
         connection.query(
           "INSERT INTO `users` (`name`, `email`,  `password`) VALUES (?, ?, ?)",
           [userName, email, password],

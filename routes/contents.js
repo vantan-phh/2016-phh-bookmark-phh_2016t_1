@@ -14,7 +14,7 @@ function getUrlDetail(resultObj) {
           resultObj.url = result[0].url;
           resultObj.title = result[0].title;
           resultObj.description = result[0].description;
-          resultObj.image = result[0].image;
+          resultObj.thumbnail = result[0].thumbnail;
           resolve(resultObj);
         } catch(e) {
           reject(e);
@@ -24,10 +24,10 @@ function getUrlDetail(resultObj) {
   });
 }
 
-router.post('/', function (req, res) {
+router.post('/user', function (req, res) { // ここにpost送るとuserIdで探してデータベースから返してくれる
   new Promise(function (resolve, reject) {
     connection.query(
-      "SELECT * FROM `user_url` WHERE `userId` = ?",
+      "SELECT * FROM `userComments` WHERE `userId` = ?",
       [req.session.userId],
       //resultに取得した内容、fieldにステータス？が入る
       function (err, result, field) {
@@ -55,6 +55,38 @@ router.post('/', function (req, res) {
       res.send(str);
     });
   });
-})
+});
+
+router.post('/org', function (req, res) { // ここにpost送るとourIdで探してデータベースから返してくれる
+  new Promise(function (resolve, reject) {
+    connection.query(
+      "SELECT * FROM `orgComments` WHERE `orgId` = ?",
+      [req.params.orgId],
+      function (err, result, field) {
+        var resultArr = [];
+        console.log(req.params.orgId);
+        if (err) console.log(err);
+        for (var i = 0; i < result.length; i++) {
+          var resultObj = {};
+          resultObj.id = result[i].id;
+          resultObj.userId = result[i].userId;
+          resultObj.urlId = result[i].urlId;
+          resultObj.comment = result[i].comment;
+          resultObj.time_updated = result[i].time_updated;
+          resultArr.push(resultObj);
+        }
+        resolve(resultArr);
+      }
+    );
+  }).then(function (resultArr) {
+    Promise.all(resultArr.map(function (resultObj) {
+      return getUrlDetail(resultObj);
+    })).then(function (gettedResultArr) {
+      var str = JSON.stringify(gettedResultArr);
+      console.log(str);
+      res.send(str);
+    });
+  });
+});
 
 module.exports = router;
