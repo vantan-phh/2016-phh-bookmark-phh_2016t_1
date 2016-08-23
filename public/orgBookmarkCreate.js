@@ -23,7 +23,7 @@ $(function(){
   }
 
   $.ajax({
-    url:'/contents/user',
+    url:'/contents/org',
     type: 'POST',
     success: function(res) {
       redrawBookmark(res);
@@ -61,6 +61,7 @@ $(function(){
   $('#addbtn').on('click',function(){
     var inputUrl = $("#inputUrl").val();
     var inputComment = $("#inputComment").val();
+    var orgId = $('#orgId').data('id');
 
     $.ajax({
       type: "POST",
@@ -68,7 +69,8 @@ $(function(){
       dataType: "text",
       data: {
         "url": inputUrl,
-        "comment": inputComment
+        "comment": inputComment,
+        "orgId" : orgId
       },
       success: function(data, textStatus){
         //$('#pii').text(data);

@@ -1,0 +1,46 @@
+<style media="screen">
+a {
+  text-decoration: none;
+}
+header{
+  height:60px;
+  border-bottom:1px solid #A9A9A9;
+}
+
+</style>
+<header>
+  <!-- DropDowm Menu-->
+  <ul id="dropdown" class="dropdown-content">
+    <li><a href="/createorg">グループを作る</a></li>
+    <li><a href="/setting">設定</a></li>
+    <li><a href="/logout">ログアウト</a></li>
+  </ul>
+  <!-- -->
+
+  <nav class="blue darken-3">
+    <div class="nav-wrapper">
+      <a href="" class="brand-logo"><%= orgName %>'s Bookmark</a>
+
+      <ul class="right hide-on-med-and-down">
+        <li>
+          <nav>
+            <div class="nav-wrapper blue darken-3">
+              <form>
+                <div class="input-field">
+                  <input id="search" type="search" required>
+                  <label for="search"><i class="material-icons">search</i></label>
+                  <i class="material-icons">close</i>
+                </div>
+              </form>
+            </div>
+          </nav>
+        </li>
+        <!-- Dropdown Trigger -->
+        <li><a class="dropdown-button" href="#!" data-activates="dropdown">
+          <i class="material-icons right">arrow_drop_down</i>
+        </a></li>
+      </ul>
+
+    </div>
+  </nav>
+</header>

@@ -4,7 +4,6 @@ $(function(){
     var password = $(".password").val();
     var mailaddress = $('.mailaddress').val();
 
-
   }
 
   $(".changeSetting").click(function(){
