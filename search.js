@@ -1,3 +1,4 @@
+/*
 var mysql = require('mysql2/');
 var mysql = mysql.createConnection({
   host : "localhost",
@@ -42,3 +43,4 @@ function kensaku(id, kenmozi) {
   });
 }
 kensaku(1, "%ほ%");
+*/
