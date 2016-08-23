@@ -37,7 +37,6 @@ function getUrlFromTable(resolve, url) {
       if(dup){
         console.log("このURLは既に存在しています");
       }
-      console.log("resolve");
       resolve(_urlId);
     }
   );
@@ -52,7 +51,7 @@ function createToUser(url, comment, userId) {
     console.log(_urlId);
     if (_urlId) {
       urlId = _urlId;
-      console.log("urlId is ok");
+      console.log("urlId is exist");
     } else {
       console.log("urlId is null");
     //////////////////////////////////////////////////////////////////////////////
@@ -70,7 +69,6 @@ function createToUser(url, comment, userId) {
             }
             urlId = result.insertId;
             console.log(result.insertId);
-            console.log("resolve");
             console.log(urlId);
             resolve();
         })
@@ -98,6 +96,7 @@ function createToUser(url, comment, userId) {
           console.log(query);
         } else {
           console.log("insert");
+          console.log(comment);
           var query = connection.query("INSERT INTO `userComments` (`userId`, `urlId`, `comment`, `time_updated`) VALUES (?, ?, ?, ?)",
             [userId, urlId, comment, new Date().getTime()], function (error, result, fields) {
               if (result) console.log(result);
@@ -127,7 +126,9 @@ function createToOrg(url, comment, userId, orgId) {
 
       var parsed = urlParser(url);
       var title = parsed[0], description = parsed[1], thumbnail = parsed[2];
-
+      if (description.length>255) {
+        description = description.substring(0,255);
+      }
       //URLやそれが持つデータをを追加
       return new Promise(function (resolve, reject) {
         connection.query("INSERT INTO `urls` (`url`, `title`, `description`, `thumbnail`) VALUES(?, ?, ?, ?)",
@@ -181,6 +182,7 @@ router.post('/user', function (req, res) {
     var userId = req.session.userId;
     var url = req.body.url;
     var comment = req.body.comment;
+    console.log(183, comment);
     createToUser(url, comment, userId);
   } else {
     res.redirect('/login');
@@ -195,6 +197,7 @@ router.post('/org', function (req, res) {
     var url = req.body.url;
     var comment = req.body.comment;
     // if (checkJoining(userId, orgId)) {
+    console.log(userId, url, comment, orgId);
     if (true) {
       createToOrg(url, comment, userId, orgId);
     } else {
