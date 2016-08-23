@@ -20,8 +20,11 @@ router.post('/', function (req, res) { // htmlのフォームに入ったもの�
           [name, description],
           function(error, result, fields){
             console.log(result);
-            res.redirect(301, '/org/'+result.insertId);
-
+            var orgId = result[0].id;
+            var userId = req.session.userId;
+            connection.query("INSERT INTO `joiningOrgs` (`userId`, `orgId`, `permission`) VALUES (?, ?, 2)", [userId, orgId], function () {
+              res.redirect(301, '/org/'+result.insertId);
+            });
           }
         );
       } else {
