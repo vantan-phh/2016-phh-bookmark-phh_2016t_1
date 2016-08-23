@@ -21,7 +21,7 @@ $(function(){
       <i class="large material-icons">delete</i></a></div></div>`);
     }
   }
-
+  /*
   $.ajax({
     url:'/contents/user',
     type: 'POST',
@@ -31,6 +31,9 @@ $(function(){
   });
 
 //trashボタンを押した時の処理
+=======
+*/
+
   $(document).on('click', '.trash', function(){ //
     // clickイベントで発動する処理
     var commentId = $(this).parents('.card').attr('id');
@@ -57,11 +60,12 @@ $(function(){
     var comment = $(this).parents().parents().parents().attr('id');
   });
 
+  /* 多分今後使わない
 
 //追加ボタンを押した時の処理
   $('#addbtn').on('click',function(){
-    var inputUrl = $("#inputUrl").val();
-    var inputComment = $("#inputComment").val();
+  var inputUrl = $("#inputUrl").val();
+  var inputComment = $("#inputComment").val();
 
     $.ajax({
       type: "POST",
@@ -80,6 +84,24 @@ $(function(){
         // エラー処理
       }
     });
+  $.ajax({
+  type: "POST",
+  url: "/create/user",
+  dataType: "text",
+  data: {
+  "url": inputUrl,
+  "comment": inputComment
+},
+success: function(data, textStatus){
+//$('#pii').text(data);
+console.log(data);
+console.log(textStatus);
+},
+error: function(xhr, textStatus, errorThrown){
+// エラー処理
+}
+});
 
-  });
+});
+*/
 });

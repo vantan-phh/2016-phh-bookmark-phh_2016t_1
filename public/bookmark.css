@@ -7,30 +7,6 @@ header{
   height:60px;
   border-bottom:1px solid #A9A9A9;
 }
-.header-left{
-  float:left;
-}
-.header-left h2{
-  margin:0px auto;
-  font-weight:100;
-  font-size: 20px;
-}
-.header-right{
-  max-height:100%;
-  float:right;
-}
-.header-right-left{
-  float: left;
-}
-.header-right>ul>li{
-  float: left;
-}
-
-#setting{
-  border-left: 1px solid  #A9A9A9;
-  list-style:none;
-}
-
 #container{
   display: block;
 }
