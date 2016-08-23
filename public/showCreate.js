@@ -13,7 +13,7 @@ $(function(){
       if(obj[i].thumbnail === 'No image'){
         obj[i].thumbnail = 'static/sample.png';
       }
-      $(".bookmarkUrl").append(`<div class="card medium" id=${obj[i].id}>
+      $("#bookmarkUrl").append(`<div class="card medium" id=${obj[i].id}>
       <div class="card-image"><a href=${obj[i].url}><img src=${obj[i].thumbnail}></a></div>
       <div class="card-content"><a href=${obj[i].url}><p>${obj[i].title}</a></p></div>
       <div class="card-action"><a class="btn-floating btn-large waves-effect waves-light updateText" style="float:left;">
@@ -64,11 +64,11 @@ $(function(){
 
     $.ajax({
       type: "POST",
-      url: "/create/org",
+      url: "/create/user",
       dataType: "text",
       data: {
         "url": inputUrl,
-        "comment": inputComment
+        "comment": inputComment,
       },
       success: function(data, textStatus){
         //$('#pii').text(data);
