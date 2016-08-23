@@ -1,23 +1,3 @@
-<<<<<<< HEAD
-connection = require("./connection");
-connection.connect(function(err) {
-=======
-/*
-var mysql = require('mysql2/');
-var mysql = mysql.createConnection({
-  host : "localhost",
-  user : "root",
-  database : "bookmark"
-});
-
-mysql.connect(function(err) {
->>>>>>> e82561adbb74c76679b8614c905ce457eadda42b
-  if(err){
-    console.error("データベースに接続できません");
-    return;
-  }
-});
-
 function kensaku(id, kenmozi) {
   var kenmo = kenmozi.split(" ");
   var kenm = [];
@@ -125,7 +105,6 @@ function kensaku(id, kenmozi) {
           for(var i = 0; i < res.length; i++) {
             comment.push(res[i])
           }
-          //console.log(re);
           for(var j = 0; j < re.length; j++) {
             title.push(re[j])
           }
@@ -159,13 +138,5 @@ function kensaku(id, kenmozi) {
         }
       }
     }
-    console.log(result);
-    connection.end();
   }
 }
-<<<<<<< HEAD
-kensaku(1, "管理")
-=======
-kensaku(1, "%ほ%");
-*/
->>>>>>> e82561adbb74c76679b8614c905ce457eadda42b
