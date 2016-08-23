@@ -9,8 +9,7 @@ var mysql = mysql.createConnection({
 //接続失敗時のエラー処理
 mysql.connect(function(err) {
   if(err){
-    console.error("データベースに接続できません");
-    return;
+    return "データベースに接続できません";
   }
 });
 
@@ -58,7 +57,7 @@ function create(url) {
   urlSync.$("meta[property='og:image']").each(function(){
     image = urlSync.$(this).attr("content");
   });
-  if(image){
+  if(!image){
     urlSync.$("meta[name=image]").each(function(){
       image = $(this).attr("content");
     });
@@ -72,33 +71,33 @@ function create(url) {
   [url, title, description, image]);
 }
 
-//create("http://www.backlog.jp/git-guide/stepup/stepup2_3.html");
+create("http://www.backlog.jp/git-guide/stepup/stepup2_3.html");
 
 
-var express = require('express');
-var app = express();
-var bodyParser = require('body-parser');
-var ejs = require('ejs');
-var bodyParser = require('body-parser');
-var session = require('express-session');
-var cookieParser = require('cookie-parser');
-app.engine('ejs',ejs.renderFile);
-app.use(bodyParser.urlencoded({extended: true}));
-app.use('/static', express.static('public'));
-
-app.get('/', function (req, res) {
-  res.render('./bookmark.ejs',{
-    name: "userName"
-  })
-});
-
-app.post('/', function (req, res) {
-  res.send("aa");
-  console.log(req.body.url); // req.IncomingMessage.body
-});
-
-app.use('/static', express.static('test'));
-
-app.listen(3000, function () {
-  console.log('Example app listening on port 3000!');
-});
+// var express = require('express');
+// var app = express();
+// var bodyParser = require('body-parser');
+// var ejs = require('ejs');
+// var bodyParser = require('body-parser');
+// var session = require('express-session');
+// var cookieParser = require('cookie-parser');
+// app.engine('ejs',ejs.renderFile);
+// app.use(bodyParser.urlencoded({extended: true}));
+// app.use('/static', express.static('public'));
+//
+// app.get('/', function (req, res) {
+//   res.render('./bookmark.ejs',{
+//     name: "userName"
+//   })
+// });
+//
+// app.post('/', function (req, res) {
+//   res.send("aa");
+//   console.log(req.body.url); // req.IncomingMessage.body
+// });
+//
+// app.use('/static', express.static('test'));
+//
+// app.listen(3000, function () {
+//   console.log('Example app listening on port 3000!');
+// });

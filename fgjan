@@ -1,0 +1,44 @@
+# データベースを作る
+CREATE DATABASE `darabase_name`;
+
+# テーブルを作る
+CREATE TABLE `tbale_name`(
+  `id` int not null auto_increment,
+  `columnn_name` varchar(255), # (255)で最大文字数を指定
+  primary key(`id`)
+);
+
+# データを追加
+INSERT INTO `table_name`(`column_name`) VALUES(
+  "文字列なら、二重引用符でくくる"
+  10
+);
+
+#データの取得
+SELECT `column_name` FROM `table_name` WHERE `column_name` = "data";
+
+#データの更新
+UPDATE `table_name` SET `column_name` = "data" WHERE `id` = 1;
+# ↑ id が 1 の行を更新
+
+# データの削除
+DELETE FROM `table_name` WHERE `id` = 2;
+# ↑ id が 2 の行を削除
+
+# Create / Read / Update / DELETE
+# => CRUD
+
+#テーブルを削除
+DROP TABLE `table_name`;
+
+# テーブルにカラムを追加
+ALTER TABLE `table_name` ADD COLUMN `clumn_name` int not null;
+
+#テーブルからカラムを削除
+ALTER TABLE `table_name` DROP COLUMN `column_name`;
+
+# テーブルのカラムの定義を変更する
+ALTER TABLE `table_name` MODIFY COLUMN `column_name` varchar(255);
+
+# テーブルのカラム名を変更する
+ALTER TABLE `table_name` CHANGE COLUMN `column_name` `new_column_name` varchar(255);
