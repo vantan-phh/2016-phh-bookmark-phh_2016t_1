@@ -2,7 +2,7 @@ $(function(){
 
   function redrawBookmark(res){
     obj = JSON.parse(res); //json形式をobject形式に変換
-    console.dir(obj);
+    //console.dir(obj);
     //console.log(JSON.parse(res).length);
     obj.sort(function(a,b){ //日付順に並び替え
       if(a.time_updated > b.time_updated) return -1;
@@ -54,7 +54,7 @@ $(function(){
   });
 
   $(document).on('click','.updateText',function(){
-    var comment = $(this).parents("card").attr('id');
+    var comment = $(this).parents(".card").attr('id');
   });
 
 
@@ -62,6 +62,7 @@ $(function(){
     var inputUrl = $("#inputUrl").val();
     var inputComment = $("#inputComment").val();
     var orgId = $('#orgId').data('id');
+    console.log(orgI);
 
     $.ajax({
       type: "POST",

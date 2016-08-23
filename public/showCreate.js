@@ -54,7 +54,7 @@ $(function(){
   });
 
   $(document).on('click','.updateText',function(){
-    var comment = $(this).parents().parents().parents().attr('id');
+    var comment = $(this).parents("card").attr('id');
   });
 
 
