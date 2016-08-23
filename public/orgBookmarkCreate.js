@@ -11,7 +11,7 @@ $(function(){
     });
     for(var i = 0; i < JSON.parse(res).length; i++ ){ //ブックマークした要素の表示
       if(obj[i].thumbnail === 'No image'){
-        obj[i].thumbnail = 'static/sample.png';
+        obj[i].thumbnail = '/static/sample.png';
       }
       $(".bookmarkUrl").append(`<div class="card medium" id=${obj[i].id}>
       <div class="card-image"><a href=${obj[i].url}><img src=${obj[i].thumbnail}></a></div>
@@ -22,9 +22,14 @@ $(function(){
     }
   }
 
+  orgId = $('#orgId').data('orgid');
+
   $.ajax({
     url:'/contents/org',
     type: 'POST',
+    data: {
+      "orgId": orgId
+    },
     success: function(res) {
       redrawBookmark(res);
     }
@@ -61,7 +66,6 @@ $(function(){
   $('#addbtn').on('click',function(){
     var inputUrl = $("#inputUrl").val();
     var inputComment = $("#inputComment").val();
-    var orgId = $('#orgId').data('id');
 
     $.ajax({
       type: "POST",

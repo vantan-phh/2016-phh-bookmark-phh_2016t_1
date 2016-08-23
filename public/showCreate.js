@@ -64,7 +64,7 @@ $(function(){
 
     $.ajax({
       type: "POST",
-      url: "/create/org",
+      url: "/create/user",
       dataType: "text",
       data: {
         "url": inputUrl,

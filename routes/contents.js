@@ -58,13 +58,15 @@ router.post('/user', function (req, res) { // ここにpost送るとuserIdで探
 });
 
 router.post('/org', function (req, res) { // ここにpost送るとourIdで探してデータベースから返してくれる
+  orgId = req.body.orgId;
   new Promise(function (resolve, reject) {
     connection.query(
       "SELECT * FROM `orgComments` WHERE `orgId` = ?",
-      [req.params.orgId],
+      [orgId],
       function (err, result, field) {
         var resultArr = [];
-        console.log(req.params.orgId);
+        console.log(req.body.orgId);
+        console.log(result);
         if (err) console.log(err);
         for (var i = 0; i < result.length; i++) {
           var resultObj = {};
