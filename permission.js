@@ -1,0 +1,3 @@
+function permission(orgId, userId) {
+  
+}
