@@ -24,7 +24,8 @@ function getUrlDetail(resultObj) {
   });
 }
 
-router.post('/user', function (req, res) { // ここにpost送るとuserIdで探してデータベースから返してくれる
+router.post('/user', function (req, res) {
+  // ここにpost送るとuserIdで探してデータベースから返してくれる
   new Promise(function (resolve, reject) {
     connection.query(
       "SELECT * FROM `userComments` WHERE `userId` = ?",

@@ -7,7 +7,6 @@ var connection = require('../connection');
 router.get('/', function (req, res) {
   res.render('./login.ejs');
 });
-
 router.post('/', function (req, res) {
   if (req.body.email && req.body.password) {
     var email = req.body.email;
@@ -27,7 +26,7 @@ router.post('/', function (req, res) {
           var userName = result[0].name;
         } else {
           var userId = false;
-          var userName = false;
+        var userName = false;
         }
         if (userId && userName) {
           console.log(userId);
