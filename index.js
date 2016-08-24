@@ -41,6 +41,8 @@ app.use('/register', routes.register);
 app.use('/login', routes.login);
 app.use('/setting', routes.setting);
 app.use('/createorg', routes.createorg);
+app.use('/search', routes.search);
+
 app.get('/logout', function (req, res) {
   req.session.destroy();
   res.redirect('/login');
@@ -50,5 +52,6 @@ app.use('/contents', routes.contents);
 app.use('/delete', routes.delete);
 app.use('/createorg', routes.createorg);
 app.use('/org', routes.org);
+app.use('/searchResult', routes.searchResult);
 
 app.listen(3000);
