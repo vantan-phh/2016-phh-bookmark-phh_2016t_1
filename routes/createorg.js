@@ -19,9 +19,10 @@ router.post('/', function (req, res) { // htmlのフォームに入ったもの�
           "INSERT INTO `orgs` (`name`, `description`) VALUES (?, ?)",
           [name, description],
           function(error, result, fields){
-            console.log(result);
+            console.log(22, result);
             var orgId = result.insertId;
             var userId = req.session.userId;
+            console.log(userId, orgId);
             connection.query("INSERT INTO `joiningOrgs` (`userId`, `orgId`, `permission`) VALUES (?, ?, 2)", [userId, orgId], function () {
               res.redirect(301, '/org/'+result.insertId);
             });
