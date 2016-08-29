@@ -11,7 +11,7 @@ router.get('/', function (req, res) {
 router.post('/', function (req, res) { // htmlのフォームに入ったものをそのままデータベースに入れる
   var name = req.body.orgName;
   var description = req.body.orgDescription;
-  connection.query('SELECT * FROM `orgs` WHERE `name` = ? OR `description` = ? LIMIT 1', [name, description], function (error, result, fields) {
+  connection.query('SELECT * FROM `orgs` WHERE `name` = ? LIMIT 1', [name], function (error, result, fields) {
     var orgExists = result ? result.length === 1 : false ;
     if (!orgExists) {
       if (name && description) {
@@ -19,9 +19,10 @@ router.post('/', function (req, res) { // htmlのフォームに入ったもの�
           "INSERT INTO `orgs` (`name`, `description`) VALUES (?, ?)",
           [name, description],
           function(error, result, fields){
-            console.log(result);
+            console.log(22, result);
             var orgId = result.insertId;
             var userId = req.session.userId;
+            console.log(userId, orgId);
             connection.query("INSERT INTO `joiningOrgs` (`userId`, `orgId`, `permission`) VALUES (?, ?, 2)", [userId, orgId], function () {
               res.redirect(301, '/org/'+result.insertId);
             });

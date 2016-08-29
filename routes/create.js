@@ -170,7 +170,6 @@ function createToOrg(url, comment, userId, orgId) {
               if (result) console.log(result);
               if (error) console.log(error);
           });
-          // console.log(query);
         }
     });
   });
