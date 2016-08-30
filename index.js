@@ -12,6 +12,8 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
 
+var multer = require('multer');
+
 var connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
@@ -32,6 +34,16 @@ app.use(session({
     maxAge: 30 * 24 * 60 * 60 * 1000
   }
 }));
+app.use(multer({
+  dest: './icons/',
+  onFileUploadStart: function (file, req, res) {
+    if (file.mimetype == 'image/png') {
+
+    } else {
+      return false;
+    }
+  }
+}).single('icon'));
 
 var routes = require('./routes');
 
@@ -39,7 +51,10 @@ app.use('/static', express.static('public'));
 app.use('/', routes.top);
 app.use('/register', routes.register);
 app.use('/login', routes.login);
+
 app.use('/setting', routes.setting);
+app.use('/setting/icon', routes.icon);
+
 app.use('/createorg', routes.createorg);
 app.use('/search', routes.search);
 
