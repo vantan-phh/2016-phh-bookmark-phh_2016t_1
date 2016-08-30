@@ -2,35 +2,40 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>ログイン</title>
-  <!-- Material Design Lite-->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.indigo-pink.min.css">
-  <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+  <title>グループの作成</title>
+  <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
 
 </head>
 <body>
 <style>
-body{
-  width:100%; /*ページ全体の幅は100%と指定する*/
-  text-align:center; /*ページ全体を中央揃えにする*/
+.container{
+  width: 80%;
+  margin:0 auto;
 }
-#form{
-  width:80%;
-  margin:10px auto;
+.createOrg{
+  padding: 20px;
 }
 </style>
-<div id="form">
-  <p class="form-title">グループを作る</p>
-  <form class="form-horizontal" action="/createorg" method="post">
-    <p>グループの名前</p>
-    <p class="orgName" style="padding-bottom:20px;"><input name="orgName" class="form-control" value=""></p>
-    <p>グループの説明</p>
-    <p><input name="orgDescription" class="form-control" value=""></p>
-    <!-- <p>inviteUserName</p>
-    <p class="inviteUserId"><input name="inviteUserId" class="form-control" value=""></p> -->
-    <p><button class="btn btn-primary">作成</button></p>
-  </form>
-</div>
+<% include header.ejs %>
+<div class="container">
+  <form class="createOrg col s12" action="/createorg" method="post">
+    <h3>グループ作成</h3>
+    <div class="row">
+      <div class="input-field col s6">
+        <input id="orgName" type="text" class="orgName validate">
+        <label for="orgName">グループの名前</label>
+      </div>
+      <div class="input-field col s12">
+        <input name="orgDescription" id="orgDescription"type="text" class="validate">
+        <label for="orgDescription">グループの説明</label>
+      </div>
+      <p><button class="btn btn-primary" style="float:right;">作成</button></p>
+    </form>
+  </div>
 </body>
 </html>
