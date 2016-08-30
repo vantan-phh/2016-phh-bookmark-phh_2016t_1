@@ -10,6 +10,7 @@ var routes = {
   org: require('./org'),
   search: require('./search'),
   searchResult: require('./searchResult'),
+  icon: require('./setting/icon'),
 };
 
 module.exports = routes;
