@@ -3,13 +3,14 @@ class common {
     this.connection = connection;
   }
 
-  isJoiningOrg(userId, orgId) {
+  isJoiningOrg(userId, orgId) { // 組織にその人がいるかどうかを返す
     return new Promise( (resolve, reject) => { // thisを束縛するためアロー関数をつかった
       this.connection.query(
         "SELECT `*` FROM `joiningOrgs` WHERE userId = ? AND orgId = ?",
         [userId, orgId],
         function (error, result, fields) {
-          resolve(result);
+          result = !!result.length; //trueかfalseかで返す
+          return result;
         }
       );
     });
