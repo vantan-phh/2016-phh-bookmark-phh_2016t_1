@@ -1,5 +1,5 @@
 $(function(){
-
+  $(".button-collapse").sideNav();
   function redrawBookmark(res){
     obj = JSON.parse(res); //json形式をobject形式に変換
     //console.dir(obj);
