@@ -11,7 +11,7 @@ npm install
 ## 実行
 
 ```bash:実行
-node lndex.js
+npm start
 ```
 
 ## 仕様
