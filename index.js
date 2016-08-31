@@ -8,6 +8,7 @@ function sha256gen(str) {
 var express = require('express');
 var mysql = require('mysql');
 var ejs = require('ejs');
+var logger = require('morgan');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
@@ -21,6 +22,8 @@ var connection = mysql.createConnection({
 });
 
 var app = express();
+
+app.use(logger('dev'));
 
 app.engine('ejs', ejs.renderFile);
 app.use(bodyParser.urlencoded({extended: true}));
