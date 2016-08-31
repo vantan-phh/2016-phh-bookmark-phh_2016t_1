@@ -141,6 +141,7 @@ function kensaku(id, kenmozi) {
       }
     }
   }
+  return result;
 }
 
 module.exports = kensaku;
