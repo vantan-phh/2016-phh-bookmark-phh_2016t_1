@@ -10,7 +10,10 @@ function getUrlDetail(resultObj) {
       [resultObj.urlId],
       function (err, result, field) {
         try {
-          console.log(err);
+          console.log(result);
+          if (result.length === 0) {
+            reject("url is unavailable");
+          }
           if(err) throw new Error(err.code);
           resultObj.url = result[0].url;
           resultObj.title = result[0].title;
@@ -107,21 +110,23 @@ router.post('/org', function (req, res) { // ここにpost送るとourIdで探�
       }
     );
   }).then(function (resultArr) {
-    console.log(resultArr, 000);
+    console.log(0, resultArr, 0);
     var preUrl = resultArr[0].urlId;
     for (var i = 1; i < resultArr.length; i++) {
       if (preUrl == resultArr[i].urlId) {
         resultArr[i-1].comments.push(resultArr[i].comments[0]);
+        resultArr.splice(i, 1);
+        i--;
       } else {
         preUrl = resultArr[i].urlId;
       }
     }
-    console.log(resultArr, 001);
+    console.log(1, resultArr, 1);
     Promise.all(resultArr.map(function (resultObj) {
       return getUrlDetail(resultObj);
     })).then(function (gettedResultArr) {
       var str = JSON.stringify(gettedResultArr);
-      console.log(str);
+      console.log("4send json",str);
       res.send(str);
     });
   });
