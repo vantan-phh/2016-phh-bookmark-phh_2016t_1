@@ -1,7 +1,22 @@
-// データベースから情報を出してやるぞテスト
 var express = require('express');
 var connection = require('../connection');
 var router = express.Router();
+
+// 例 = {
+//   id: orgCommentId,
+//   orgId: 3,
+//   urlId: 10,
+//   comments: [{
+//     userId: 1,
+//     text: "テストコメント",
+//     time_updated: 1234567890123
+//   }],
+//   [{
+//     userId: 1,
+//     text: "テス",
+//     time_updated: 1234567890123
+//   }]
+// }
 
 function getUrlDetail(resultObj) {
   return new Promise(function (resolve, reject) {
@@ -73,24 +88,6 @@ router.post('/org', function (req, res) { // ここにpost送るとourIdで探�
         if (err) reject(err);
         result = result.sort((a, b) => (a.urlId < b.urlId ? -1 : 1));
         console.log(result);
-
-
-        // Comment = {
-        //   id: result,
-        //   orgId: 3,
-        //   urlId: 10,
-        //   comments: [{
-        //     userId: 1,
-        //     text: "comment",
-        //     time_updated: 1234567890123
-        //   }],
-        //   [{
-        //     userId: 1,
-        //     text: "comment",
-        //     time_updated: 1234567890123
-        //   }]
-        // }
-
 
         for (var i = 0; i < result.length; i++) {
           var resultObj = {
