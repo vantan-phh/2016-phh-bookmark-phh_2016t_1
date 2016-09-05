@@ -12,8 +12,6 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
 
-var multer = require('multer');
-
 var connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
@@ -34,16 +32,6 @@ app.use(session({
     maxAge: 30 * 24 * 60 * 60 * 1000
   }
 }));
-app.use(multer({
-  dest: './icons/',
-  onFileUploadStart: function (file, req, res) {
-    if (file.mimetype == 'image/png') {
-
-    } else {
-      return false;
-    }
-  }
-}).single('icon'));
 
 var routes = require('./routes');
 
