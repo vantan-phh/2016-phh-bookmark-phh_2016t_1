@@ -48,7 +48,7 @@ app.use('/setting/icon', routes.icon);
 
 app.use('/createorg', routes.createorg);
 app.use('/search', routes.search);
-
+app.use('/org/members', routes.members);
 app.get('/logout', function (req, res) {
   req.session.destroy();
   res.redirect('/login');

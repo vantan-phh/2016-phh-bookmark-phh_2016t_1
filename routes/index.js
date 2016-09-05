@@ -7,10 +7,11 @@ var routes = {
   setting: require('./setting'),
   delete: require('./delete'),
   createorg: require('./createorg'),
-  org: require('./org'),
+  org: require('./org/org'),
   search: require('./search'),
   searchResult: require('./searchResult'),
   icon: require('./setting/icon'),
+  members: require('./org/members')
 };
 
 module.exports = routes;
