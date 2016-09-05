@@ -2,3 +2,4 @@ node_modules
 exp
 .DS_Store
 icons/*
+npm-debug.log

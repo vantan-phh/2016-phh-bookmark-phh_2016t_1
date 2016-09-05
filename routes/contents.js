@@ -1,7 +1,22 @@
-// データベースから情報を出してやるぞテスト
 var express = require('express');
 var connection = require('../connection');
 var router = express.Router();
+
+// 例 = {
+//   id: orgCommentId,
+//   orgId: 3,
+//   urlId: 10,
+//   comments: [{
+//     userId: 1,
+//     text: "テストコメント",
+//     time_updated: 1234567890123
+//   }],
+//   [{
+//     userId: 1,
+//     text: "テス",
+//     time_updated: 1234567890123
+//   }]
+// }
 
 function getUrlDetail(resultObj) {
   return new Promise(function (resolve, reject) {
@@ -10,6 +25,10 @@ function getUrlDetail(resultObj) {
       [resultObj.urlId],
       function (err, result, field) {
         try {
+          console.log(result);
+          if (result.length === 0) {
+            reject("url is unavailable");
+          }
           if(err) throw new Error(err.code);
           resultObj.url = result[0].url;
           resultObj.title = result[0].title;
@@ -66,27 +85,45 @@ router.post('/org', function (req, res) { // ここにpost送るとourIdで探�
       [orgId],
       function (err, result, field) {
         var resultArr = [];
-        console.log(req.body.orgId);
+        if (err) reject(err);
+        result = result.sort((a, b) => (a.urlId < b.urlId ? -1 : 1));
         console.log(result);
-        if (err) console.log(err);
+
         for (var i = 0; i < result.length; i++) {
-          var resultObj = {};
-          resultObj.id = result[i].id;
-          resultObj.userId = result[i].userId;
-          resultObj.urlId = result[i].urlId;
-          resultObj.comment = result[i].comment;
-          resultObj.time_updated = result[i].time_updated;
+          var resultObj = {
+            id: result[i].id,
+            orgId: result[i].orgId,
+            urlId: result[i].urlId,
+            comments: [{
+              userId: result[i].userId,
+              text: result[i].comment,
+              time_updated: result[i].time_updated
+            }]
+          }
           resultArr.push(resultObj);
         }
+        // console.log(resultArr);
         resolve(resultArr);
       }
     );
   }).then(function (resultArr) {
+    console.log(0, resultArr, 0);
+    var preUrl = resultArr[0].urlId;
+    for (var i = 1; i < resultArr.length; i++) {
+      if (preUrl == resultArr[i].urlId) {
+        resultArr[i-1].comments.push(resultArr[i].comments[0]);
+        resultArr.splice(i, 1);
+        i--;
+      } else {
+        preUrl = resultArr[i].urlId;
+      }
+    }
+    console.log(1, resultArr, 1);
     Promise.all(resultArr.map(function (resultObj) {
       return getUrlDetail(resultObj);
     })).then(function (gettedResultArr) {
       var str = JSON.stringify(gettedResultArr);
-      console.log(str);
+      console.log("4send json",str);
       res.send(str);
     });
   });
