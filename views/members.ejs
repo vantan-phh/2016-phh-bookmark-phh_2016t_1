@@ -34,11 +34,22 @@
             <img src="../../static/sample.png" alt="" class="circle">
             <span class="title profile">userName</span>
             <p>説明だお</p>
-            <%if(i < 2){%><a href="#!" class="secondary-content orgAdmin"><i class="material-icons perm_identity">perm_identity</i></a><%}else{%><a href="#!" class="secondary-content notAdmin"><i class="material-icons clear_all">clear_all</i><%}%></a>
-          </li>
-          <%}%>
-        </ul>
+            <%if(i < 2){%><a href="#!" class="secondary-content orgAdmin"><i class="material-icons perm_identity">perm_identity</i></a><%}else{%>
+              <!-- Dropdown Trigger -->
+              <a class='dropdown-button btn secondary-content notAdmin' href='#' data-activates='dropdown<%=i%>'><i class="material-icons list">list</i></a>
+
+
+              <!-- こいつは管理者にしか見せちゃいけないと思う-->
+              <!-- Dropdown Structure -->
+              <ul id='dropdown<%=i%>' class='dropdown-content'>
+                <li><a href="#!">管理者権限をつける</a></li>
+              </ul>
+              <%}%>
+            </li>
+            <%}%>
+            <!-- -->
+          </ul>
+        </div>
       </div>
-    </div>
-  </body>
-  </html>
+    </body>
+    </html>
