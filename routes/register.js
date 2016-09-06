@@ -15,6 +15,7 @@ router.get('/', function (req, res) {
 
 router.post('/', function (req, res) {
   var userName = req.body.userName;
+  var displayName = req.body.displayName;
   var email = req.body.email;
   var password = req.body.password;
   for (var i = 0; i < 10000; i++) {
@@ -27,8 +28,8 @@ router.post('/', function (req, res) {
         //res.send(userName + "で登録しました");
         res.redirect('/login'); //登録後にloginPageに飛ぶ
         connection.query(
-          "INSERT INTO `users` (`name`, `email`,  `password`) VALUES (?, ?, ?)",
-          [userName, email, password],
+          "INSERT INTO `users` (`name`, `displayName`, `email`,  `password`, `icon`, `time_updated`) VALUES (?, ?, ?, ?, 'sample.png', ?)",
+          [userName, displayName, email, password, (+new Date())],
         function(error, result, fields){
           console.log(result);
         });
