@@ -8,13 +8,17 @@ router.get('/:urlId(\\d+)/:orgId(\\d)', function (req, res) {
   var id = req.params.urlId;
   var orgId = req.params.orgId;
   connection.query("SELECT * FROM `urls` WHERE `id` = ?", [id], function(err, result) {
-    if(err)console.log(err);
-    connection.query("SELECT `userId` `comment` FROM `orgsComment` WHERE urlId = ? AND orgId = ?", [result.id, orgId],
+    if(err)console.log("s");
+    connection.query("SELECT `userId` `comment` FROM `orgComments` WHERE `urlId` = ? AND `orgId` = ?", [result.id, orgId],
     function(err, res) {
-      if(err)console.log(err);
-      var str = "SELECT `icon` FROM `users` WHERE id = "
+      if(err)console.log("a");
+      var str = "SELECT `icon` FROM `users`"
       for(var i = 0; i < res.length; i++) {
-        str += res[i].userId + " OR id = "
+        if(i = 0) str += " WHERE id = "
+        str += res[i].userId
+        if(!(i == res.length - 1)) {
+          str += " OR id = "
+        }
       }
       connection.query(str, function(err, re) {
         if(err)console.log(err);
