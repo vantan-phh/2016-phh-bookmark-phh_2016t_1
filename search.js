@@ -1,3 +1,4 @@
+/*
 var connection = require('./connection');
 
 kensaku(id, kenmozi) {
@@ -44,7 +45,7 @@ kensaku(id, kenmozi) {
         hozon = hozon.filter(function (x, i, self) {
           return self.indexOf(x) === i;
         });
-        
+
         for(var m = 0; m < hozon.length; m++) {
           str += " (title LIKE ? AND id = " + hozon[m] + ") OR";
           moziire.push(kenmozii);
@@ -59,8 +60,10 @@ kensaku(id, kenmozi) {
             title.push(re[j])
           }
           0 < flag ? kenkensaku() : flag++;
+          */
           /* res[num].comment でコメント, res[num].urlId でURLID
           re[num].title でタイトル, re[num].id でURLID */
+          /*
           unko(result)
         })
       });
@@ -68,3 +71,4 @@ kensaku(id, kenmozi) {
   }
 
   module.exports = kensaku;
+  */

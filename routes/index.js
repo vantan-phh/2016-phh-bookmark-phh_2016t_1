@@ -11,6 +11,7 @@ var routes = {
   search: require('./search'),
   searchResult: require('./searchResult'),
   icon: require('./setting/icon'),
+  entry: require('./entry')
 };
 
 module.exports = routes;
