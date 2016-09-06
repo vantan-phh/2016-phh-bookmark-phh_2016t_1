@@ -8,7 +8,9 @@ router.get('/', function (req, res) {
   var query = req.query.q;
   console.log(query);
   var userId = req.session.userId;
-  console.log(kensaku(userId, query));
+  kensaku(userId, query).then(function(result) {
+    console.log(result);
+  });
 });
 
 module.exports = router;
