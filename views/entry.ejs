@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>PHHBookmark TopPage</title>
+  <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+
+
+  <link rel="stylesheet" href="/static/entry.css">
+  <script type="text/javascript" src="/static/search.js"></script>
+
+
+</head>
+<body>
+  <% include header.ejs %>
+
+  <div class="container">
+    <div class="containerHead"></div>
+    <div class="contentsArea">
+      <div class="news">
+        <div>
+          <a href="https://google.com"><div class="newsImg" style="background-image:url(/static/sample.png),background-size:contain;r">hello</div></a>
+        </div>
+        <div class="news">
+          <a href="https://google.com"><h3>google.com</h3></a>
+        </div>
+        <div class="readMore">
+          <a class="readMore" href="https://google.com">続きを読む</a>
+        </div>
+      </div>
+      <div class="allComment">
+        <div class="newComment">
+          <div class="bookmarkEitor">
+            <div class="commentArea">
+              <div class="userCommentContainer">
+                <textarea name="comment" placeholder="コメントを書く"></textarea>
+              </div>
+              <div class="bookmarkControl">
+                <div class="bookmarkBtn" style="float:right;">
+                  コメントする
+                </div>
+              </div>
+              <div class="userComment">
+                <div class="icon">
+                  <a href=""><img src="" alt="" /></a>
+                </div>
+                <div class="userName"></div>
+                <div class="comment">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="comments">
+          <% for(var i = 0;i < 20; i++){%>
+            <div class="commentContainer">
+              <div class="userProfile">
+                <div class="userIcon" style="background-image:url(/static/sample.png)">
+                </div>
+                <div class="userName">おおたそうじ</div>
+              </div>
+              <div class="commentWrapper">
+                <div class="comment">
+                  Googleは最高の場所である
+                </div>
+              </div>
+            </div>
+            <%}%>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </body>
+  </html>
