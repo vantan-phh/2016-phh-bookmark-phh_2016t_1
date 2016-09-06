@@ -20,7 +20,7 @@ router.get('/', function (req, res) {
       name: userName
     });
   } else {
-    res.redirect('/login');
+    res.render('./topPage.ejs');
   }
 });
 
