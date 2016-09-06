@@ -50,6 +50,7 @@ app.use('/icon', routes.iconfile);
 
 app.use('/createorg', routes.createorg);
 app.use('/search', routes.search);
+app.use('/joiningOrgs', routes.joiningOrgs);
 
 
 app.use('/org', routes.members);
