@@ -51,6 +51,8 @@ app.use('/icon', routes.iconfile);
 app.use('/createorg', routes.createorg);
 app.use('/search', routes.search);
 app.use('/org', routes.members);
+app.use('/joiningOrgs', routes.joiningOrgs);
+
 app.get('/logout', function (req, res) {
   req.session.destroy();
   res.redirect('/login');
