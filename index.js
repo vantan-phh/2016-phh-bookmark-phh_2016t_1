@@ -61,6 +61,7 @@ app.use('/delete', routes.delete);
 app.use('/createorg', routes.createorg);
 app.use('/org', routes.org);
 app.use('/searchResult', routes.searchResult);
+//app.use('/permission', routes.permission);
 
 app.set('port', process.env.PORT || 3000);
 var server = app.listen(app.get('port'), function() {
