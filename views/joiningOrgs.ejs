@@ -20,6 +20,7 @@
 
 </head>
 <body>
+<<<<<<< 31575cde3f324925e7d7c31d881164697c447343
 <<<<<<< 3a5a0cd73fe8cf5c5f04b908ac19af358a2c0bae
   <div class="container">
     <h3>所属グループ</h3>
@@ -40,18 +41,27 @@
 =======
   <% include header.ejs %>
 
+=======
+>>>>>>> changejoiningOrg
   <div class="container">
     <h3>所属グループ</h3>
-    <a href="/org/orgId">
-      <ul class="collection">
+    <ul class="collection">
+      <%for(var i = 0;i < 10;i++){%>
         <li class="collection-item avatar">
-          <span class="title">orgName</span>
-          <p>description</p>
+          <a href="/org/orgId">
+            <span class="title">orgName</span>
+            <p>description</p>
+          </a>
         </li>
-      </a>
-    </ul>
-  </div>
+        <%}%>
+      </ul>
+    </div>
 
+<<<<<<< 31575cde3f324925e7d7c31d881164697c447343
 </body>
 </html>
 >>>>>>> create joiningOrgs.ejs
+=======
+  </body>
+  </html>
+>>>>>>> changejoiningOrg
