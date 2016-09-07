@@ -13,12 +13,14 @@
 
   <link rel="stylesheet" href="/static/entry.css">
   <script type="text/javascript" src="/static/search.js"></script>
+  <script type="text/javascript" src="/static/entry.js"></script>
 
 
 </head>
 <body>
   <% include header.ejs %>
-
+  <input type="hidden" name="orgId" value="<%= orgId%>">
+  <input type="hidden" name="url" value="<%= urlResult.url%>">
   <div class="container">
     <div class="containerHead"></div>
     <div class="contentsArea">
@@ -39,10 +41,10 @@
           <div class="bookmarkEitor">
             <div class="commentArea">
               <div class="userCommentContainer">
-                <textarea name="comment" placeholder="コメントを書く"></textarea>
+                <textarea id="inputComment" name="comment" placeholder="コメントを書く"></textarea>
               </div>
               <div class="bookmarkControl">
-                <div class="bookmarkBtn btn" style="float:right;">
+                <div id="addbtn" class="bookmarkBtn btn" style="float:right;">
                   コメントする
                 </div>
               </div>
