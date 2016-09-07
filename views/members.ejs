@@ -18,10 +18,10 @@
     <div class="orgMembers">
       <div class="orgContent">
         <div class="orgName">
-          <h2>組織の名前</h2>
+          <h2><%= org.name %></h2>
         </div>
         <div class="orgDescription">
-          <p>Googleは神Googleは神Googleは神Googleは神Googleは神Googleは神</p>
+          <p><%= org.description %></p>
         </div>
       </div>
     </div>
@@ -31,7 +31,7 @@
         <% for (var i = 0; i < users.length; i++) { %>
           <li class="collection-item avatar member">
             <input type="hidden" name="userid" value="<%=i%>">
-            <img src="../../static/sample.png" alt="" class="circle">
+            <img src="/icon/<%= users[i].icon %>" alt="" class="circle">
             <span class="title profile"><%= users[i].displayName %></span>
             <p>説明だお</p>
             <%if(i < 2){%><a href="#!" class="secondary-content orgAdmin"><i class="material-icons perm_identity">perm_identity</i></a><%}else{%>

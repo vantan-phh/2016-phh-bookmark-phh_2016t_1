@@ -46,6 +46,8 @@ app.use('/login', routes.login);
 app.use('/setting', routes.setting);
 app.use('/setting/icon', routes.icon);
 
+app.use('/icon', routes.iconfile);
+
 app.use('/createorg', routes.createorg);
 app.use('/search', routes.search);
 app.use('/org', routes.members);
