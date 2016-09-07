@@ -9,12 +9,13 @@ router.get('/:urlId(\\d+)/:orgId(\\d)', function (req, res) {
   var orgId = req.params.orgId;
   connection.query("SELECT * FROM `urls` WHERE `id` = ?", [id], function(err, result) {
     if(err)console.log("s");
-    connection.query("SELECT `userId` `comment` FROM `orgComments` WHERE `urlId` = ? AND `orgId` = ?", [result.id, orgId],
+    connection.query("SELECT `userId` `comment` FROM `orgComments` WHERE `urlId` = ? AND `orgId` = ?", [result[0].id, orgId],
     function(err, res) {
       if(err)console.log("a");
       var str = "SELECT `icon` FROM `users`"
+      console.log(res.length);
       for(var i = 0; i < res.length; i++) {
-        if(i = 0) str += " WHERE id = "
+        if(i == 0) str += " WHERE id = "
         str += res[i].userId
         if(!(i == res.length - 1)) {
           str += " OR id = "
