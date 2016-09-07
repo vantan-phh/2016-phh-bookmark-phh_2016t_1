@@ -60,13 +60,14 @@
             </div>
           </div>
         </div>
+
           <div class="comments">
             <% for(var i = 0;i < union.length; i++){%>
               <div class="commentContainer">
                 <div class="userProfile">
                   <div class="userIcon" style="<%= union[i].icon%>">
                   </div>
-                  <div class="userName"><%= union[i].displayName%></div>
+                  <div class="userName"><%= union[i].comment %></div>
                 </div>
                 <div class="commentWrapper">
                   <div class="comment">
