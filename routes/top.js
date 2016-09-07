@@ -10,6 +10,7 @@ router.get('/', function (req, res) {
     console.log("logged in");
     var userName = req.session.userName;
     var userId = req.session.userId;
+    console.log(userId);
     connection.query("SELECT `orgId` FROM `joiningOrgs` WHERE userId = ?", [userId], function(err, res) {
       if(err)console.log("タイムラインは死んだ");
       var orgId = res;
@@ -17,7 +18,8 @@ router.get('/', function (req, res) {
     });
 
     res.render('./bookmark.ejs',{
-      name: userName
+      name: userName,
+      Id: userId
     });
   } else {
     res.render('./topPage.ejs');
