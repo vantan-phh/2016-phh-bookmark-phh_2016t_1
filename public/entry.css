@@ -1,0 +1,39 @@
+body{
+  }
+a{
+text-decoration:none;
+  }
+  .container{
+  }
+  .containerHead{
+    height:20px;
+  }
+.contentsArea{
+  padding:60px 70px;
+}
+.newComment{
+}
+.newsImg{
+  width:450px;
+  height:300px;
+}
+.readMore{
+  text-align: center;
+}
+.allcomment{
+  margin-top:10px;
+}
+.commentArea{
+  background-color: white;
+  padding-top:40px;
+}
+.comments{
+}
+.commentContainer{
+  background-color: white;
+  padding: 20px 40px;
+  border-top: 1px solid #F5F5F5;
+}
+.comment{
+  padding: 20px 40px;
+}

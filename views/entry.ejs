@@ -24,13 +24,14 @@
     <div class="contentsArea">
       <div class="news">
         <div>
-          <a href="https://google.com"><div class="newsImg" style="background-image:url(/static/sample.png),background-size:contain;r">hello</div></a>
-        </div>
+          <a href="<%= urlResult.url %>">
+            <div class="UrlThumbnail" style="width:600px; height:400px; background-image: url('<%= urlResult.thumbnail %>'); background-repeat: no-repeat; background-position: center; background-size: contain;"></div>
+          </a>
         <div class="news">
-          <a href="https://google.com"><h3>google.com</h3></a>
+          <a href="<%= urlResult.url %>"><h3><%= urlResult.title %></h3></a>
         </div>
         <div class="readMore">
-          <a class="readMore" href="https://google.com">続きを読む</a>
+          <a class="readMore" href="<%= urlResult.url %>">続きを読む</a>
         </div>
       </div>
       <div class="allComment">
@@ -41,7 +42,7 @@
                 <textarea name="comment" placeholder="コメントを書く"></textarea>
               </div>
               <div class="bookmarkControl">
-                <div class="bookmarkBtn" style="float:right;">
+                <div class="bookmarkBtn btn" style="float:right;">
                   コメントする
                 </div>
               </div>
@@ -49,24 +50,25 @@
                 <div class="icon">
                   <a href=""><img src="" alt="" /></a>
                 </div>
-                <div class="userName"></div>
+                <div class="userName">Myname</div>
                 <div class="comment">
+                  コメント
                 </div>
               </div>
             </div>
           </div>
         </div>
           <div class="comments">
-            <% for(var i = 0;i < 20; i++){%>
+            <% for(var i = 0;i < union.length; i++){%>
               <div class="commentContainer">
                 <div class="userProfile">
-                  <div class="userIcon" style="background-image:url(/static/sample.png)">
+                  <div class="userIcon" style="<%= union[i].icon%>">
                   </div>
-                  <div class="userName">おおたそうじ</div>
+                  <div class="userName"><%= union[i].displayName%></div>
                 </div>
                 <div class="commentWrapper">
                   <div class="comment">
-                    Googleは最高の場所である
+                    <%= union[i].comment %>
                   </div>
                 </div>
               </div>
