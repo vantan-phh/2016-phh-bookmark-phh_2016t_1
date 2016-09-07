@@ -1,6 +1,5 @@
-// データベースから情報を出してやるぞテスト
 var express = require('express');
-var connection = require('../connection');
+var connection = require('../../connection');
 var router = express.Router();
 
 router.get('/:id(\\d+)', function (req, res) {

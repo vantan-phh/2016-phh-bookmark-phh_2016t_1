@@ -10,7 +10,31 @@ class common {
         [userId, orgId],
         function (error, result, fields) {
           result = !!result.length; //trueかfalseかで返す
-          return result;
+          resolve(result);
+        }
+      );
+    });
+  }
+
+  userInfo(userIds) {
+    return new Promise( (resolve, reject) => { // thisを束縛するためアロー関数をつかった
+      var sqlstr = "SELECT `*` FROM `users` WHERE id = ?";
+      for (var i = 1; i < userIds.length; i++) sqlstr += " OR id = ?";
+      this.connection.query(
+        sqlstr, userIds,
+        function (error, result, fields) {
+          resolve(result);
+        }
+      );
+    });
+  }
+
+  orgInfo(orgId) { // 組織にその人がいるかどうかを返す
+    return new Promise( (resolve, reject) => { // thisを束縛するためアロー関数をつかった
+      this.connection.query(
+        "SELECT `*` FROM `orgs` WHERE id = ?", [orgId],
+        function (error, result, fields) {
+          resolve(result[0]);
         }
       );
     });

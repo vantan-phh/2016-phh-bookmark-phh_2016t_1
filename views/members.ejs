@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>グループのメンバー</title>
+  <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+  <link rel="stylesheet" href="/static/members.css">
+  <script type="text/javascript" src="/static/members.js"></script>
+</head>
+<body>
+  <% include header.ejs %>
+  <div class="container">
+    <div class="orgMembers">
+      <div class="orgContent">
+        <div class="orgName">
+          <h2><%= org.name %></h2>
+        </div>
+        <div class="orgDescription">
+          <p><%= org.description %></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="members">
+      <ul class="collection">
+        <% for (var i = 0; i < users.length; i++) { %>
+          <li class="collection-item avatar member">
+            <input type="hidden" name="userid" value="<%=i%>">
+            <img src="/icon/<%= users[i].icon %>" alt="" class="circle">
+            <span class="title profile"><%= users[i].displayName %></span>
+            <p>説明だお</p>
+            <%if(i < 2){%><a href="#!" class="secondary-content orgAdmin"><i class="material-icons perm_identity">perm_identity</i></a><%}else{%>
+              <!-- Dropdown Trigger -->
+              <a class='dropdown-button btn secondary-content' href='#' data-activates='dropdown<%=i%>'><i class="material-icons list">list</i></a>
+
+              <!-- こいつは管理者にしか見せちゃいけないと思う-->
+              <!-- Dropdown Structure -->
+              <ul id='dropdown<%=i%>' class='dropdown-content'>
+                <li><a href="#!">管理者権限をつける</a></li>
+              </ul>
+              <%}%>
+            </li>
+            <%}%>
+            <!-- -->
+          </ul>
+        </div>
+      </div>
+    </body>
+    </html>
