@@ -20,19 +20,19 @@
 
 </head>
 <body>
-  <% include header.ejs %>
-
   <div class="container">
     <h3>所属グループ</h3>
-    <a href="/org/orgId">
-      <ul class="collection">
+    <ul class="collection">
+      <%for(var i = 0;i < 10;i++){%>
         <li class="collection-item avatar">
-          <span class="title">orgName</span>
-          <p>description</p>
+          <a href="/org/orgId">
+            <span class="title">orgName</span>
+            <p>description</p>
+          </a>
         </li>
-      </a>
-    </ul>
-  </div>
+        <%}%>
+      </ul>
+    </div>
 
-</body>
-</html>
+  </body>
+  </html>

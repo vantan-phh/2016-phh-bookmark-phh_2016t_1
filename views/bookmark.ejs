@@ -20,7 +20,7 @@
 
 </head>
 <body>
-  <% include header.ejs %>
+  <%- include('./header.ejs', {userId:userId}) %>
   <div id="container">
     <div id="bookmarkList">
       <h3>ブックマーク一覧</h3>
