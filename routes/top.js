@@ -16,7 +16,6 @@ router.get('/', function (req, res) {
       var orgId = res;
       console.log(orgId);
     });
-
     res.render('./bookmark.ejs',{
       name: userName,
       userId: userId,
