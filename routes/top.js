@@ -19,7 +19,7 @@ router.get('/', function (req, res) {
 
     res.render('./bookmark.ejs',{
       name: userName,
-      Id: userId
+      userId: userId,
     });
   } else {
     res.render('./topPage.ejs');
