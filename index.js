@@ -50,11 +50,15 @@ app.use('/icon', routes.iconfile);
 
 app.use('/createorg', routes.createorg);
 app.use('/search', routes.search);
+<<<<<<< HEAD
 
 app.use('/org', routes.members);
 
 app.use('/entry', routes.entry);
 
+=======
+app.use('/entry', routes.entry);
+>>>>>>> 36fba33c4f4071eb8b262241c80a781280aced1b
 app.get('/logout', function (req, res) {
   req.session.destroy();
   res.redirect('/login');
