@@ -29,45 +29,46 @@
           <a href="<%= urlResult.url %>">
             <div class="UrlThumbnail" style="width:600px; height:400px; background-image: url('<%= urlResult.thumbnail %>'); background-repeat: no-repeat; background-position: center; background-size: contain;"></div>
           </a>
-        <div class="news">
-          <a href="<%= urlResult.url %>"><h3><%= urlResult.title %></h3></a>
+          <div class="news">
+            <a href="<%= urlResult.url %>"><h3><%= urlResult.title %></h3></a>
+          </div>
+          <div class="readMore">
+            <a class="readMore" href="<%= urlResult.url %>">続きを読む</a>
+          </div>
         </div>
-        <div class="readMore">
-          <a class="readMore" href="<%= urlResult.url %>">続きを読む</a>
-        </div>
-      </div>
-      <div class="allComment">
-        <div class="newComment">
-          <div class="bookmarkEitor">
-            <div class="commentArea">
-              <div class="userCommentContainer">
-                <textarea id="inputComment" name="comment" placeholder="コメントを書く"></textarea>
+        <div class="allComment">
+          <div class="commentArea">
+            <div class="userCommentContainer">
+              <div class="commentEditor">
+                <div class="row">
+                  <form class="col s12">
+                    <div class="row">
+                      <div class="input-field col s12">
+                        <textarea id="inputComment" name="comment" class="materialize-textarea"></textarea>
+                        <label for="inputComment">コメントを書く</label>
+                      </div>
+                    </div>
+                  </form>
+                </div>
               </div>
               <div class="bookmarkControl">
-                <div id="addbtn" class="bookmarkBtn btn" style="float:right;">
+                <div id="deleteBtn" class="bookmarkBtn btn">
+                  削除
+                </div>
+                <div id="addbtn" class="bookmarkBtn btn">
                   コメントする
-                </div>
-              </div>
-              <div class="userComment">
-                <div class="icon">
-                  <a href=""><img src="" alt="" /></a>
-                </div>
-                <div class="userName">Myname</div>
-                <div class="comment">
-                  コメント
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
-          <div class="comments">
+          <div class="comments" style="margin-top:20px;">
             <% for(var i = 0;i < union.length; i++){%>
               <div class="commentContainer">
                 <div class="userProfile">
                   <div class="userIcon" style="<%= union[i].icon%>">
                   </div>
-                  <div class="userName"><%= union[i].comment %></div>
+                  <div class="userName"><%= union[i].displayName %></div>
                 </div>
                 <div class="commentWrapper">
                   <div class="comment">

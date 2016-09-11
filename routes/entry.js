@@ -23,9 +23,9 @@ router.get('/:urlId(\\d+)/:orgId(\\d)', function (req, res) {
      connection.query(str, function(err, re) {
        if(err)console.log(err);
        for(var i = 0; i < re.length; i++) {
-         unity[i] = {id: resu[i].userId, icon: re[i].icon, displayName:re[i].displayName, comment: resu[i].comment};
+         unity[i] = {id: resu[i].userId, icon: re[i].icon, displayName: resu[i].displayName, comment: resu[i].comment};
        }
-       console.log(unity[0].displayName);
+       console.log(unity[1].displayName);
        res.render('./entry.ejs', {
          union: unity,
          urlResult: result[0],
