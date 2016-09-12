@@ -1,8 +1,7 @@
-/*
 var connection = require('./connection');
 
-kensaku(id, kenmozi) {
-  return new Promise((resolve, reject) => {
+function kensaku(id, kenmozi) {
+  return new Promise( (resolve, reject) => {
     kenmozi = kenmozi.trim();
     var flag = 0;
     for(var i = 0; i < kenmozi.length; i++) {
@@ -12,63 +11,66 @@ kensaku(id, kenmozi) {
         flag = 0;
       }
     }
-
-    var kenmo = kenmozi.split(" ");
-    var kenm = [];
-    for(var i = 0; i < kenmo.length; i++) {
-      kenm.push("%" + kenmo[i] + "%");
-    }
-    sosikikensaku(id, kenm);
+    kenmo = kenmozi.split(" ");
+    sosikikensaku(id, "'%" + kenmo[0] + "%'").then(function(kekka) {
+      if(kenmo[1]) {
+        for(var i = 0; i < kekka.length; i++) {
+          kekka[i].hyouka = 0;
+          for(var j = 1; j < kenmo.length; j++) {
+            if(kekka[i].title) {
+              if(kekka[i].title.match(kenmo[j])) {
+                kekka[i].hyouka += 1 + (kenmo.length - j)/10;
+              }
+            }else {
+              if(kekka[i].comment.match(kenmo[j])) {
+                kekka[i].hyouka += 1 + (kenmo.length - j)/10;
+              }
+            }
+          }
+        }
+        kekka = kekka.sort(function(a, b){
+          if (a.hyouka > b.hyouka) return 1;
+          if (a.hyouka < b.hyouka) return -1;
+          return 0;
+        });
+      }
+      resolve(kekka);
+    })
   }
-
-  function sosikikensaku(id, kenmozii) {
+}
+function sosikikensaku(id, kenmozi) {
+  return new Promise( (resolve, reject) => {
     connection.query('SELECT `orgId` FROM `joiningOrgs` WHERE userId = ?', [id],
     function(err, result) {
-      if(err || !result[0]) return "検索結果がありません"
-      var strC = 'SELECT `comment`, `urlId` FROM `orgComments` WHERE'
-      var moziire = [];
+      if(err || result[0] == undefined)return "not found";
+      var str = 'SELECT `comment`, `urlId`, `userId` FROM `orgComments` WHERE ';
       for(var i = 0; i < result.length; i++) {
-        for(var j = 0; j < kenmozii.length; j++) {
-          strC += " (comment LIKE ? AND orgId = " + result[i].orgId + ") OR";
-          moziire.push(kenmozii);
-        }
+        str += "orgId = " + result[i].orgId + " OR "
       }
-      strC = strC.substr(0, strC.length - 3);
-      connection.query(strC, moziire, function(err, res){
-        if(err || res[0] == []){flag++; return  "検索結果がありません";}
-        var str = 'SELECT `title`, `id` FROM `urls` WHERE'
-        hozon = [];
-        moziire = [];
+      str = str.substr(0, str.length - 4);
+      connection.query(str, function(err, res){
+        if(err)return "not found";
+        var str = 'SELECT `title`, `id` FROM `urls` WHERE (title LIKE ' + kenmozi + ") AND ("
         for(var i = 0; i < res.length; i++) {
-          hozon.push(res[i].urlId);
+          str += "id = " + res[i].urlId + " OR ";
         }
-        hozon = hozon.filter(function (x, i, self) {
-          return self.indexOf(x) === i;
-        });
-
-        for(var m = 0; m < hozon.length; m++) {
-          str += " (title LIKE ? AND id = " + hozon[m] + ") OR";
-          moziire.push(kenmozii);
-        }
-        str = str.substr(0, str.length - 3);
-        connection.query(str, moziire, function(err, re) {
-          if(err || re[0] == []){flag++; return  "検索結果がありません";}
+        str = str.substr(0, str.length - 4);
+        str += ")";
+        connection.query(str, function(err, re) {
+          if(err)return "not found";
+          if(re[0] == res[0])return "not found";
+          var comment = [];
           for(var i = 0; i < res.length; i++) {
-            comment.push(res[i])
+            if(res[i].comment.match(kenmo[0])) {
+              comment.push(res[i]);
+            }
           }
-          for(var j = 0; j < re.length; j++) {
-            title.push(re[j])
-          }
-          0 < flag ? kenkensaku() : flag++;
-          */
-          /* res[num].comment でコメント, res[num].urlId でURLID
-          re[num].title でタイトル, re[num].id でURLID */
-          /*
-          unko(result)
-        })
+          var kekka = re.concat(comment);
+          resolve(kekka);
+        });
       });
     });
-  }
+  });
+}
 
-  module.exports = kensaku;
-  */
+module.exports = kensaku;
