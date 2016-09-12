@@ -3,26 +3,32 @@
 <head>
   <meta charset="utf-8">
   <title>setting</title>
-
-  <link href="static/setting.css" rel="stylesheet" >
-  <script type="text/javascript" src="/static/setting.js"></script>
   <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+
+
 </head>
 <body>
-  <div id="main">
-    <h1>設定</h1>
-    <div id="form">
-      <p class="form-title"></p>
-      <form class="form-horizontal" enctype="multipart/form-data" action="/setting/icon" method="post">
-        <p>画像変更</p>
-        <p><input class="imgfile" type="file" name="icon"></p>
-        <button class="btn btn-primary changeSetting">ChangeSetting</button>
-      </form>
-    </div>
+  <% include header.ejs %>
+  <div class="container">
+    <h3>画像変更</h3>
+    <form enctype="multipart/form-data" action="/setting/icon" method="post">
+      <div class="file-field input-field" enctype="multipart/form-data" action="/setting/icon" method="post">
+        <div class="btn">
+          <span>File</span>
+          <input class="imgfile" type="file" name="icon" multiple>
+        </div>
+        <div class="file-path-wrapper">
+          <input class="file-path validate" type="text" placeholder="Upload one or more files">
+        </div>
+      </div>
+      <button class="btn btn-primary changeSetting">ChangeSetting</button>
+    </form>
   </div>
+
 </body>
 </html>
