@@ -7,21 +7,24 @@
   <link href="static/setting.css" rel="stylesheet" >
   <script type="text/javascript" src="/static/setting.js"></script>
   <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+
+
 </head>
 <body>
-  <div id="main">
+  <% include header.ejs %>
+  <div class="container">
     <h1>設定</h1>
     <div id="form">
       <p class="form-title"></p>
       <form class="form-horizontal" action="/setting" method="post">
         <p>username</p>
         <p><input name="userName" class="useName form-control"></p>
-        <p>画像変更</p>
-        <p><input class="imgfile" type="file" name="iconimg" size="30"></p>
+        <a class="btn" href="/setting/icon">画像変更</a>
         <p>mail addressc</p>
         <p><input name="email" class="email form-control"></p>
         <p>password</p>
