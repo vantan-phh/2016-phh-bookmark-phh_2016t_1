@@ -57,8 +57,6 @@ app.use('/org', routes.members);
 app.use('/entry', routes.entry);
 
 
-app.use('/entry', routes.entry);
-
 app.get('/logout', function (req, res) {
   req.session.destroy();
   res.redirect('/login');
