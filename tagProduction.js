@@ -23,14 +23,14 @@ function tagProduction(tagName, urlId, orgId) {
           });
         });
       }else {
-        connection.query("SELECT `id` FROM `urlTag` WHERE urlId = " + urlId + " AND tagId = " + result[0].id + " AND orgId = " + orgId,
+        connection.query("SELECT `id` FROM `urlTag` WHERE urlId = ? AND tagId = ? AND orgId = ?", [urlId, result[0].id, orgId],
         function(err, res) {
           if(err)return "タグ生成失敗"
           if(res[0] == undefined) {
-            connection.query("INSERT INTO urlTag(urlId, tagId, orgId) values(" + urlId + "," + result[0].id + "," + orgId + ")",
+            connection.query("INSERT INTO urlTag(urlId, tagId, orgId) values(?, ?, ?)", [urlId, result[0].id, orgId],
             function(err, res) {
               if(err)return "タグ生成失敗"
-              connection.query("SELECT `id` FROM urlTag WHERE urlId = " + urlId + " AND tagId = " + result[0].id + " AND orgId = " + orgId,
+              connection.query("SELECT `id` FROM urlTag WHERE urlId = ? AND tagId = ? AND orgId = ?", [urlId, result[0].id, orgId],
               function(err, res) {
                 if(err)return "タグ生成失敗";
                 resolve(res[0].id);
