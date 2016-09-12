@@ -56,6 +56,7 @@ app.use('/joiningOrgs', routes.joiningOrgs);
 app.use('/org', routes.members);
 
 app.use('/entry', routes.entry);
+app.use('/orglist', routes.orglist);
 
 app.get('/logout', function (req, res) {
   req.session.destroy();

@@ -15,6 +15,8 @@ var routes = {
   members: require('./org/members'),
 
   entry: require('./entry'),
+
+  orglist: require('./orglist'),
 };
 
 module.exports = routes;
