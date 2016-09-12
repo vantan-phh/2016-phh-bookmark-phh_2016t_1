@@ -12,8 +12,8 @@ var routes = {
   searchResult: require('./searchResult'),
   icon: require('./setting/icon'),
   iconfile: require('./icon'),
-  members: require('./org/members')
-  joiningOrgs: require('./joiningOrgs'),
+  members: require('./org/members'),
+  orglist: require('./orglist'),
 };
 
 module.exports = routes;

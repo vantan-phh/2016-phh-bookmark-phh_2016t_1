@@ -29,12 +29,26 @@ class common {
     });
   }
 
-  orgInfo(orgId) { // 組織にその人がいるかどうかを返す
-    return new Promise( (resolve, reject) => { // thisを束縛するためアロー関数をつかった
+  orgInfo(orgIds) {
+    return new Promise( (resolve, reject) => {
+      var sqlstr = "SELECT `*` FROM `orgs` WHERE id = ?";
+      for (var i = 1; i < orgIds.length; i++) sqlstr += " OR id = ?";
+      console.log(sqlstr);
       this.connection.query(
-        "SELECT `*` FROM `orgs` WHERE id = ?", [orgId],
+        sqlstr, orgIds,
         function (error, result, fields) {
-          resolve(result[0]);
+          resolve(result);
+        }
+      );
+    });
+  }
+
+  orgPermissions(orgId) {
+    return new Promise( (resolve, reject) => {
+      this.connection.query(
+        "SELECT `userId`, `permission` FROM `joiningOrgs` WHERE orgId = ?", [orgId],
+        function (error, result, fields) {
+          resolve(result);
         }
       );
     });
