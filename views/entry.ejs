@@ -27,10 +27,10 @@
       <div class="news">
         <div>
           <a href="<%= urlResult.url %>">
-            <div class="UrlThumbnail" style="width:600px; height:400px; background-image: url('<%= urlResult.thumbnail %>'); background-repeat: no-repeat; background-position: center; background-size: contain;"></div>
+            <div class="UrlThumbnail" style="width:400px; height:300px; background-image: url('<%= urlResult.thumbnail %>'); background-repeat: no-repeat; background-position: center; background-size: contain; margin:0 auto;"></div>
           </a>
           <div class="news">
-            <a href="<%= urlResult.url %>"><h3><%= urlResult.title %></h3></a>
+            <a href="<%= urlResult.url %>"><h4><%= urlResult.title %></h4></a>
           </div>
           <div class="readMore">
             <a class="readMore" href="<%= urlResult.url %>">続きを読む</a>
@@ -50,7 +50,6 @@
                     </div>
                   </form>
                 </div>
-              </div>
               <div class="bookmarkControl">
                 <div id="deleteBtn" class="bookmarkBtn btn">
                   削除
@@ -58,6 +57,7 @@
                 <div id="addbtn" class="bookmarkBtn btn">
                   コメントする
                 </div>
+              </div>
               </div>
             </div>
           </div>
