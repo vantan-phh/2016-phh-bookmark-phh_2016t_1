@@ -6,7 +6,7 @@ var connection = require('../connection');
 function deleteCommentPromise(commentId, userId) {
   return new Promise(function (resolve, reject) {
     connection.query(
-      "DELETE FROM `user_url` WHERE `id` = ? AND `userId` = ?",
+      "DELETE FROM `orgComments` WHERE `id` = ? AND `userId` = ?",
       [commentId, userId],
       function (err, result, filed) {
         try {
