@@ -9,11 +9,14 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+
   <link rel="stylesheet" href="/static/members.css">
   <script type="text/javascript" src="/static/members.js"></script>
+
 </head>
 <body>
   <% include header.ejs %>
+  <input type="hidden" name="orgId" value="<%= orgId%>">
   <div class="container">
     <div class="orgMembers">
       <div class="orgContent">
@@ -24,33 +27,53 @@
           <p><%= org.description %></p>
         </div>
       </div>
-    </div>
+      <%if (myPerm === 2) {%>
+        <div class="addMembers">
+          <!-- Modal Trigger -->
+          <a class="waves-effect waves-light btn modal-trigger" href="#modal1">招待</a>
 
-    <div class="members">
-      <ul class="collection">
-        <% for (var i = 0; i < users.length; i++) { %>
-          <li class="collection-item avatar member">
-            <input type="hidden" name="userid" value="<%=i%>">
-            <img src="/icon/<%= users[i].icon %>" alt="" class="circle">
-            <span class="title profile"><%= users[i].displayName %></span>
-            <p>説明だお</p>
-            <%if (users[i].permission === 2) {%>
-              <a class="secondary-content orgAdmin"><i class="material-icons perm_identity">perm_identity</i></a>
-            <%} else {%>
-              <!-- Dropdown Trigger -->
-              <%if (myPerm === 2) {%>
-                <ul id='orgdown<%=i%>' class='dropdown-content'>
-                  <li><a href="#!">管理者権限をつける</a></li>
-                  <li><a href="#!">グループから削除</a></li>
-                </ul>
-                <a class='dropdown-button btn secondary-content' href='#!' data-activates='orgdown<%=i%>'><i class="material-icons list">list</i></a>
-              <%}%>
-            <%}%>
-          </li>
+          <!-- Modal Structure -->
+          <div id="modal1" class="modal">
+            <div class="modal-content">
+              <form id="searchform" method="post">
+                <div>
+                  <label for="search_term">Search name/phone</label>
+                  <input type="text" name="search_term" id="searchTerm">
+                </div>
+              </form>
+              <div id="searchResults"></div>
+            </div>
+            <div class="modal-footer">
+              <a class="inviteBtn modal-action modal-close waves-effect waves-green btn-flat">招待する</a>
+            </div>
+          </div>
+        </div>
         <%}%>
-        <!-- -->
-      </ul>
-    </div>
-  </div>
-</body>
-</html>
+      </div>
+
+      <div class="members">
+        <ul class="collection">
+          <% for (var i = 0; i < users.length; i++) { %>
+            <li class="collection-item avatar member">
+              <img src="/icon/<%= users[i].icon %>" alt="" class="circle">
+              <span class="title profile"><%= users[i].displayName %></span>
+              <p>説明だお</p>
+              <%if (users[i].permission === 2) {%>
+                <a class="secondary-content orgAdmin"><i class="material-icons perm_identity">perm_identity</i></a>
+                <%} else {%>
+                  <!-- Dropdown Trigger -->
+                  <%if (myPerm === 2) {%>
+                    <ul id='orgdown<%=i%>' class='dropdown-content'>
+                      <li class="addPerm" id="<%= users[i].userId%>"><a>管理者権限をつける</a></li>
+                    </ul>
+                    <a class='dropdown-button btn secondary-content' href='#!' data-activates='orgdown<%=i%>'><i class="material-icons list">list</i></a>
+                    <%}%>
+                    <%}%>
+                  </li>
+                  <%}%>
+                  <!-- -->
+                </ul>
+              </div>
+            </div>
+          </body>
+          </html>

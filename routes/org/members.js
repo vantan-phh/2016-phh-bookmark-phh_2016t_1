@@ -35,7 +35,8 @@ router.get('/:id(\\d+)/members', function (req, res) {
     res.render('./members.ejs', {
       users: userInfos,
       org: orgInfo,
-      myPerm: myPerm
+      myPerm: myPerm,
+      orgId:orgId
     });
   });
 });

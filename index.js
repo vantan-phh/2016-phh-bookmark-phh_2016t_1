@@ -66,6 +66,8 @@ app.use('/delete', routes.delete);
 app.use('/invite', routes.invite);
 app.use('/org', routes.org);
 app.use('/searchResult', routes.searchResult);
+app.use('/invite',routes.invite);
+app.use('/perm',routes.perm);
 
 app.set('port', process.env.PORT || 3000);
 var server = app.listen(app.get('port'), function() {
