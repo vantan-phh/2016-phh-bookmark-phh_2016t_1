@@ -34,21 +34,23 @@
             <img src="/icon/<%= users[i].icon %>" alt="" class="circle">
             <span class="title profile"><%= users[i].displayName %></span>
             <p>説明だお</p>
-            <%if(i < 2){%><a href="#!" class="secondary-content orgAdmin"><i class="material-icons perm_identity">perm_identity</i></a><%}else{%>
+            <%if (users[i].permission === 2) {%>
+              <a class="secondary-content orgAdmin"><i class="material-icons perm_identity">perm_identity</i></a>
+            <%} else {%>
               <!-- Dropdown Trigger -->
-              <a class='dropdown-button btn secondary-content' href='#' data-activates='dropdown<%=i%>'><i class="material-icons list">list</i></a>
-
-              <!-- こいつは管理者にしか見せちゃいけないと思う-->
-              <!-- Dropdown Structure -->
-              <ul id='dropdown<%=i%>' class='dropdown-content'>
-                <li><a href="#!">管理者権限をつける</a></li>
-              </ul>
+              <%if (myPerm === 2) {%>
+                <ul id='orgdown<%=i%>' class='dropdown-content'>
+                  <li><a href="#!">管理者権限をつける</a></li>
+                  <li><a href="#!">グループから削除</a></li>
+                </ul>
+                <a class='dropdown-button btn secondary-content' href='#!' data-activates='orgdown<%=i%>'><i class="material-icons list">list</i></a>
               <%}%>
-            </li>
             <%}%>
-            <!-- -->
-          </ul>
-        </div>
-      </div>
-    </body>
-    </html>
+          </li>
+        <%}%>
+        <!-- -->
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

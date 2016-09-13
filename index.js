@@ -51,11 +51,10 @@ app.use('/icon', routes.iconfile);
 app.use('/createorg', routes.createorg);
 app.use('/search', routes.search);
 
-
 app.use('/org', routes.members);
 
 app.use('/entry', routes.entry);
-
+app.use('/orglist', routes.orglist);
 
 app.get('/logout', function (req, res) {
   req.session.destroy();

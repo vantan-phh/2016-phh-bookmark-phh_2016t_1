@@ -11,12 +11,12 @@ var routes = {
   search: require('./search'),
   searchResult: require('./searchResult'),
   icon: require('./setting/icon'),
-
   iconfile: require('./icon'),
   members: require('./org/members'),
 
-entry: require('./entry')
+  entry: require('./entry'),
 
+  orglist: require('./orglist'),
 };
 
 module.exports = routes;
