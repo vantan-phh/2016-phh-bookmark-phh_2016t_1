@@ -17,6 +17,7 @@ var routes = {
   entry: require('./entry'),
 
   orglist: require('./orglist'),
+  invite: require('./invite'),
 };
 
 module.exports = routes;
