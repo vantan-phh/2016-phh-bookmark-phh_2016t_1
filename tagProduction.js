@@ -22,7 +22,7 @@ function tagProduction(tagName, urlId, orgId) {
             });
           });
         });
-      }else {
+      } else {
         connection.query("SELECT `id` FROM `urlTag` WHERE urlId = ? AND tagId = ? AND orgId = ?", [urlId, result[0].id, orgId],
         function(err, res) {
           if(err)return "タグ生成失敗"
@@ -36,7 +36,7 @@ function tagProduction(tagName, urlId, orgId) {
                 resolve(res[0].id);
               });
             });
-          }else {
+          } else {
             resolve(res[0].id);
           }
         });
