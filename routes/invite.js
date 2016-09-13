@@ -4,8 +4,12 @@ var router = express.Router();
 var connection = require('../connection');
 
 router.post('/', function (req, res) {
+  var userId = req.session.userId;
   var orgId = req.params.orgId;
   var invitees = req.params.invitees; // array
+  if (true) {
+
+  }
   for (var invitee of invitee) {
     connection.query('SELECT permission FROM `joiningOrgs` WHERE `userId` = ? AND `orgId` = ?', [userId, orgId], function (error, result, fields) {
       console.log(result[0].permission);
