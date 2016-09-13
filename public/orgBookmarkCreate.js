@@ -16,9 +16,7 @@ $(function(){
       $(".bookmarkUrl").append(`<div class="card medium">
       <div class="card-image"><a href="/entry/${obj[i].urlId}/${obj[i].orgId}"><img src=${obj[i].thumbnail}></a></div>
       <div class="card-content"><a href="/entry/${obj[i].urlId}/${obj[i].orgId}"><p>${obj[i].title}</a></p></div>
-      <div class="card-action"><a class="btn-floating btn-large waves-effect waves-light updateText" style="float:left;">
-      <i class="large material-icons">mode_edit</i></a><a class="btn-floating btn-large waves-effect waves-light blue trash" style="float:right;">
-      <i class="large material-icons">delete</i></a></div></div>`);
+      <div class="card-action"></div>`);
     }
   }
 
@@ -34,34 +32,6 @@ $(function(){
       redrawBookmark(res);
     }
   });
-
-
-  $(document).on('click', '.trash', function(){ //
-    // clickイベントで発動する処理
-    var commentId = $(this).parents('.card').attr('id');
-    $(this).parents('.card').fadeOut();
-
-
-    $.ajax({
-      type: "POST",
-      url: "/delete",
-      dataType: "text",
-      data: {
-        "commentId": commentId,
-      },
-      success: function(data, textStatus){
-      },
-      error: function(xhr, textStatus, errorThrown){
-        // エラー処理
-      }
-    });
-
-  });
-
-  $(document).on('click','.updateText',function(){
-    var comment = $(this).parents().parents().parents().attr('id');
-  });
-
 
   $('#addbtn').on('click',function(){
     var inputUrl = $("#inputUrl").val();
