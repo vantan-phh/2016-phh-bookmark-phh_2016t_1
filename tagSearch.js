@@ -11,9 +11,8 @@ function tagSearch(userId, tagName) {
           if(sqlResult[0] === undefined) throw new Error('select empty');
           result.first = sqlResult;
           resolve(result);
-        }catch(err) {
-          console.dir(err);
-          reject(err);
+        }catch(e) {
+          reject(e);
         }
       });
     }).then(result => new Promise((resolve, reject) => {
@@ -25,7 +24,6 @@ function tagSearch(userId, tagName) {
           result.second = sqlResult;
           resolve(result);
         }catch(e) {
-          console.dir(e);
           reject(e);
         }
       });
@@ -44,7 +42,6 @@ function tagSearch(userId, tagName) {
           if(res[0] === undefined) throw new Error('ふげぇ')
           resolve(res);
         }catch(e) {
-          console.dir(e);
           reject(e);
         }
       })
