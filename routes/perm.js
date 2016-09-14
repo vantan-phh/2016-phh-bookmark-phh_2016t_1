@@ -5,8 +5,9 @@ var permission = require('../permission');
 
 router.post('/', function (req, res) {
   var orgId = req.params.orgId;
+  var id = req.params.id;
   console.log(orgId);
-  distribution(orgId,userId);
+  distribution(orgId,id);
   res.render("members.ejs");
 });
 
