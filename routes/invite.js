@@ -31,7 +31,7 @@ router.post('/', function (req, res) {
           resolve();
         } else {
           console.log("not admin");
-          res.status(400).send('You are not admin of this org');
+          res.status(401).send('You are not admin of this org');
         }
       }
     }});
