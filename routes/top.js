@@ -3,6 +3,8 @@ var router = express.Router();
 var sha256gen = require('../sha256gen');
 var mysql = require('mysql');
 var connection = require('../connection');
+var common = require('../common');
+var com = new common(connection);
 
 router.get('/', function (req, res) {
   console.log("TOP");
@@ -11,14 +13,14 @@ router.get('/', function (req, res) {
     var userName = req.session.userName;
     var userId = req.session.userId;
     console.log(userId);
-    connection.query("SELECT `orgId` FROM `joiningOrgs` WHERE userId = ?", [userId], function(err, res) {
-      if(err)console.log("タイムラインは死んだ");
-      var orgId = res;
-      console.log(orgId);
-    });
-    res.render('./bookmark.ejs',{
-      name: userName,
-      userId: userId,
+    com.joiningOrgs(userId)
+    .then((orgIds) => {
+      return com.orgInfo(orgIds);
+    })
+    .then((orgs) => {
+      res.render('./orglist.ejs', {
+        orgs: orgs,
+      });
     });
   } else {
     res.render('./topPage.ejs');
