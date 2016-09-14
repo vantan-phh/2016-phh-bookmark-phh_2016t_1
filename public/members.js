@@ -1,10 +1,7 @@
 $(function(){
   var orgId = $(':hidden[name="orgId"]').val();
   console.log(orgId);
-  $(document).ready(function(){
-    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-    $('.modal-trigger').leanModal();
-  });
+  $('.modal-trigger').leanModal();
 
   $('.addPerm').on('click',function(){
     var id = $(this).attr('id');
@@ -14,7 +11,7 @@ $(function(){
       type: "POST",
       url: "/perm",
       data: {
-        "orgId":1,
+        "orgId":orgId,
         "id": id,
       },
       success: function(data, textStatus){
