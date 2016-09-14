@@ -36,7 +36,7 @@ function kensaku(id, kenmozi) {
       }
       resolve(kekka);
     })
-  }
+  })
 }
 function sosikikensaku(id, kenmozi) {
   return new Promise( (resolve, reject) => {
@@ -72,5 +72,4 @@ function sosikikensaku(id, kenmozi) {
     });
   });
 }
-
 module.exports = kensaku;
