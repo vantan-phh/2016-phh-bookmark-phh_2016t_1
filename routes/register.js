@@ -18,9 +18,7 @@ router.post('/', function (req, res) {
   var displayName = req.body.displayName;
   var email = req.body.email;
   var password = req.body.password;
-  for (var i = 0; i < 10000; i++) {
-    password = sha256gen(password);
-  }
+  password = sha256gen(password);
   connection.query('SELECT * FROM `users` WHERE `name` = ? OR `email` = ? LIMIT 1', [userName, email], function (error, result, fields) {
     var userNameExists = result.length === 1;
     if (!userNameExists) {

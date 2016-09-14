@@ -5,7 +5,6 @@
   <title>setting</title>
 
   <link href="static/setting.css" rel="stylesheet" >
-  <script type="text/javascript" src="/static/setting.js"></script>
   <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!-- Compiled and minified CSS -->
@@ -13,6 +12,7 @@
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
 
+  <script type="text/javascript" src="/static/setting.js"></script>
 
 </head>
 <body>
@@ -21,15 +21,16 @@
     <h1>設定</h1>
     <div id="form">
       <p class="form-title"></p>
-      <form class="form-horizontal" action="/setting" method="post">
+      <form id="updateForm" class="form-horizontal" action="/setting" method="post">
         <p>username</p>
-        <p><input name="userName" class="useName form-control"></p>
-        <a class="btn" href="/setting/icon">画像変更</a>
+        <p><input name="name" class="name form-control"></p>
+        <p>アイコン</p>
+        <input type="file" name="icon">
         <p>mail address</p>
         <p><input name="email" class="email form-control"></p>
         <p>password</p>
-        <p><input name="password" type="password" class="password form-control"　value=""></p>
-        <button class="btn btn-primary changeSetting">ChangeSetting</button>
+        <p><input name="password" type="password" class="password form-control" value=""></p>
+        <button type="button" class="btn">更新</button>
       </form>
     </div>
   </div>
