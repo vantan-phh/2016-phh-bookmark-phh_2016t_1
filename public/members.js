@@ -7,16 +7,15 @@ $(function(){
   });
 
   $('.addPerm').on('click',function(){
-    var userId = $(this).attr('id');
-    console.log(userId);
+    var id = $(this).attr('id');
+    console.log(id);
     console.log("click");
     $.ajax({
       type: "POST",
       url: "/perm",
-      dataType: "text",
       data: {
-        "orgId":orgId,
-        "userId": 2,
+        "orgId":1,
+        "id": id,
       },
       success: function(data, textStatus){
         //$('#pii').text(data);
@@ -28,6 +27,7 @@ $(function(){
         // エラー処理
       }
     });
+    location.reload();
   });
 
   $('.addMembers').on('click',function(){

@@ -31,12 +31,12 @@ router.get('/:id(\\d+)/members', function (req, res) {
         myPerm = perm[i].permission;
       }
     }
-    console.log(userInfos);
+    console.log(orgId);
     res.render('./members.ejs', {
       users: userInfos,
       org: orgInfo,
       myPerm: myPerm,
-      orgId:orgId
+      orgId: orgId
     });
   });
 });
