@@ -24,7 +24,7 @@ router.post('/', function (req, res) {
   var invitees = req.body.invitees; // array
   console.log(userId, invitees, orgId);
   com.orgPermissions(orgId)
-  .then((perms) => { return new Promise( (resolve, reject) => {
+  .then((perms) => { return new Promise( function (resolve, reject) {
     for (var p of perms) {
       if (p.userId == userId) {
         if (p.permission > 1) {
@@ -35,16 +35,15 @@ router.post('/', function (req, res) {
         }
       }
     }});
-  }).then(function () { return new Promise( (resolve, reject) => {
+  }).then(function () { return new Promise( function (resolve, reject) {
     Promise.all(invitees.map((inv) => {
       invitePromise(inv, orgId);
     })).then(() => {
-      console.log("invited");
-      res.send("success");
+      res.status(200).send("success");
     }).catch(() => {
       reject();
     });
-  })}).catch(function () {
+  })}).catch(() => {
     res.status(500).send('Internal Server Error');
   });
 });
