@@ -1,10 +1,12 @@
 var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
-var connection = require('../../connection');
+var connection = require('../connection');
+var common = require('../common');
 var multer = require('multer');
 var fs = require('fs');
 var crypto = require('crypto');
+var com = new common(connection);
 
 function mysql_promise(query, array) {
   console.log(query);
@@ -42,30 +44,35 @@ function md5hash(tmpfile) {
   return digest;
 }
 
-router.get('/', function (req, res) {
-  if (req.session.userId && req.session.userName) {
-    res.render('./icon.ejs');
-  } else {
-    res.redirect('/login');
-  }
-});
-
 router.post('/', iconUpload.single('icon'), function (req, res) {
-  if (req.session.userId && req.session.userName) {
-    var userId = req.session.userId;
-    var filename = md5hash(req.file.path);
+  var userId = req.session.userId;
+  var orgId = req.body.orgId;
+  var filename = md5hash(req.file.path);
+  com.orgPermissions(orgId)
+  .then((perms) => { return new Promise( function (resolve, reject) {
+    for (var p of perms) {
+      if (p.userId == userId) {
+        if (p.permission > 1) {
+          resolve();
+        } else {
+          console.log("not admin");
+          res.status(401).send('You are not admin of this org');
+        }
+      }
+    }});
+  }).then(() => {
     console.log(filename);
     mysql_promise(
       "UPDATE `orgs` SET `icon` = ? WHERE id = ?",
       [filename, orgId]
     ).then(function () {
-      res.redirect('/setting/icon');
+      res.status(200).send('success');
     }).catch(function () {
-      res.redirect('/setting/icon');
+      res.status(500).send('Internal Server Error');
     });
-  } else {
-    res.redirect('/login');
-  }
+  }).catch(() => {
+    res.status(500).send('Internal Server Error');
+  });
 });
 
 module.exports = router;
