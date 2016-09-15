@@ -23,16 +23,20 @@
   <% include header.ejs %>
   <div class="container">
     <h3>所属グループ</h3>
-    <ul class="collection">
-      <%for(var i = 0;i < orgs.length;i++){%>
-        <li class="collection-item avatar">
-          <a href="/org/<%= orgs[i].id %>">
-            <span class="title"><%= orgs[i].name %></span>
-            <p><%= orgs[i].description %></p>
-          </a>
-        </li>
-        <%}%>
-      </ul>
-    </div>
-</body>
-</html>
+    <%if(orgs == null){%>
+      <p>現在所属しているグループはありません</p>
+      <%}else{%>
+        <ul class="collection">
+          <%for(var i = 0;i < orgs.length;i++){%>
+            <li class="collection-item avatar">
+              <a href="/org/<%= orgs[i].id %>">
+                <span class="title"><%= orgs[i].name %></span>
+                <p><%= orgs[i].description %></p>
+              </a>
+            </li>
+            <%}%>
+          </ul>
+          <%}%>
+        </div>
+      </body>
+      </html>
