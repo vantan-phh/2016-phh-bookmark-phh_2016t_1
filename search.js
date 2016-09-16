@@ -70,7 +70,7 @@ function sosikikensaku(id, kenmozi) {
     })
   })).then(result => new Promise((resolve, reject) => {
     var ary = [kenmozi];
-    var str = "SELECT `title`, `id` FROM `urls` WHERE (title LIKE ? ) AND ("
+    var str = "SELECT * FROM `urls` WHERE (title LIKE ? ) AND ("
     for(var i = 0; i < result.second.length; i++) {
       str += "id = ? OR ";
       ary.push(result.second[i].urlId);
