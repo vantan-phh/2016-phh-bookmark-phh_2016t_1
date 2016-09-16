@@ -21,9 +21,7 @@ function queryPromise(sqlstr, array) {
 
 router.get('/', function (req, res) {
   var warn = "";
-  res.render('./setting.ejs', {
-    warn: warn,
-  });
+  res.render('./setting.ejs');
 });
 
 router.post('/', function (req, res) {
@@ -31,18 +29,29 @@ router.post('/', function (req, res) {
   var displayName = req.body.displayName;
   var name = req.body.name;
   var email = req.body.email;
+  var newpassword = sha256gen(req.body.newpassword);
   var password = sha256gen(req.body.password);
   var promiseArr = [];
-  if (displayName) promiseArr.push(["UPDATE `users` SET `displayName` = ?, `time_updated` = ? WHERE id = ?", [displayName, +new Date(), userId]]);
-  if (name) promiseArr.push(["UPDATE `users` SET `name` = ?, `time_updated` = ? WHERE id = ?", [name, +new Date(), userId]]);
-  if (email) promiseArr.push(["UPDATE `users` SET `email` = ?, `time_updated` = ? WHERE id = ?", [email, +new Date(), userId]]);
-  if (password) promiseArr.push(["UPDATE `users` SET `password` = ?, `time_updated` = ? WHERE id = ?", [password, +new Date(), userId]]);
-  Promise.all(promiseArr.map((arr) => {return queryPromise(arr[0], arr[1])})).then(() => {
-    console.log("success");
-    res.status(200).send("success");
-  }).catch((error) => {
-    console.log(error);
-    res.status(500).send("Internal Server Error");
+  console.log(userId, displayName, name, email, newpassword, password);
+  queryPromise(
+    "SELECT `password` FROM users WHERE id = ?", [userId]
+  ).then((result) => {
+    console.log("yeayayayeyeyyay");
+    if (password === result[0].password) {
+      if (displayName) promiseArr.push(["UPDATE `users` SET `displayName` = ?, `time_updated` = ? WHERE id = ?", [displayName, +new Date(), userId]]);
+      if (name) promiseArr.push(["UPDATE `users` SET `name` = ?, `time_updated` = ? WHERE id = ?", [name, +new Date(), userId]]);
+      if (email) promiseArr.push(["UPDATE `users` SET `email` = ?, `time_updated` = ? WHERE id = ?", [email, +new Date(), userId]]);
+      if (newpassword) promiseArr.push(["UPDATE `users` SET `password` = ?, `time_updated` = ? WHERE id = ?", [newpassword, +new Date(), userId]]);
+      Promise.all(promiseArr.map((arr) => {return queryPromise(arr[0], arr[1])})).then(() => {
+        console.log("success");
+        res.status(200).send("success");
+      }).catch((error) => {
+        console.log(error);
+        res.status(500).send("Internal Server Error");
+      });
+    } else {
+      res.status(400).send("Password Wrong");
+    }
   });
 });
 
