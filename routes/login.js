@@ -12,9 +12,7 @@ router.post('/', function (req, res) {
     var email = req.body.email;
     var password = req.body.password;
 
-    for (var i = 0; i < 10000; i++) {
-      password = sha256gen(password);
-    }
+    password = sha256gen(password);
     connection.query(
       'SELECT `id`, `name` FROM `users` WHERE `email` = ? AND `password` = ?',
       [email, password],

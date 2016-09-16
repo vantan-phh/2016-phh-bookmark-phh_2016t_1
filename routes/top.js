@@ -18,6 +18,10 @@ router.get('/', function (req, res) {
       return com.orgInfo(orgIds);
     })
     .then((orgs) => {
+      console.log(orgs);
+      if (orgs == undefined) {
+        orgs = {};
+      }
       res.render('./orglist.ejs', {
         orgs: orgs,
       });
