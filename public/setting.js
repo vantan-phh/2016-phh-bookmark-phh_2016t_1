@@ -1,22 +1,26 @@
 $(function(){
-  $('button').on('click', function () {
+  var $sendBtn = $('#sendBtn');
+  var $password = $("input[name='password']");
+  $sendBtn.on('click', function () {
     console.log("aa!");
-    var displayName = $(".displayName").val();
-    var name = $(".name").val();
-    var password = $(".password").val();
-    var email = $('.email').val();
+    var displayName = $("input[name='displayName']").val();
+    var name = $("input[name='name']").val();
+    var email = $("input[name='email']").val();
+    var newpassword = $("input[name='newpassword']").val();
+    var password = $("input[name='password']").val();
     console.log(displayName, name, email, password);
     $.ajax({
       url  : "/setting",
       type : "POST",
       data : {
-        displayName: displayName,
-        name: name,
-        email: email,
-        password: password,
+        displayName : displayName,
+        name : name,
+        email : email,
+        newpassword : newpassword,
+        password : password,
       },
     })
-    .done(function(data, textStatus, jqXHR){
+    .done(function(data, textStatus, jqXHR) {
       var formdata = new FormData($('#updateForm').get(0));
       if (formdata.length) {
         $.ajax({
@@ -29,9 +33,16 @@ $(function(){
           dataType    : "html"
         })
         .done(function(data, textStatus, jqXHR){
-          console.log("success");
+          console.log("iconsuccess");
         });
+      } else {
+        console.log("success");
       }
     });
+  });
+  $password.on('change', function () {
+    if ($password.val().length !== "") {
+      $sendBtn.prop("disabled", false);
+    }
   });
 });

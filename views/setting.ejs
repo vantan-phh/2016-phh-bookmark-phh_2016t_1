@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.min.js"></script>
 
   <script type="text/javascript" src="/static/setting.js"></script>
 
@@ -22,15 +23,20 @@
     <div id="form">
       <p class="form-title"></p>
       <form id="updateForm" class="form-horizontal" action="/setting" method="post">
+        <p>名前</p>
+        <p><input name="displayName" class="name form-control"></p>
         <p>username</p>
         <p><input name="name" class="name form-control"></p>
         <p>アイコン</p>
         <input type="file" name="icon">
-        <p>mail address</p>
+        <p>メールアドレス</p>
         <p><input name="email" class="email form-control"></p>
-        <p>password</p>
+        <p>新しいパスワードに変更</p>
+        <p><input name="newpassword" type="password" class="password form-control" value=""></p>
+        <p>現在のパスワード</p>
         <p><input name="password" type="password" class="password form-control" value=""></p>
-        <button type="button" class="btn">更新</button>
+
+        <button id="sendBtn" type="button" class="btn" disabled="true">更新</button>
       </form>
     </div>
   </div>
