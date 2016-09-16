@@ -24,12 +24,12 @@ router.post('/', function (req, res) {
     if (!userNameExists) {
       if (userName && email && password) {
         //res.send(userName + "で登録しました");
-        res.redirect('/login'); //登録後にloginPageに飛ぶ
         connection.query(
           "INSERT INTO `users` (`name`, `displayName`, `email`,  `password`, `icon`, `time_updated`) VALUES (?, ?, ?, ?, 'sample.png', ?)",
           [userName, displayName, email, password, (+new Date())],
         function(error, result, fields){
           console.log(result);
+          res.redirect('/login'); //登録後にloginPageに飛ぶ
         });
       } else {
         res.render('./register.ejs',

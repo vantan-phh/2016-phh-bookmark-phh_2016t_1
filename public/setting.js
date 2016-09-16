@@ -18,7 +18,7 @@ $(function(){
     })
     .done(function(data, textStatus, jqXHR){
       var formdata = new FormData($('#updateForm').get(0));
-      if (formdata.length != 0) {
+      if (formdata.length) {
         $.ajax({
           url  : "/setting/icon",
           type : "POST",
