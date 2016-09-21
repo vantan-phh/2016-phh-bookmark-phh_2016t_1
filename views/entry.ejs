@@ -21,6 +21,7 @@
   <% include header.ejs %>
   <input type="hidden" name="orgId" value="<%= orgId%>">
   <input type="hidden" name="url" value="<%= urlResult.url%>">
+  <input type="hidden" name="urlId" value="<%= urlResult.Id%>">
   <div class="container">
     <div class="containerHead"></div>
     <div class="contentsArea">
@@ -50,14 +51,38 @@
                     </div>
                   </form>
                 </div>
-              <div class="bookmarkControl">
-                <div id="deleteBtn" class="bookmarkBtn btn">
-                  削除
+                <div class="bookmarkControl">
+                  <div id="deleteBtn" class="bookmarkBtn btn">
+                    削除
+                  </div>
+                  <div id="addbtn" class="bookmarkBtn btn">
+                    コメントする
+                  </div>
+                  <a class="waves-effect waves-light btn modal-trigger" href="#addTag">タグを追加</a>
+                  <script type="text/javascript">
+                  $(document).ready(function(){
+                    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+                    $('.modal-trigger').leanModal();
+                  });
+                  </script>
+                  <!-- Modal-->
+                  <div id="addTag" class="modal">
+                    <div class="modal-content">
+                      <div class="inputField row">
+                        <form class="col s12">
+                          <div class="input-field col s12">
+                            <input name="url"class="mdl-textfield__input" type="text" id="inputTag">
+                            <label for="inputTag">Tag追加</label>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <a id="addTagBtn" class="modal-action modal-close waves-effect waves-green btn-flat">追加する</a>
+                    </div>
+                  </div>
+                  <!-- -->
                 </div>
-                <div id="addbtn" class="bookmarkBtn btn">
-                  コメントする
-                </div>
-              </div>
               </div>
             </div>
           </div>

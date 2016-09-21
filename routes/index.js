@@ -21,6 +21,7 @@ var routes = {
   invite: require('./invite'),
 
   perm: require('./perm'),
+  tag: require('./tag')
 };
 
 module.exports = routes;

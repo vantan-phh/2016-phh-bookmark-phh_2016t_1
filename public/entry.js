@@ -1,6 +1,7 @@
 $(function(){
   var url = $(':hidden[name="url"]').val();
   var orgId =$(':hidden[name="orgId"]').val();
+  var urlId =$(':hidden[name="urlId"]').val();
 
   $('#addbtn').on('click',function(){
     var inputComment = $("#inputComment").val();
@@ -40,6 +41,26 @@ $(function(){
       dataType: "text",
       data: {
         "commentId": commentId,
+      },
+      success: function(data, textStatus){
+      },
+      error: function(xhr, textStatus, errorThrown){
+        // エラー処理
+      }
+    });
+
+  });
+
+  $('#addTagBtn').on('click',function(){
+    var tagName = $("#inputTag").val();
+    $.ajax({
+      type: "POST",
+      url: "/tag",
+      dataType: "text",
+      data: {
+        "tagName": tagName,
+        "orgId": orgId,
+        "urlId": urlId
       },
       success: function(data, textStatus){
       },
