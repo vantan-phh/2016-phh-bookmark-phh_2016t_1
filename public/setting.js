@@ -22,7 +22,10 @@ $(function(){
     })
     .done(function(data, textStatus, jqXHR) {
       var formdata = new FormData($('#updateForm').get(0));
-      if (formdata.length) {
+      console.log(formdata);
+      console.log($('#updateForm'));
+      if (formdata) {
+        console.log("icon uploading");
         $.ajax({
           url  : "/setting/icon",
           type : "POST",
