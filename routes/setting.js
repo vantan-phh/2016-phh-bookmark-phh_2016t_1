@@ -29,14 +29,16 @@ router.post('/', function (req, res) {
   var displayName = req.body.displayName;
   var name = req.body.name;
   var email = req.body.email;
-  var newpassword = sha256gen(req.body.newpassword);
+  var newpassword = req.body.newpassword;
+  var password = req.body.password;
+  if (newpassword) {
+    newpassword = sha256gen(req.body.newpassword);
+  }
   var password = sha256gen(req.body.password);
   var promiseArr = [];
-  console.log(userId, displayName, name, email, newpassword, password);
   queryPromise(
     "SELECT `password` FROM users WHERE id = ?", [userId]
   ).then((result) => {
-    console.log("yeayayayeyeyyay");
     if (password === result[0].password) {
       if (displayName) promiseArr.push(["UPDATE `users` SET `displayName` = ?, `time_updated` = ? WHERE id = ?", [displayName, +new Date(), userId]]);
       if (name) promiseArr.push(["UPDATE `users` SET `name` = ?, `time_updated` = ? WHERE id = ?", [name, +new Date(), userId]]);

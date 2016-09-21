@@ -37,7 +37,7 @@ function md5hash(tmpfile) {
   var md5 = crypto.createHash('md5');
   md5.update(content);
   var digest = md5.digest('hex') + "-" + (+new Date());
-  fs.writeFileSync("icons/" + digest, content);
+  fs.writeFileSync("./icons/" + digest, content);
   fs.unlink(tmpfile);
   return digest;
 }
