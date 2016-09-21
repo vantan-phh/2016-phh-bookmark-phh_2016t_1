@@ -27,6 +27,7 @@ router.get('/:urlId(\\d+)/:orgId(\\d)', function (req, res) {
        }
        //console.log(unity[1].displayName);
        res.render('./entry.ejs', {
+         urlId:id,
          union: unity,
          urlResult: result[0],
          orgId: orgId

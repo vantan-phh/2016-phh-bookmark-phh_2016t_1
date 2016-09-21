@@ -2,6 +2,7 @@ $(function(){
   var url = $(':hidden[name="url"]').val();
   var orgId =$(':hidden[name="orgId"]').val();
   var urlId =$(':hidden[name="urlId"]').val();
+  console.log(urlId);
 
   $('#addbtn').on('click',function(){
     var inputComment = $("#inputComment").val();
@@ -59,8 +60,8 @@ $(function(){
       dataType: "text",
       data: {
         "tagName": tagName,
+        "urlId": urlId,
         "orgId": orgId,
-        "urlId": urlId
       },
       success: function(data, textStatus){
       },
@@ -68,7 +69,6 @@ $(function(){
         // エラー処理
       }
     });
-
+    //console.log("くりっくしたお");
   });
-
 });
