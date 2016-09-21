@@ -1,6 +1,8 @@
 $(function(){
   var url = $(':hidden[name="url"]').val();
   var orgId =$(':hidden[name="orgId"]').val();
+  var urlId =$(':hidden[name="urlId"]').val();
+  console.log(urlId);
 
   $('#addbtn').on('click',function(){
     var inputComment = $("#inputComment").val();
@@ -50,4 +52,23 @@ $(function(){
 
   });
 
+  $('#addTagBtn').on('click',function(){
+    var tagName = $("#inputTag").val();
+    $.ajax({
+      type: "POST",
+      url: "/tag",
+      dataType: "text",
+      data: {
+        "tagName": tagName,
+        "urlId": urlId,
+        "orgId": orgId,
+      },
+      success: function(data, textStatus){
+      },
+      error: function(xhr, textStatus, errorThrown){
+        // エラー処理
+      }
+    });
+    //console.log("くりっくしたお");
+  });
 });

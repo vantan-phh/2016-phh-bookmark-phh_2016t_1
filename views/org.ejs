@@ -19,32 +19,41 @@
 
   <% include headerOrg.ejs %>
   <div id="container">
-    <div class="topInput">
-      <div class="inputField row">
-        <form class="col s12">
-          <div class="input-field col s6">
-            <input name="url"class="mdl-textfield__input" type="text" id="inputUrl">
-            <label for="inputUrl">URL</label>
+    <!-- Modal Structure -->
+    <div id="addBookmarkModal" class="modal">
+      <div class="modal-content">
+        <div class="inputField row">
+          <form class="col s12">
+            <div class="input-field col s12">
+              <input name="url"class="mdl-textfield__input" type="text" id="inputUrl">
+              <label for="inputUrl">URL</label>
+            </div>
+            <div class="input-field col s12">
+              <textarea id="inputComment" class="materialize-textarea"></textarea>
+              <label for="textarea1">Comment</label>
+            </div>
           </div>
-          <div class="input-field col s12">
-            <textarea id="inputComment" class="materialize-textarea"></textarea>
-            <label for="textarea1">Comment</label>
-          </div>
-        </div>
-        <p><button id="addbtn" class="btn mdl-button mdl-js-button mdl-button--raised">
-          追加
-        </button></p>
-      </form>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <a id="addbtn" class="modal-action modal-close waves-effect waves-green btn-flat">追加する</a>
+      </div>
     </div>
-  </div>
 
-  <div id="bookmarkList">
-    <h3> <%= orgName %>ブックマーク一覧</h3>
-    <div class="bookmarkUrl">
+    <div id="bookmarkList">
+      <h3><%= orgName %>ブックマーク一覧</h3>
+      <a class="waves-effect waves-light btn modal-trigger" href="#addBookmarkModal" style="float:right;">共有する</a>
+      <script type="text/javascript">
+      $(document).ready(function(){
+        // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+        $('.modal-trigger').leanModal();
+      });
+      </script>
+      <div class="bookmarkUrl">
 
+      </div>
     </div>
-  </div>
-</div>
 
+  </div>
 </body>
 </html>

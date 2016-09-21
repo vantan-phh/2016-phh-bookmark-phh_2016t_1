@@ -8,7 +8,9 @@ function tagProduction(tagName, urlId, orgId) {
         try {
           var Result = {};
           if(err) throw err;
-          Result.first = result[0].id;
+          if(result[0]) {
+            Result.first = result[0].id;
+          }
           resolve(Result);
         }catch(err) {
           reject(err);
@@ -65,3 +67,4 @@ function tagProduction(tagName, urlId, orgId) {
     })
   })
 };
+module.exports = tagProduction;
