@@ -80,8 +80,8 @@ function sosikikensaku(id, kenmozi) {
     connection.query(str, ary, function(err, Qresult) {
       try {
         if(err)throw err;
+        var comment = [];
         if(result.second[0]) {
-          var comment = [];
           for(var i = 0; i < result.second.length; i++) {
             if(result.second[i].comment.match(kenmo[0])) {
               comment.push(result.second[i]);
@@ -90,22 +90,47 @@ function sosikikensaku(id, kenmozi) {
         }
         if(Qresult[0]) {
           for(var i = 0; i < Qresult.length; i++) {
+            Qresult[i].orgId = [];
             for(var j = 0; j < result.second.length; j++) {
               if(Qresult[i].id == result.second[j].urlId) {
-                Qresult[i].orgId = result.second[j].orgId;
+                Qresult[i].orgId.push(result.second[j].orgId);
                 break;
               }
             }
           }
         }
         if(Qresult[0] == comment[0])throw err;
-        var kekka = Qresult && comment[0] ? Qresult.concat(comment) :
-        Qresult && !comment[0] ? Qresult : comment;
-        resolve(kekka);
+        var ketugou = {Qresult, comment}
+        resolve(ketugou);
       }catch(e) {
         reject(e);
       }
     })
+  })).then(result => new Promise((resolve, reject) => {
+    if(result.comment[0]) {
+      var str = "SELECT `displayName`, `icon` FROM users WHERE "
+      var ary = [];
+      for(var i = 0; i < result.comment.length; i++) {
+        str += "id = ? OR ";
+        ary.push(result.comment[i].userId);
+      }
+      str = str.substr(0, str.length - 4);
+      connection.query(str, ary, function(err, Qresult) {
+        try {
+          if(err) throw err;
+          console.log("a");
+          for(var i = 0; i < Qresult.length; i++) {
+            result.comment[i].displayName = Qresult[i].displayName;
+            result.comment[i].icon = Qresult[i].icon;
+          }
+          resolve(result.Qresult.concat(result.comment));
+        }catch(e) {
+          reject(e);
+        }
+      });
+    }else {
+      resolve(result.Qresult);
+    }
   }))
 }
 
