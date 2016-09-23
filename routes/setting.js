@@ -100,7 +100,13 @@ router.post('/', function (req, res) {
         res.status(200).send("success");
       }).catch((error) => {
         console.log(error);
-        res.status(500).send("Internal Server Error");
+        if (error == "name duplicate") {
+          res.status(400).send("name duplicate");
+        } else if (error == "email duplicate") {
+          res.status(400).send("email duplicate");
+        } else {
+          res.status(500).send("Internal Server Error");
+        }
       });
     } else {
       res.status(400).send("Password Wrong");
