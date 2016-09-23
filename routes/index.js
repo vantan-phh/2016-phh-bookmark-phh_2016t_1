@@ -20,6 +20,7 @@ var routes = {
   orglist: require('./orglist'),
 
   invite: require('./invite'),
+  namesearch: require('./namesearch'),
 
   perm: require('./perm'),
   tag: require('./tag'),
