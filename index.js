@@ -52,6 +52,7 @@ app.use('/createorg', routes.createorg);
 app.use('/search', routes.search);
 
 app.use('/org', routes.members);
+app.use('/org', routes.orgIcon);
 
 app.use('/entry', routes.entry);
 app.use('/orglist', routes.orglist);

@@ -8,6 +8,7 @@ var routes = {
   delete: require('./delete'),
   createorg: require('./createorg'),
   org: require('./org/org'),
+  orgIcon: require('./org/orgIcon'),
   search: require('./search'),
   searchResult: require('./searchResult'),
   icon: require('./setting/icon'),
