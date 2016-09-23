@@ -15,7 +15,7 @@
 .card{
   width:250px;
   height:400px;
-  margin-left:30px;
+  margin-left:20px;
 }
 .searchResult{
   float:left;
@@ -28,8 +28,9 @@
     <div class="searchResult">
       <%for(var i = 0;i < result.length;i += 1){%>
         <%if(result[i].title){%>
+          <%for(var k = 0; k < result[i].orgId.length;k++){%>
           <div class="card" style="float:left;">
-            <a href="/entry/<%= result[i].id%>/<%= result[i].orgId%>/">
+            <a href="/entry/<%= result[i].id%>/<%= result[i].orgId[k]%>/">
               <div class="card-image waves-effect waves-block waves-light">
                 <img class="activator" src="<%= result[i].thumbnail %>">
               </div>
@@ -38,6 +39,7 @@
               </div>
             </a>
           </div>
+          <%}%>
           <%}else{%>
             <div class="card">
               <div class="card-image waves-effect waves-block waves-light">

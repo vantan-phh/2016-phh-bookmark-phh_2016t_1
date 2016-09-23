@@ -13,7 +13,7 @@ router.get('/', function (req, res) {
       result: result,
       query: query,
     })
-    console.log(result[0]);
+    console.log(result[0].orgId.length);
   });
 });
 
