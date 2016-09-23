@@ -1,3 +1,4 @@
+"use strict"
 class common {
   constructor(connection) {
     this.connection = connection;
