@@ -1,19 +1,56 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-    <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
 
-  </head>
-  <body>
-    <div class="container">
-      <%= query %>
-    </div>
-  </body>
-</html>
+</head>
+<style media="screen">
+.card{
+  width:250px;
+  height:400px;
+  margin-left:30px;
+}
+.searchResult{
+  float:left;
+}
+</style>
+<body>
+  <% include header.ejs%>
+  <div class="container">
+    <p><%= query %>の検索結果  <%= result.length%>件の検索候補</p>
+    <div class="searchResult">
+      <%for(var i = 0;i < result.length;i += 1){%>
+        <%if(result[i].title){%>
+          <div class="card" style="float:left;">
+            <a href="/entry/<%= result[i].id%>/<%= result[i].orgId%>/">
+              <div class="card-image waves-effect waves-block waves-light">
+                <img class="activator" src="<%= result[i].thumbnail %>">
+              </div>
+              <div class="card-content">
+                <span class="card-title activator grey-text text-darken-4"><%= result[i].title %></span>
+              </div>
+            </a>
+          </div>
+          <%}else{%>
+            <div class="card">
+              <div class="card-image waves-effect waves-block waves-light">
+                <img class="activator" src="<%= result[i].icon %>">
+              </div>
+              <div class="card-content">
+                <span class="card-title activator grey-text text-darken-4"><%= result[i].comment %></span>
+                <p><a href="/entry/<%= result[i].urlId%>/<%= result[i].orgId%>/"></a></p>
+              </div>
+            </div>
+            <%}%>
+            <%}%>
+          </div>
+        </div>
+      </body>
+      </html>

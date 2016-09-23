@@ -3,13 +3,13 @@ var express = require('express');
 var connection = require('../connection');
 var router = express.Router();
 
-router.get('/:urlId(\\d+)/:orgId(\\d)', function (req, res) {
+router.get('/:urlId(\\d+)/:orgId(\\d+)', function (req, res) {
  var unity = []; // id, icon, comment で構成されるオブジェクトが入る配列
  var id = req.params.urlId;
  var orgId = req.params.orgId;
- connection.query("SELECT * FROM `urls` WHERE `id` = " + id, function(err, result) {
+ connection.query("SELECT * FROM `urls` WHERE `id` = ?", [id], function(err, result) {
    if(err)console.log(err);
-   connection.query("SELECT `userId`, `comment` FROM `orgComments` WHERE `urlId` = ? AND `orgId` = ?", [result[0].id, orgId],
+   connection.query("SELECT `userId`, `comment` FROM `orgComments` WHERE `urlId` = ? AND `orgId` = ?", [id, orgId],
    function(err, resu) {
      if(err || resu[0] == undefined)console.log("a");
      var str = "SELECT `icon`, `displayName` FROM `users`"
