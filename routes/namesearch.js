@@ -5,11 +5,11 @@ var router = express.Router();
 
 var com = new common(connection);
 
-router.get('/:name(\\w+)', function (req, res) {
-  var name = req.params.name;
+router.post('/', function (req, res) {
+  var query = req.body.query;
   var ids = [];
   console.log(name);
-  connection.query("SELECT id FROM users WHERE `name` LIKE ? LIMIT 5", [`${name}%`], function (error, result) {
+  connection.query("SELECT id FROM users WHERE `name` LIKE ? LIMIT 5", [`${query}%`], function (error, result) {
     for (var r of result) {
       console.log(r);
       ids.push(r.id);
