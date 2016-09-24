@@ -88,25 +88,27 @@
           </div>
 
           <div class="comments" style="margin-top:20px;">
-            <% for(var i = 0;i < union.length; i++){%>
-              <div class="commentContainer">
-                <div class="userProfile">
-                  <div class="userIcon" style="<%= union[i].icon%>">
+              <% for(var i = 0;i < union.length; i++){%>
+                <div class="col s12 m8 offset-m2 l6 offset-l3">
+                  <div class="card-panel grey lighten-5 z-depth-1">
+                    <div class="row valign-wrapper">
+                      <div class="col s2">
+                        <img src="<%= union[i].icon%>" alt="" class="circle responsive-img">
+                        <%= union[i].displayName %>
+                      </div>
+                      <div class="col s10">
+                        <span class="black-text"><%= union[i].comment %>
+                        </span>
+                      </div>
+                    </div>
                   </div>
-                  <div class="userName"><%= union[i].displayName %></div>
                 </div>
-                <div class="commentWrapper">
-                  <div class="comment">
-                    <%= union[i].comment %>
-                  </div>
+                <%}%>
                 </div>
               </div>
-              <%}%>
             </div>
+
           </div>
-        </div>
 
-      </div>
-
-    </body>
-    </html>
+        </body>
+        </html>

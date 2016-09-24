@@ -10,6 +10,16 @@ router.get('/', function (req, res) {
   var userId = req.session.userId;
   kensaku(userId, query).then(function(result) {
     console.log(result);
+    res.render('search.ejs',{
+      result: result,
+      query: query,
+    })
+  }, function(err) {
+    res.render('search.ejs',{
+      result:[],
+      query: query,
+    });
+
   });
 });
 
