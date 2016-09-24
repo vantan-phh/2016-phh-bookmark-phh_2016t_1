@@ -9,7 +9,7 @@ router.get('/:urlId(\\d+)/:orgId(\\d+)', function (req, res) {
  var orgId = req.params.orgId;
  connection.query("SELECT * FROM `urls` WHERE `id` = ?", [id], function(err, result) {
    if(err)console.log(err);
-   connection.query("SELECT `userId`, `comment` FROM `orgComments` WHERE `urlId` = ? AND `orgId` = ?", [id, orgId],
+   connection.query("SELECT `id`, `userId`, `comment` FROM `orgComments` WHERE `urlId` = ? AND `orgId` = ?", [id, orgId],
    function(err, resu) {
      if(err || resu[0] == undefined)console.log("a");
      var str = "SELECT `icon`, `displayName` FROM `users`"
@@ -23,7 +23,13 @@ router.get('/:urlId(\\d+)/:orgId(\\d+)', function (req, res) {
      connection.query(str, function(err, re) {
        if(err)console.log(err);
        for(var i = 0; i < re.length; i++) {
-         unity[i] = {id: resu[i].userId, icon: re[i].icon, displayName: re[i].displayName, comment: resu[i].comment};
+         unity[i] = {
+           id: resu[i].userId,
+           icon: re[i].icon,
+           displayName: re[i].displayName,
+           comment: resu[i].comment,
+           commentId: resu[i].id
+         };
        }
        //console.log(unity[1].displayName);
        res.render('./entry.ejs', {
