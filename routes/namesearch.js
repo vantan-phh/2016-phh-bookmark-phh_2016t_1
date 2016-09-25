@@ -8,7 +8,7 @@ var com = new common(connection);
 router.post('/', function (req, res) {
   var query = req.body.query;
   var ids = [];
-  console.log(name);
+  //console.log(name);
   connection.query("SELECT id FROM users WHERE `name` LIKE ? LIMIT 5", [`${query}%`], function (error, result) {
     for (var r of result) {
       console.log(r);

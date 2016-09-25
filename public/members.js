@@ -1,6 +1,5 @@
 $(function(){
   var orgId = $(':hidden[name="orgId"]').val();
-  console.log(orgId);
   $('.modal-trigger').leanModal();
 
   $('.addPerm').on('click',function(){
@@ -27,34 +26,80 @@ $(function(){
     location.reload();
   });
 
-  $('.addMembers').on('click',function(){
+
+
+
+  $("#searchTerm").keyup(function(e){
 
     var word = $("#searchTerm").val();
     $.ajax({
-      type: 'GET',
-      url: '/',
-      cache: false,
+      type: "POST",
+      url: "/namesearch",
+      data: {
+        "query": word,
+      },
+      success: function(result){
+        var data = "",n = 10;
+        if(result.length < 10){ n = result.length};
+        console.log(result.length);
+        console.log(n);
+        for(var i = 0;i < n ;i++){
+        data += `<a class="collection-item" id="${result[i].id}">${result[i].id}</a>`;
+        console.log(result[i].id);
+      }
+        $("#searchResults").html(data);
+      }
+
+    });
+  });
+
+  $(document).on('click','.collection-item',function(){
+    console.log("hello");
+    var inviteId  =$(this).attr("id");
+    var invitees = new Array();
+    invitees.push(inviteId);
+    console.log(orgId);
+    console.log(invitees);
+    $.ajax({
+      type: 'POST',
+      url: '/invite',
+      data: {
+        "orgId":orgId,
+        "invitees": invitees
+      },
       dataType: 'text',
       success: function(data) {
-        $('#').style.display = "block";
-        $('#searchResult').html(data);
+        alert("招待しました");
       },
       error: function() {
-        alert("読み込み失敗");
+        console.log("失敗");
       }
     });
 
-    $("#search_results").slideUp();
-    $("#search_button").click(function(e){
-      e.preventDefault();
-      ajax_search();
-    });
-    $("#search_term").keyup(function(e){
-      e.preventDefault();
-      ajax_search();
+});
+/*
+  $(".collection-item").on("click",function(){
+    console.log("hello");
+    var inviteId  =$(this).attr("id");
+    console.log(inviteId);
+    $.ajax({
+      type: 'GET',
+      url: '/invite',
+      data: {
+        "orgId":orgId,
+        "invitees":inviteId
+      },
+      dataType: 'text',
+      success: function(data) {
+        console.log("招待成功");
+      },
+      error: function() {
+        console.log("失敗");
+      }
     });
 
-  });
+  })
+*/
 
   $(".inviteBtn").on('click',function(){
     var word = $("#searchTerm").val();
