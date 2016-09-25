@@ -48,7 +48,7 @@ $(function(){
             }
             $searchResults.html(data);
           } else {
-            $searchResults.html("見つかりませんでした");
+            $searchResults.html('<a class="collection-item">見つかりませんでした</a>');
           }
         }
       });
