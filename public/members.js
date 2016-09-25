@@ -69,7 +69,7 @@ $(function(){
       },
       dataType: 'text',
       success: function(data) {
-        console.log("招待成功");
+        alert("招待しました");
       },
       error: function() {
         console.log("失敗");
