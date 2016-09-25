@@ -1,4 +1,5 @@
 $(function(){
+  var $searchResults = $("#searchResults");
   var orgId = $(':hidden[name="orgId"]').val();
   $('.modal-trigger').leanModal();
 
@@ -30,27 +31,28 @@ $(function(){
 
 
   $("#searchTerm").keyup(function(e){
-
     var word = $("#searchTerm").val();
-    $.ajax({
-      type: "POST",
-      url: "/namesearch",
-      data: {
-        "query": word,
-      },
-      success: function(result){
-        var data = "",n = 10;
-        if(result.length < 10){ n = result.length};
-        console.log(result.length);
-        console.log(n);
-        for(var i = 0;i < n ;i++){
-        data += `<a class="collection-item" id="${result[i].id}">${result[i].id}</a>`;
-        console.log(result[i].id);
-      }
-        $("#searchResults").html(data);
-      }
-
-    });
+    if (word != "") {
+      $.ajax({
+        type: "POST",
+        url: "/namesearch",
+        data: {
+          "query": word,
+        },
+        success: function(result){
+          if (result.length != 0) {
+            var data = "";
+            for (var i = 0;i < result.length ;i++) {
+              data += `<a class="collection-item" id="${result[i].id}">${result[i].name}</a>`;
+              console.log(result[i]);
+            }
+            $searchResults.html(data);
+          } else {
+            $searchResults.html("見つかりませんでした");
+          }
+        }
+      });
+    }
   });
 
   $(document).on('click','.collection-item',function(){
