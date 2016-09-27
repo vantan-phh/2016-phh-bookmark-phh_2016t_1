@@ -3,6 +3,29 @@ var express = require('express');
 var connection = require('../connection');
 var router = express.Router();
 
+function youtubeEmbed(url) {
+  if (/youtube\.com\/watch/.test(url)) {
+    var paramstr = url.split("?")[1];
+    if (paramstr) {
+      var params = paramstr.split("&");
+      if (params) {
+        var videoId = "";
+        for (var i = 0; i < params.length; i++) {
+          if (/v=\w{11}/.test(params[i])) {
+            videoId = params[i].slice(2);
+            params.splice(i,1);
+            break;
+          }
+        }
+        if (videoId) {
+          return !params.length ? `//www.youtube.com/embed/${videoId}` : `//www.youtube.com/embed/${videoId}?${params.join("&")}`;
+        }
+      }
+    }
+  }
+  return null;
+}
+
 router.get('/:urlId(\\d+)/:orgId(\\d+)', function (req, res) {
  var unity = []; // id, icon, comment で構成されるオブジェクトが入る配列
  var id = req.params.urlId;
@@ -32,6 +55,9 @@ router.get('/:urlId(\\d+)/:orgId(\\d+)', function (req, res) {
          };
        }
        //console.log(unity[1].displayName);
+
+       result[0].youtube = youtubeEmbed(result[0].url);
+
        res.render('./entry.ejs', {
          urlId:id,
          union: unity,
