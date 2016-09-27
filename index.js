@@ -72,6 +72,8 @@ app.use('/org', routes.org);
 app.use('/searchResult', routes.searchResult);
 app.use('/invite',routes.invite);
 app.use('/perm',routes.perm);
+app.use('/kick',routes.kick);
+
 app.use('/tag',routes.tag);
 
 app.set('port', process.env.PORT || 3000);
