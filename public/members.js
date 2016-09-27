@@ -9,7 +9,7 @@ $(function(){
   $('.modal-trigger').leanModal();
 
   $('.addPerm').on('click',function(){
-    var id = $(this).attr('id');
+    var id = $(this).data('id');
     console.log(id);
     console.log("click");
     $.ajax({
@@ -33,6 +33,29 @@ $(function(){
   });
 
 
+  $('.kick').on('click',function(){
+    var id = $(this).data('id');
+    console.log(id);
+    console.log("click");
+    $.ajax({
+      type: "POST",
+      url: "/kick",
+      data: {
+        "orgId": orgId,
+        "kickedId": id,
+      },
+      success: function(data, textStatus){
+        //$('#pii').text(data);
+        console.log(data);
+        console.log(textStatus);
+        console.log("成功!!!");
+      },
+      error: function(xhr, textStatus, errorThrown){
+        // エラー処理
+      }
+    });
+    location.reload();
+  });
 
 
   $searchTerm.keyup(function(e){

@@ -23,6 +23,8 @@ var routes = {
   namesearch: require('./namesearch'),
 
   perm: require('./perm'),
+  kick: require('./kick'),
+  
   tag: require('./tag'),
 };
 

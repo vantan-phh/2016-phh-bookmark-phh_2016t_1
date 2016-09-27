@@ -7,8 +7,8 @@ var com = new common(connection);
 function kickPromise(userId, orgId) {
   console.log(userId, orgId);
   return new Promise((resolve, reject) => {
-    connection.query("INSERT INTO `joiningOrgs`(userId, orgId, permission) SELECT ?, ?, 1 AS TMP WHERE NOT EXISTS (SELECT * FROM `joiningOrgs` WHERE userId = ? AND orgId = ?)",
-    [userId, orgId, userId, orgId], function (error, result, fields) {
+    connection.query("DELETE FROM `joiningOrgs` WHERE userId = ? AND orgId = ?",
+    [userId, orgId], function (error, result, fields) {
       if (result) resolve(result);
       if (error) reject(error);
     });
@@ -20,8 +20,8 @@ router.post('/', function (req, res) {
   if (userId == undefined) {
     res.status(400).send('not logged in.');
   }
-  var orgId = req.body.orgId;
-  var kickedId = req.body.kickedId;
+  var orgId = parseInt(req.body.orgId, 10);
+  var kickedId = parseInt(req.body.kickedId, 10);
   console.log(userId, kickedId, orgId);
   com.orgPermissions(orgId)
   .then((perms) => { return new Promise( function (resolve, reject) {
@@ -36,7 +36,7 @@ router.post('/', function (req, res) {
       }
     }});
   }).then(function () { return new Promise( function (resolve, reject) {
-    connection.query('SELECT * FROM `joiningOrgs` WHERE `id` = ? AND `orgId` = ? LIMIT 1', [kickedId, orgId], function (error, result, fields) {
+    connection.query('SELECT * FROM `joiningOrgs` WHERE `userId` = ? AND `orgId` = ? LIMIT 1', [kickedId, orgId], function (error, result, fields) {
       if (result.length == 1) {
         resolve();
       } else {
