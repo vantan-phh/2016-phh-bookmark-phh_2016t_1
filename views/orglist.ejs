@@ -27,12 +27,13 @@
       <%if (orgs.length > 0) {%>
         <%for(var i = 0;i < orgs.length; i++){%>
         <li class="collection-item avatar">
-          <a href="/org/<%= orgs[i].id %>">
-            <span class="title"><%= orgs[i].name %></span>
-            <p><%= orgs[i].description %></p>
-          </a>
+          <a href="/org/<%= orgs[i].id %>"></a>
+          <span class="title"><%= orgs[i].name %></span>
+          <p><%= orgs[i].description %></p>
         </li>
         <%}%>
+      <%} else {%>
+        現在所属している組織はありません。
       <%}%>
     </ul>
   </div>
