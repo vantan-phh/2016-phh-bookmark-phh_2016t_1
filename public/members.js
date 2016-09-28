@@ -86,7 +86,7 @@ $(function(){
             }
 
             for (var i = 0; i < result.length ;i++) {
-              data += `<a class="nameSearchResult collection-item" data-id="${result[i].id}" data-name="${result[i].name}">${result[i].name}</a>`;
+              data += `<a class="nameSearchResult collection-item" data-id="${result[i].id}" data-name="${result[i].name}">${result[i].displayName} <span>@${result[i].name}</span></a>`;
               console.log(result[i]);
             }
             $searchResults.html(data);
