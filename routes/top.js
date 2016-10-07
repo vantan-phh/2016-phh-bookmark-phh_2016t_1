@@ -4,7 +4,7 @@ var sha256gen = require('../sha256gen');
 var mysql = require('mysql');
 var connection = require('../connection');
 var common = require('../common');
-var com = new common(connection);
+var com = new Common(connection);
 
 router.get('/', function (req, res) {
   console.log("TOP");

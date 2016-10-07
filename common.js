@@ -1,5 +1,5 @@
 "use strict"
-class common {
+class Common {
   constructor(connection) {
     this.connection = connection;
   }
@@ -85,4 +85,4 @@ class common {
 
 }
 
-module.exports = common;
+module.exports = Common;

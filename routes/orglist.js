@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var connection = require('../connection');
 var common = require('../common');
-var com = new common(connection);
+var com = new Common(connection);
 
 router.get('/', function (req, res) {
   var userId = req.session.userId;

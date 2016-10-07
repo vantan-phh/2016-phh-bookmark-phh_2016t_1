@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var connection = require('../connection');
 var common = require('../common');
-var com = new common(connection);
+var com = new Common(connection);
 
 function kickPromise(userId, orgId) {
   console.log(userId, orgId);
