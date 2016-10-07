@@ -3,7 +3,7 @@ var connection = require('../connection');
 var common = require('../common');
 var router = express.Router();
 
-var com = new common(connection);
+var com = new Common(connection);
 
 router.post('/', function (req, res) {
   var query = req.body.query;
