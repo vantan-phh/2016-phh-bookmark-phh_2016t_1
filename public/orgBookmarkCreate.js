@@ -1,5 +1,5 @@
 $(function(){
-  
+
   function redrawBookmark(res){
     obj = JSON.parse(res); //json形式をobject形式に変換
     //console.dir(obj);
@@ -33,12 +33,7 @@ $(function(){
     }
   });
 
-
-
-
-
-
-
+//URLの共有
   $('#addbtn').on('click',function(){
     var inputUrl = $("#inputUrl").val();
     var inputComment = $("#inputComment").val();
